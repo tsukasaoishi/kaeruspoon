@@ -20,12 +20,11 @@ group :assets do
 end
 
 group :development, :test do
-  gem "turn"
   gem "rspec-rails"
   gem "capybara"
   gem "guard-rspec"
   gem "growl_notify"
-  gem 'rb-fsevent', '~> 0.9.1'
+  gem "rb-fsevent"
 end
 
 gem 'jquery-rails'
