@@ -19,9 +19,13 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development do
-  gem "rspec"
+group :development, :test do
+  gem "turn"
   gem "rspec-rails"
+  gem "capybara"
+  gem "guard-rspec"
+  gem "growl_notify"
+  gem 'rb-fsevent', '~> 0.9.1'
 end
 
 gem 'jquery-rails'
