@@ -1,11 +1,81 @@
 class TextDecorator
+  #
+  # build <pre> tag
+  #
+  class PreBuffer < Array
+    include ActionView::Helpers::TagHelper
+
+    REGEXP_PRE_BEGIN = /^>\|\|$/
+    REGEXP_PRE_END = /^\|\|<$/
+
+    def begin?(str)
+      @on = (str =~ REGEXP_PRE_BEGIN)
+    end
+
+    def finish?(str)
+      str =~ REGEXP_PRE_END
+    end
+
+    def on?
+      !!@on
+    end
+
+    def flash
+      return "" if empty?
+
+      content_tag(:pre, join("\n"))
+    ensure
+      @on = false
+      clear
+    end
+  end
+
+  #
+  # build <p> tag
+  #
+  class BlockBuffer < Array
+    include ActionView::Helpers::TagHelper
+
+    def push(str)
+      super if str.present?
+    end
+
+    def flash
+      return "" if empty?
+
+      inner = join(tag(:br))
+      content_tag(:p, inner.html_safe)
+    ensure
+      clear
+    end
+  end
 
   class << self
-    include ActionView::Helpers::TagHelper
     def interpret_notation(text)
-      text.gsub(/\r\n/, "\n").gsub(/\r/, "\n").split(/\n{2,}/).map do |line|
-        content_tag(:p, line.gsub(/\n/, tag(:br)).html_safe)
-      end.join
+      output = ""
+      pre_buffer = PreBuffer.new
+      block_buffer = BlockBuffer.new
+
+      text.gsub(/\r\n/, "\n").gsub(/\r/, "\n").split(/\n/).each do |line|
+        if pre_buffer.on?
+          if pre_buffer.finish?(line)
+            output << pre_buffer.flash
+          else
+            pre_buffer << line
+          end
+        elsif pre_buffer.begin?(line)
+          output << block_buffer.flash
+        else
+          if line.blank?
+            output << block_buffer.flash
+          else
+            block_buffer << line
+          end
+        end
+      end
+
+      output << block_buffer.flash
+      output.html_safe
     end
   end
 end
