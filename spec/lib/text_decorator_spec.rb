@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+include ActionView::Helpers::UrlHelper
+
 describe TextDecorator do
   describe ".interpret_notation" do
     it "regard CR/LF as <br /> tag" do
@@ -15,6 +17,20 @@ describe TextDecorator do
     it "refard from '>||' to '||<' as <pre> tag block" do
       text = "aa\n>||\nbb\ncc\n||<\ndd"
       TextDecorator.interpret_notation(text).should match(%r!<p>aa</p>.+<pre>bb\ncc</pre>.+<p>dd</p>!m)
+    end
+
+    it "regard [url:title=xxx] or [url] as a tag" do
+      url_aaa = "http://aaa.com"
+      url_bbb = "http://bbb.com"
+      url_ccc = "https://ccc.com"
+      link_aaa = link_to("aaa", url_aaa, :target => "_blank")
+      link_bbb = link_to(link_bbb, url_bbb, :target => "_blank")
+      link_ccc = link_to(link_ccc, url_ccc, :target => "_blank")
+
+      text = "[#{url_aaa}:title=aaa][#{url_bbb}][#{url_ccc}]"
+      TextDecorator.interpret_notation(text).should eq(
+        "<p>" + link_aaa + link_bbb + link_ccc + "</p>"
+      )
     end
   end
 end

@@ -41,7 +41,9 @@ class TextDecorator
     def flash
       return "" if empty?
 
-      inner = join(tag(:br))
+      inner = join(tag(:br)).gsub(%r!\[(https?://.+?)(?:\:title=(.+?)|)\]!) do
+        link_to($2.presence || $1, $1, :target => "_blank")
+      end
       content_tag(:p, inner.html_safe)
     ensure
       clear
