@@ -14,7 +14,7 @@ describe TextDecorator do
 
     it "refard from '>||' to '||<' as <pre> tag block" do
       text = "aa\n>||\nbb\ncc\n||<\ndd"
-      TextDecorator.interpret_notation(text).should eq("<p>aa</p><pre>bb\ncc</pre><p>dd</p>")
+      TextDecorator.interpret_notation(text).should match(%r!<p>aa</p>.+<pre>bb\ncc</pre>.+<p>dd</p>!m)
     end
   end
 end

@@ -23,7 +23,7 @@ class TextDecorator
     def flash
       return "" if empty?
 
-      content_tag(:pre, join("\n"))
+      CodeRay.scan(join("\n"), :ruby).div
     ensure
       @on = false
       clear

@@ -200,6 +200,7 @@ DEPENDENCIES
   activerecord-deprecated_finders!
   arel!
   capybara
+  coderay
   coffee-rails!
   growl_notify
   guard-rspec
