@@ -3,8 +3,6 @@ class TextDecorator
   # build <pre> tag
   #
   class PreBuffer < Array
-    include ActionView::Helpers::TagHelper
-
     REGEXP_PRE_BEGIN = /^>\|\|$/
     REGEXP_PRE_END = /^\|\|<$/
 
