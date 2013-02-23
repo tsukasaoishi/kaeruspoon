@@ -42,6 +42,11 @@ describe TextDecorator do
         "<p>" + link_to(article.title, "/articles/1") + "</p>"
       )
     end
+
+    it "regard [text] as a scan tag which has accent class" do
+      text = "[aaaaa]"
+      TextDecorator.interpret_notation(text).should match(%r!<span(.*?)>aaaaa</span>!)
+    end
   end
 end
 
