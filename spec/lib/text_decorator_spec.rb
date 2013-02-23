@@ -32,6 +32,16 @@ describe TextDecorator do
         "<p>" + link_aaa + link_bbb + link_ccc + "</p>"
       )
     end
+
+    it "regard [a:xxx] as a link to article" do
+      title = "test title"
+      article = mock_model(Article, :title => title, :id => 1)
+      Article.should_receive(:find_by_id).with(1).and_return(article)
+      text = "[a:1]"
+      TextDecorator.interpret_notation(text).should eq(
+        "<p>" + link_to(article.title, "/articles/1") + "</p>"
+      )
+    end
   end
 end
 

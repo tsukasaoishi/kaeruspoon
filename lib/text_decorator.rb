@@ -33,6 +33,11 @@ class TextDecorator
   #
   class BlockBuffer < Array
     include ActionView::Helpers::TagHelper
+    include Rails.application.routes.url_helpers
+
+    # not use. accessing while testing...
+    # TODO: after fix
+    attr_reader :controller
 
     def push(str)
       super if str.present?
@@ -44,6 +49,20 @@ class TextDecorator
       inner = join(tag(:br)).gsub(%r!\[(https?://.+?)(?:\:title=(.+?)|)\]!) do
         link_to($2.presence || $1, $1, :target => "_blank")
       end
+
+      inner.gsub!(%r!\[(.+?):(.+?)\]!) do
+        case $1
+        when "a"
+          if article = Article.find_by_id($2.to_i)
+            link_to(article.title, article_path(article))
+          else
+            ""
+          end
+        else
+          ""
+        end
+      end
+
       content_tag(:p, inner.html_safe)
     ensure
       clear
