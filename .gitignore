@@ -18,3 +18,4 @@
 /vendor/bundle
 
 /config/s3.yml
+/config/amazon.yml

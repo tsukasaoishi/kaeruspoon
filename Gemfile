@@ -49,3 +49,4 @@ gem 'jbuilder', '~> 1.0.1'
 gem 'coderay'
 gem "paperclip"
 gem 'aws-sdk'
+gem 'amazon-ecs'

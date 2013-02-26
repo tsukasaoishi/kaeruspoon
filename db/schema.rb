@@ -11,7 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130226092332) do
+ActiveRecord::Schema.define(version: 20130226121801) do
+
+  create_table "amazon_stocks", force: true do |t|
+    t.string   "asin",                             null: false
+    t.string   "url",                              null: false
+    t.string   "medium_image_url",    default: "", null: false
+    t.integer  "medium_image_width",  default: 0,  null: false
+    t.integer  "medium_image_height", default: 0,  null: false
+    t.string   "small_image_url",     default: "", null: false
+    t.integer  "small_image_width",   default: 0,  null: false
+    t.integer  "small_image_height",  default: 0,  null: false
+    t.string   "product_name",        default: "", null: false
+    t.string   "creator",             default: "", null: false
+    t.string   "manufacturer",        default: "", null: false
+    t.string   "media",               default: "", null: false
+    t.string   "release_date",        default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "amazon_stocks", ["asin"], name: "index_amazon_stocks_on_asin", length: {"asin"=>10}
 
   create_table "article_contents", force: true do |t|
     t.integer  "article_id", null: false

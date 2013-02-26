@@ -82,6 +82,9 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    amazon-ecs (2.2.4)
+      nokogiri (~> 1.4)
+      ruby-hmac (~> 0.3)
     atomic (1.0.1)
     aws-sdk (1.8.3.1)
       json (~> 1.4)
@@ -173,6 +176,7 @@ GEM
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
       rspec-mocks (~> 2.13.0)
+    ruby-hmac (0.4.0)
     rubyzip (0.9.9)
     sass (3.2.6)
     selenium-webdriver (2.30.0)
@@ -210,6 +214,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-deprecated_finders!
+  amazon-ecs
   arel!
   aws-sdk
   capybara
