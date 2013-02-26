@@ -23,8 +23,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "capybara"
   gem "guard-rspec"
-  gem "growl_notify"
-  gem "rb-fsevent"
+  gem 'rb-fsevent', '~> 0.9'
 end
 
 gem 'jquery-rails'

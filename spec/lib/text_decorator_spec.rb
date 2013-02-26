@@ -3,20 +3,20 @@ require 'spec_helper'
 include ActionView::Helpers::UrlHelper
 
 describe TextDecorator do
-  describe ".interpret_notation" do
+  describe ".replace" do
     it "regard CR/LF as <br /> tag" do
       text = "aa\nbb\rcc\r\ndd"
-      TextDecorator.interpret_notation(text).should match(%r!aa<br />bb<br />cc<br />dd!) 
+      TextDecorator.replace(text).should match(%r!aa<br />bb<br />cc<br />dd!) 
     end
 
     it "regard over double CR/LF as <p> tag block" do
       text = "aa\r\rbb\n\ncc\r\n\r\ndd"
-      TextDecorator.interpret_notation(text).should eq("<p>aa</p><p>bb</p><p>cc</p><p>dd</p>")
+      TextDecorator.replace(text).should eq("<p>aa</p><p>bb</p><p>cc</p><p>dd</p>")
     end
 
     it "refard from '>||' to '||<' as <pre> tag block" do
       text = "aa\n>||\nbb\ncc\n||<\ndd"
-      TextDecorator.interpret_notation(text).should match(%r!<p>aa</p>.+<pre>bb\ncc</pre>.+<p>dd</p>!m)
+      TextDecorator.replace(text).should match(%r!<p>aa</p>.+<pre>bb\ncc</pre>.+<p>dd</p>!m)
     end
 
     it "regard [url:title=xxx] or [url] as a tag" do
@@ -28,7 +28,7 @@ describe TextDecorator do
       link_ccc = link_to(link_ccc, url_ccc, :target => "_blank")
 
       text = "[#{url_aaa}:title=aaa][#{url_bbb}][#{url_ccc}]"
-      TextDecorator.interpret_notation(text).should eq(
+      TextDecorator.replace(text).should eq(
         "<p>" + link_aaa + link_bbb + link_ccc + "</p>"
       )
     end
@@ -38,14 +38,19 @@ describe TextDecorator do
       article = mock_model(Article, :title => title, :id => 1)
       Article.should_receive(:find_by_id).with(1).and_return(article)
       text = "[a:1]"
-      TextDecorator.interpret_notation(text).should eq(
+      TextDecorator.replace(text).should eq(
         "<p>" + link_to(article.title, "/articles/1") + "</p>"
       )
     end
 
     it "regard [text] as a scan tag which has accent class" do
       text = "[aaaaa]"
-      TextDecorator.interpret_notation(text).should match(%r!<span(.*?)>aaaaa</span>!)
+      TextDecorator.replace(text).should match(%r!<span(.*?)>aaaaa</span>!)
+    end
+
+    it "regard [[text] as [text" do
+      text = "[[aaa]"
+      TextDecorator.replace(text).should match(/\[aaa/)
     end
   end
 end
