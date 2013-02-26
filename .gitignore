@@ -16,3 +16,5 @@
 /tmp
 
 /vendor/bundle
+
+/config/s3.yml

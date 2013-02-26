@@ -47,3 +47,5 @@ gem 'jbuilder', '~> 1.0.1'
 # gem 'debugger'
 
 gem 'coderay'
+gem "paperclip"
+gem 'aws-sdk'
