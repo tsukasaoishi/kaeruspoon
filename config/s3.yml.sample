@@ -1,0 +1,17 @@
+development:
+  access_key_id: key
+  secret_access_key: secret_key
+  bucket: bucket
+  s3_host_name: s3_host
+
+test:
+  access_key_id: key
+  secret_access_key: secret_key
+  bucket: bucket
+  s3_host_name: s3_host
+
+production:
+  access_key_id: key
+  secret_access_key: secret_key
+  bucket: bucket
+  s3_host_name: s3_host
