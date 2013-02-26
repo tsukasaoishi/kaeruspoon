@@ -33,13 +33,27 @@ describe TextDecorator do
       )
     end
 
+    it "regard [a or d:yyyymmdd] as as a link to date article" do
+      title = "test title"
+      date = Time.local(2013,1,1)
+      text1 = "[a:#{date.strftime("%Y%m%d")}]"
+      text2 = "[d:#{date.strftime("%Y%m%d")}]"
+      target = link_to(
+        date.strftime("%Y年%m月%d日の日記"),
+        "/articles/date/#{date.strftime("%Y/%m/%d")}"
+      )
+
+      TextDecorator.replace(text1).should match(target)
+      TextDecorator.replace(text2).should match(target)
+    end
+
     it "regard [a:xxx] as a link to article" do
       title = "test title"
       article = mock_model(Article, :title => title, :id => 1)
       Article.should_receive(:find_by_id).with(1).and_return(article)
       text = "[a:1]"
-      TextDecorator.replace(text).should eq(
-        "<p>" + link_to(article.title, "/articles/1") + "</p>"
+      TextDecorator.replace(text).should match(
+        link_to(article.title, "/articles/1")
       )
     end
 

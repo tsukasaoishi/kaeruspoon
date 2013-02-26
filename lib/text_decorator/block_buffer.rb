@@ -23,8 +23,8 @@ class TextDecorator
         case type
         when /^https?$/
           http_link(type, data, option)
-        when "a"
-          article_link(data.to_i)
+        when "a", "d"
+          article_link(type, data)
         when /^\[/
           part
         else
@@ -45,9 +45,17 @@ class TextDecorator
       link_to(title.presence || url, url, :target => "_blank")
     end
 
-    def article_link(article_id)
-      article = Article.find_by_id(article_id)
-      article ? link_to(article.title, article_path(article)) : ""
+    def article_link(type, data)
+      if data =~ /^(\d{4})(\d{2})(\d{2})$/
+        year, month, day = $1, $2, $3
+        link_to(
+          "#{year}年#{month}月#{day}日の日記",
+          date_articles_path(year: year, month: month, day: day)
+        )
+      else
+        article = Article.find_by_id(data.to_i)
+        article ? link_to(article.title, article_path(article)) : ""
+      end
     end
   end
 end
