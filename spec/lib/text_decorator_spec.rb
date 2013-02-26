@@ -58,6 +58,13 @@ describe TextDecorator do
       )
     end
 
+    it "warning display if [a:xxx] is not found article" do
+      text = "[a:1]"
+      TextDecorator.replace(text).should match(
+        %r!<strong style=.+?>\[NotFound:a:1\]</strong>!
+      )
+    end
+
     it "regard [text] as a scan tag which has accent class" do
       text = "[aaaaa]"
       TextDecorator.replace(text).should match(%r!<span(.*?)>aaaaa</span>!)

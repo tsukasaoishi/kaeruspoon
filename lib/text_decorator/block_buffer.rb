@@ -55,8 +55,11 @@ class TextDecorator
           date_articles_path(year: year, month: month, day: day)
         )
       else
-        article = Article.find_by_id(data.to_i)
-        article ? link_to(article.title, article_path(article)) : ""
+        if article = Article.find_by_id(data.to_i)
+          link_to(article.title, article_path(article))
+        else
+          content_tag(:strong, "[NotFound:a:#{data}]", style: "font-size:4em")
+        end
       end
     end
 
