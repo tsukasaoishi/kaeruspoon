@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 include ActionView::Helpers::UrlHelper
+include ActionView::Helpers::AssetTagHelper
 
 describe TextDecorator do
   describe ".replace" do
@@ -65,6 +66,23 @@ describe TextDecorator do
     it "regard [[text] as [text" do
       text = "[[aaa]"
       TextDecorator.replace(text).should match(/\[aaa/)
+    end
+
+    it "regard [p:xxx] as a link to image" do
+      photo = mock_model(Photo, :id => 1)
+      image = double(Paperclip::Attachment)
+      large_image_url = "large_image_url"
+      original_image_url = "original_image_url"
+
+      Photo.should_receive(:find_by_id).with(1).and_return(photo)
+      photo.should_receive(:image).any_number_of_times.and_return(image)
+      image.should_receive(:url).with(:large).any_number_of_times.and_return(large_image_url)
+      image.should_receive(:url).with(:original).any_number_of_times.and_return(original_image_url)
+
+      text = "[p:1]"
+      TextDecorator.replace(text).should match(
+        link_to(image_tag(photo.image.url(:large)), photo.image.url(:original), :target => "_blank", :class => "article_image")
+      )
     end
   end
 end

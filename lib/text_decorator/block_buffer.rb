@@ -25,10 +25,12 @@ class TextDecorator
           http_link(type, data, option)
         when "a", "d"
           article_link(type, data)
+        when "p"
+          photo_link(data.to_i)
         when /^\[/
           part
         else
-          content_tag(:span, part, :class => "accent")
+          content_tag(:span, part, class: "accent")
         end
       end
 
@@ -42,7 +44,7 @@ class TextDecorator
     def http_link(type, data, option)
       url = "#{type}:#{data}"
       title = option.scan(/^title=(.+?)$/).flatten.first if option
-      link_to(title.presence || url, url, :target => "_blank")
+      link_to(title.presence || url, url, target: "_blank")
     end
 
     def article_link(type, data)
@@ -55,6 +57,19 @@ class TextDecorator
       else
         article = Article.find_by_id(data.to_i)
         article ? link_to(article.title, article_path(article)) : ""
+      end
+    end
+
+    def photo_link(photo_id)
+      if photo = Photo.find_by_id(photo_id)
+        link_to(
+          image_tag(photo.image.url(:large)),
+          photo.image.url(:original),
+          target: "_blank",
+          class:  "article_image"
+        )
+      else
+        ""
       end
     end
   end
