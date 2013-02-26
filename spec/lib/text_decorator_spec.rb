@@ -61,7 +61,7 @@ describe TextDecorator do
     it "warning display if [a:xxx] is not found article" do
       text = "[a:1]"
       TextDecorator.replace(text).should match(
-        %r!<strong style=.+?>\[NotFound:a:1\]</strong>!
+        %r!<scan style=.+?>\[NotFound:a:1\]</scan>!
       )
     end
 
@@ -95,7 +95,7 @@ describe TextDecorator do
     it "warning display if [p:xxx] is not found photo" do
       text = "[p:1]"
       TextDecorator.replace(text).should match(
-        %r!<strong style=.+?>\[NotFound:p:1\]</strong>!
+        %r!<scan style=.+?>\[NotFound:p:1\]</scan>!
       )
     end
   end

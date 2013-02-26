@@ -58,7 +58,7 @@ class TextDecorator
         if article = Article.find_by_id(data.to_i)
           link_to(article.title, article_path(article))
         else
-          content_tag(:strong, "[NotFound:a:#{data}]", style: "font-size:4em")
+          content_tag(:scan, "[NotFound:a:#{data}]", style: "font-size:4em")
         end
       end
     end
@@ -72,7 +72,7 @@ class TextDecorator
           class:  "article_image"
         )
       else
-        content_tag(:strong, "[NotFound:p:#{photo_id}]", style: "font-size:4em")
+        content_tag(:scan, "[NotFound:p:#{photo_id}]", style: "font-size:4em")
       end
     end
   end
