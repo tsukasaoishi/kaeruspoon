@@ -84,6 +84,13 @@ describe TextDecorator do
         link_to(image_tag(photo.image.url(:large)), photo.image.url(:original), :target => "_blank", :class => "article_image")
       )
     end
+
+    it "warning display if [p:xxx] is not found photo" do
+      text = "[p:1]"
+      TextDecorator.replace(text).should match(
+        %r!<strong style=.+?>\[NotFound:p:1\]</strong>!
+      )
+    end
   end
 end
 

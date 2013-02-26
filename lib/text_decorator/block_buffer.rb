@@ -69,7 +69,7 @@ class TextDecorator
           class:  "article_image"
         )
       else
-        ""
+        content_tag(:strong, "[NotFound:p:#{photo_id}]", style: "font-size:4em")
       end
     end
   end
