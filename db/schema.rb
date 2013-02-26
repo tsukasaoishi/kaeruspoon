@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130217030709) do
+ActiveRecord::Schema.define(version: 20130226092332) do
 
   create_table "article_contents", force: true do |t|
     t.integer  "article_id", null: false
@@ -32,5 +32,16 @@ ActiveRecord::Schema.define(version: 20130217030709) do
 
   add_index "articles", ["access_count"], name: "index_articles_on_access_count"
   add_index "articles", ["publish_at"], name: "index_articles_on_publish_at"
+
+  create_table "photos", force: true do |t|
+    t.string   "image_file_name",    null: false
+    t.string   "image_content_type", null: false
+    t.integer  "image_file_size",    null: false
+    t.datetime "image_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "photos", ["image_updated_at"], name: "index_photos_on_image_updated_at"
 
 end
