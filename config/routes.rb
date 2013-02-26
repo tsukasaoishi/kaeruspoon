@@ -1,5 +1,11 @@
 Kaeruspoon::Application.routes.draw do
-  resources :articles
+  resources :articles do
+    collection do
+      get 'date/:year/:month/(:day)' => 'articles#date', as: :date
+    end
+  end
+
+  get '/diary/:year/:month/(:day)' => redirect("/articles/date/%{year}/%{month}/%{day}")
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
