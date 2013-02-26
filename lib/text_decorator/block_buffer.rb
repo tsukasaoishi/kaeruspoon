@@ -27,6 +27,8 @@ class TextDecorator
           article_link(type, data)
         when "p"
           photo_link(data.to_i)
+        when "amazon"
+          amazon_link(data, option)
         when /^\[/
           part
         else
@@ -74,6 +76,37 @@ class TextDecorator
       else
         content_tag(:scan, "[NotFound:p:#{photo_id}]", style: "font-size:4em")
       end
+    end
+
+    def amazon_link(data, option)
+      if a = AmazonStock.find_by_asin(data)
+        case option
+        when "image"
+          amazon_image(a)
+        when "detail"
+          inner_detail = []
+          inner_detail << amazon_image(a)
+          inner_detail << link_to(a.product_name, a.url)
+          content_tag(:div, inner_detail.join.html_safe)
+        else
+          link_to("「#{a.product_name}」", a.url)
+        end
+      else
+        content_tag(:scan, "[NotFound:amazon:#{data}]", style: "font-size:4em")
+      end
+    end
+
+    def amazon_image(amazon)
+      link_to(
+        image_tag(
+          amazon.medium_image_url,
+          width: amazon.medium_image_width,
+          height: amazon.medium_image_height,
+          title: amazon.product_name,
+          alt: amazon.product_name
+        ),
+        amazon.url
+      )
     end
   end
 end

@@ -3,6 +3,8 @@ class AmazonStock < ActiveRecord::Base
 
   class << self
     def find_by_asin(asin)
+      return nil if asin.blank?
+
       amazon = self.where(asin: asin).first
       if !amazon || amazon.updated_at < 1.week.ago
         amazon ||= self.new(asin: asin)
@@ -33,12 +35,12 @@ class AmazonStock < ActiveRecord::Base
         amazon.release_date = element.get("PublicationDate").presence || element.get("ReleaseDate")
         
         amazon.updated_at = Time.now
-       # amazon.save!
+        amazon.save!
       end
 
       amazon
     rescue Exception
-      amazon
+      nil
     end
 
     private

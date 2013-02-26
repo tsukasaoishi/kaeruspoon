@@ -98,6 +98,23 @@ describe TextDecorator do
         %r!<scan style=.+?>\[NotFound:p:1\]</scan>!
       )
     end
+
+    it "regard [amazon:xxx] as a link to amazon product page" do
+      amazon = mock_model(AmazonStock, :asin => "1", :product_name => "product", :url => "url")
+      AmazonStock.should_receive(:find_by_asin).with("1").and_return(amazon)
+
+      text = "[amazon:1]"
+      TextDecorator.replace(text).should match(
+        %r!<a\s+?href="url".*?>.*?product.*?</a>!
+      )
+    end
+
+    it "warning display if amazon not found" do
+      text = "[amazon:1]"
+      TextDecorator.replace(text).should match(
+        %r!<scan style=.+?>\[NotFound:amazon:1\]</scan>!
+      )
+    end
   end
 end
 
