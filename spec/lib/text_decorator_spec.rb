@@ -131,6 +131,14 @@ describe TextDecorator do
         %r!<script.+?src="http://ext\.nicovideo\.jp/thumb_watch/sm#{nico_id}.+?></script>!
       )
     end
+
+    it "regard [slideshare:xxx] as slideshare tag" do
+      slideshare_id = "1"
+      text = "[slideshare:#{slideshare_id}]"
+      TextDecorator.replace(text).should match(
+        %r!<iframe.+?src="http://www\.slideshare\.net/slideshow/embed_code/#{slideshare_id}".+?></iframe>!
+      )
+    end
   end
 end
 

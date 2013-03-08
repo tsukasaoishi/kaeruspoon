@@ -33,6 +33,8 @@ class TextDecorator
           youtube_link(data)
         when "nico"
           niconico_link(data)
+        when "slideshare"
+          slideshare_link(data)
         when /^\[/
           part
         else
@@ -119,6 +121,10 @@ class TextDecorator
 
     def niconico_link(nico_id)
       %Q|<script type="text/javascript" src="http://ext.nicovideo.jp/thumb_watch/sm#{nico_id}?w=490&h=307"></script><noscript><a href="http://www.nicovideo.jp/watch/sm#{nico_id}">【ニコニコ動画】</a></noscript>|
+    end
+
+    def slideshare_link(slideshare_id)
+      %Q|<iframe src="http://www.slideshare.net/slideshow/embed_code/#{slideshare_id}" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>|
     end
   end
 end
