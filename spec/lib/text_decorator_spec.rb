@@ -115,6 +115,14 @@ describe TextDecorator do
         %r!<scan style=.+?>\[NotFound:amazon:1\]</scan>!
       )
     end
+
+    it "regard [youtube:xxx] as a youtube's iframe tag" do
+      youtube_id = "EaZUeCkelU"
+      text = "[youtube:#{youtube_id}]"
+      TextDecorator.replace(text).should match(
+        %r!<iframe.+?src="http://www\.youtube\.com/embed/#{youtube_id}".*?></iframe>!
+      )
+    end
   end
 end
 

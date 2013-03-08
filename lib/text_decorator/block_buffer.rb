@@ -29,6 +29,8 @@ class TextDecorator
           photo_link(data.to_i)
         when "amazon"
           amazon_link(data, option)
+        when "youtube"
+          youtube_link(data)
         when /^\[/
           part
         else
@@ -107,6 +109,10 @@ class TextDecorator
         ),
         amazon.url
       )
+    end
+
+    def youtube_link(youtube_id)
+      %Q|<iframe width="640" height="480" src="http://www.youtube.com/embed/#{youtube_id}" frameborder="0" allowfullscreen></iframe>|
     end
   end
 end
