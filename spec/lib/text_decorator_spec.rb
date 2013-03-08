@@ -123,6 +123,14 @@ describe TextDecorator do
         %r!<iframe.+?src="http://www\.youtube\.com/embed/#{youtube_id}".*?></iframe>!
       )
     end
+
+    it "regard [nico:xxx] as a niconico video tag" do
+      nico_id = "1"
+      text = "[nico:#{nico_id}]"
+      TextDecorator.replace(text).should match(
+        %r!<script.+?src="http://ext\.nicovideo\.jp/thumb_watch/sm#{nico_id}.+?></script>!
+      )
+    end
   end
 end
 

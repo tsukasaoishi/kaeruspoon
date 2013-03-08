@@ -31,6 +31,8 @@ class TextDecorator
           amazon_link(data, option)
         when "youtube"
           youtube_link(data)
+        when "nico"
+          niconico_link(data)
         when /^\[/
           part
         else
@@ -113,6 +115,10 @@ class TextDecorator
 
     def youtube_link(youtube_id)
       %Q|<iframe width="640" height="480" src="http://www.youtube.com/embed/#{youtube_id}" frameborder="0" allowfullscreen></iframe>|
+    end
+
+    def niconico_link(nico_id)
+      %Q|<script type="text/javascript" src="http://ext.nicovideo.jp/thumb_watch/sm#{nico_id}?w=490&h=307"></script><noscript><a href="http://www.nicovideo.jp/watch/sm#{nico_id}">【ニコニコ動画】</a></noscript>|
     end
   end
 end
