@@ -4,6 +4,8 @@ class TextDecorator
   #
   class BlockBuffer < Array
     include ActionView::Helpers::TagHelper
+    include ActionView::Helpers::UrlHelper
+    include ActionView::Helpers::AssetTagHelper
     include Rails.application.routes.url_helpers
 
     # not use. accessing while testing...
