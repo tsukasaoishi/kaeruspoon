@@ -1,6 +1,1 @@
-<article>
-  <h3><%= link_to(@article.title, article_path(@article)) %></h3>
-  <div>
-    <%=raw TextDecorator.replace(@article.body) %>
-  </div>
-</article>
+<%= render @article %>

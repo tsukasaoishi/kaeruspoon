@@ -50,3 +50,4 @@ gem 'coderay'
 gem "paperclip"
 gem 'aws-sdk'
 gem 'amazon-ecs'
+gem "js-routes"

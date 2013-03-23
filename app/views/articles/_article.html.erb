@@ -1,0 +1,13 @@
+<article itempscope itemtype="http://schema.org/Article">
+  <header>
+    <h3 itemprop="name"><%= link_to(article.title, article_path(article)) %></h3>
+    <time itemprop="datePublished" datetime="<%= I18n.l(article.publish_at, format: :publish) %>"><%= I18n.l(article.publish_at, format: :article) %></time>
+    <aside class="socialButton" data-article-id="<%= article.id %>">
+      <span class="accessCount"><%= article.access_count %></span>
+    </aside>
+  </header>
+  <div>
+    <%=raw TextDecorator.replace(article.body) %>
+  </div>
+</article>
+
