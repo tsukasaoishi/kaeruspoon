@@ -8,6 +8,7 @@
 </head>
 <body>
 <%= yield -%>
+<%= yield :bottom %>
 <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 <%= yield :js %>
 </body>
