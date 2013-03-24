@@ -1,7 +1,7 @@
 <!-- google_ad_section_start -->
 <%= render @article -%>
 <!-- google_ad_section_end -->
-<aside><%= render "/shared/google_ad" %></aside>
+<aside><%= render "/shared/google_ad" -%></aside>
 <nav>
 <% if @article.prev_article %>
   <span class="prev_article"><%= link_to @article.prev_article.title, article_path(@article.prev_article), rel: "prev bookmark" %></span>

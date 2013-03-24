@@ -1,10 +1,12 @@
 class ArticlesController < ApplicationController
   def recent
     @articles = Article.includes(:content).order("publish_at DESC").limit(6)
+    @no_turbolink = true
   end
 
   def show
     @article = Article.includes(:content).find(params[:id])
+    @title = @article.title
   end
 
   def date

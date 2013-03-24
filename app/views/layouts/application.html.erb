@@ -6,10 +6,12 @@
   <link href="/favicon.png" rel="shortcut icon">
   <%= csrf_meta_tags %>
 </head>
+<% if @no_turbolink %>
+<body data-no-turbolink>
+<% else %>
 <body>
+<% end %>
 <%= yield -%>
-<%= yield :bottom %>
 <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-<%= yield :js %>
 </body>
 </html>
