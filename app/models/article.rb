@@ -17,6 +17,14 @@ class Article < ActiveRecord::Base
     end
   end
 
+  def prev_article
+    @prev_article ||= self.class.where("publish_at <= ? AND id <> ?", publish_at, id).order("publish_at DESC").first
+  end
+
+  def next_article
+    @next_article ||= self.class.where("publish_at >= ? AND id <> ?", publish_at, id).order("publish_at ASC").first
+  end
+
   private
 
   def set_publish_at
