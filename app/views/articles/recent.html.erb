@@ -1,6 +1,6 @@
 <% @articles.each do |article| -%>
   <article>
-    <h3><%= link_to(article.title, article_path(article)) %></h3>
+    <h3><%= link_to(article.title, article_path(article), rel: :bookmark) %></h3>
     <p><%= truncate(article.body, length: 30) %></p>
   </article>
 <% end -%>
