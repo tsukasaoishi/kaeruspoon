@@ -26,7 +26,7 @@ group :development, :test do
   gem 'rb-fsevent', '~> 0.9'
 end
 
-gem 'jquery-rails'
+gem 'jquery-rails',  github: 'rails/jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -48,6 +48,6 @@ gem 'jbuilder', '~> 1.0.1'
 
 gem 'coderay'
 gem "paperclip"
-gem 'aws-sdk'
+gem 'aws-sdk', github: 'aws/aws-sdk-ruby'
 gem 'amazon-ecs'
 gem "js-routes"

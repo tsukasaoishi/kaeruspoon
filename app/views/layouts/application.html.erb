@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
   <link href="/favicon.png" rel="shortcut icon">
   <%= csrf_meta_tags %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 </head>
 <% if @no_turbolink %>
 <body data-no-turbolink>
@@ -12,6 +13,5 @@
 <body>
 <% end %>
 <%= yield -%>
-<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 </body>
 </html>
