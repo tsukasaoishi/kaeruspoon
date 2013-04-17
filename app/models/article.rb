@@ -5,6 +5,12 @@ class Article < ActiveRecord::Base
   after_create :make_content
   after_save :save_content
 
+  RANK = {
+    top: 3,
+    middle: 2,
+    low: 1
+  }
+
   def body
     self.content.try(:body) || ""
   end
@@ -17,12 +23,38 @@ class Article < ActiveRecord::Base
     end
   end
 
+
   def prev_article
     @prev_article ||= self.class.where("publish_at <= ? AND id <> ?", publish_at, id).order("publish_at DESC").first
   end
 
   def next_article
     @next_article ||= self.class.where("publish_at >= ? AND id <> ?", publish_at, id).order("publish_at ASC").first
+  end
+
+  def rank
+    @rank || RANK[:low]
+  end
+
+  RANK.each do |k, v|
+    define_method("#{k}_rank!") do
+      @rank = v
+    end
+  end
+
+  def digest_body(length_base = 30)
+    @_digest_body ||= plain_body.gsub(/\[.+?\]/, "").truncate(length_base * rank)
+  end
+
+  def pickup_photo
+    @_pickup_photo ||= begin
+      photo_id = plain_body.scan(/\[p\:(\d+)\]/).flatten.first
+      photo_id && Photo.find_by_id(photo_id)
+    end
+  end
+
+  def photo_size
+    rank == RANK[:top] ? :large : :medium
   end
 
   private
@@ -37,5 +69,9 @@ class Article < ActiveRecord::Base
 
   def save_content
     self.content.save!
+  end
+
+  def plain_body
+    @_plain_body ||= body.gsub(/[\r\n]/, "").gsub(/>\|.*\|.*\|\|</, "")
   end
 end

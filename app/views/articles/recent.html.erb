@@ -1,6 +1,13 @@
+<div class="list">
 <% @articles.each do |article| -%>
-  <article>
+  <article class="rank-<%= article.rank %>">
     <h3><%= link_to(article.title, article_path(article), rel: :bookmark) %></h3>
-    <p><%= truncate(article.body, length: 30) %></p>
+    <p>
+    <% if article.pickup_photo -%>
+      <%= image_tag(article.pickup_photo.image.url(article.photo_size)) %><br>
+    <% end -%>
+    <%= article.digest_body %>
+    </p>
   </article>
 <% end -%>
+</div>

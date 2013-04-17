@@ -3,6 +3,10 @@ Dir.glob(File.join(__dir__, "text_decorator/*")).each do |file|
 end
 
 class TextDecorator
+  include ActionView::Helpers::TagHelper
+  include ActionView::Helpers::UrlHelper
+  include ActionView::Helpers::AssetTagHelper
+
   class << self
     def replace(text)
       output = ""

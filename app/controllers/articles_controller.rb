@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   def recent
-    @articles = Article.includes(:content).order("publish_at DESC").limit(6)
+    @articles = Article.includes(:content).order("publish_at DESC").limit(7).to_a
+    @articles.first.top_rank!
     @no_turbolink = true
   end
 
