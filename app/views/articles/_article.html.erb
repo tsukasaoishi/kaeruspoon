@@ -1,4 +1,4 @@
-<article itempscope itemtype="http://schema.org/Article">
+<article class="col_3" itempscope itemtype="http://schema.org/Article">
   <header>
     <h3 itemprop="name"><%= link_to(article.title, article_path(article), rel: :bookmark) %></h3>
     <time itemprop="datePublished" datetime="<%= I18n.l(article.publish_at, format: :publish) %>"><%= I18n.l(article.publish_at, format: :article) %></time>

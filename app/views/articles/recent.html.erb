@@ -1,6 +1,6 @@
-<div class="list">
+<div class="row">
 <% @articles.each do |article| -%>
-  <article class="rank-<%= article.rank %>">
+  <article class="col_<%= article.rank %>">
     <h3><%= link_to(article.title, article_path(article), rel: :bookmark) %></h3>
     <p>
     <% if article.pickup_photo -%>
@@ -10,4 +10,5 @@
     </p>
   </article>
 <% end -%>
+<%= render "google_ad_article_show_square" %>
 </div>

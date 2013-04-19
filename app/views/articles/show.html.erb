@@ -4,9 +4,13 @@
 <aside><%= render "google_ad_article_show_square" -%></aside>
 <nav>
 <% if @article.prev_article %>
-  <span class="prev_article"><%= link_to @article.prev_article.title, article_path(@article.prev_article), rel: "prev bookmark" %></span>
+<div class="col_1 previous_paging_box">
+  <span class="entypo-left-bold"></span><%= link_to @article.prev_article.title, article_path(@article.prev_article), rel: "prev bookmark" %>
+</div>
 <% end %>
 <% if @article.next_article %>
-  <span class="next_article"><%= link_to @article.next_article.title, article_path(@article.next_article), rel: "next bookmark" %></span>
+<div class="col_1 next_paging_box">
+  <%= link_to @article.next_article.title, article_path(@article.next_article), rel: "next bookmark" %><span class="entypo-right-bold"></span>
+</div>
 <% end %>
 </nav>
