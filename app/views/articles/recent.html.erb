@@ -2,6 +2,10 @@
 <% @articles.each do |article| -%>
   <article class="col_<%= article.rank %>">
     <h3><%= link_to(article.title, article_path(article), rel: :bookmark) %></h3>
+    <time itemprop="datePublished" datetime="<%= I18n.l(article.publish_at, format: :publish) %>"><%= I18n.l(article.publish_at, format: :article) %></time>
+    <aside>
+      <span class="accessCount"><%= article.access_count %></span>
+    </aside>
     <p>
     <% if article.pickup_photo -%>
       <%= image_tag(article.pickup_photo.image.url(article.photo_size)) %><br>

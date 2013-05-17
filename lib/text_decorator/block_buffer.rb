@@ -118,7 +118,7 @@ class TextDecorator
     end
 
     def youtube_link(youtube_id)
-      %Q|<iframe width="640" height="480" src="http://www.youtube.com/embed/#{youtube_id}" frameborder="0" allowfullscreen></iframe>|
+      %Q|<div class="video-container"><iframe width="640" height="480" src="http://www.youtube.com/embed/#{youtube_id}" frameborder="0" allowfullscreen></iframe></div>|
     end
 
     def niconico_link(nico_id)

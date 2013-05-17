@@ -42,7 +42,7 @@ class Article < ActiveRecord::Base
     end
   end
 
-  def digest_body(length_base = 30)
+  def digest_body(length_base = 60)
     @_digest_body ||= plain_body.gsub(/\[.+?\]/, "").truncate(length_base * rank)
   end
 
@@ -72,6 +72,6 @@ class Article < ActiveRecord::Base
   end
 
   def plain_body
-    @_plain_body ||= body.gsub(/[\r\n]/, "").gsub(/>\|.*\|.*\|\|</, "")
+    @_plain_body ||= body.gsub(/[\r\n]/, "").gsub(/>\|.*?\|.+?\|\|</, "")
   end
 end
