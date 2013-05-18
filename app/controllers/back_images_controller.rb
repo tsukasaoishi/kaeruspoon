@@ -6,7 +6,7 @@ class BackImagesController < ApplicationController
 
   def create
     BackImage.all.each {|bi| bi.destroy}
-    back_image = BackImage.create!(params[:back_image].permit!)
+    BackImage.create!(params[:back_image].permit!)
     redirect_to manage_path
   end
 end

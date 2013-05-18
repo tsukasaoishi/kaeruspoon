@@ -9,6 +9,7 @@ class ArticlesController < ApplicationController
     @articles = Article.includes(:content).order("publish_at DESC").limit(6).to_a
     @articles.first.top_rank!
     @articles[1..2].each{|a| a.middle_rank!}
+
     @no_turbolink = true
     render "index"
   end

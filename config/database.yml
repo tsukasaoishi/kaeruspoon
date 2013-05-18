@@ -35,6 +35,6 @@ production:
   encoding: utf8
   database: kaeruspoon_production
   pool: 5
-  username: root
-  password:
-  socket: /tmp/mysql.sock
+  username: <%= db_account[:account] %>
+  password: <%= db_account[:password] %>
+  socket: /var/lib/mysql/mysql.sock
