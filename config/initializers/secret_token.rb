@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Kaeruspoon::Application.config.secret_key_base = 'bbde715a24cfa3ef76307078a1f162744520cf468c1d4a219398170bfdf661ab4f1082cf4b031137ecc1a793bc74a540a09bd04757c127dca4464ece3463d087'
+Kaeruspoon::Application.config.secret_key_base = File.read("/etc/kaeruspoon/secret_token.txt").strip
