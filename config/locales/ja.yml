@@ -189,6 +189,8 @@ ja:
       long: ! '%Y年%m月%d日(%a) %H時%M分%S秒 %z'
       short: ! '%y/%m/%d %H:%M'
       article: ! '%Y年%m月%d日(%a)'
+      month : ! '%Y年%m月'
+      day : ! '%Y年%m月%d日'
     pm: 午後
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:

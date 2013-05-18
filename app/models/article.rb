@@ -11,6 +11,23 @@ class Article < ActiveRecord::Base
     low: 1
   }
 
+  class << self
+    def calc_rank(articles)
+      max = articles.max_by{|a| a.access_count}.access_count
+      min = articles.min_by{|a| a.access_count}.access_count
+      border = (max - min).to_f / 3
+      first_border = min + border
+      articles.each do |article|
+        case article.access_count
+        when (first_border...(first_border + border))
+          article.middle_rank!
+        when ((first_border + border)..max)
+          article.top_rank!
+        end
+      end
+    end
+  end
+
   def body
     self.content.try(:body) || ""
   end
@@ -43,7 +60,7 @@ class Article < ActiveRecord::Base
   end
 
   def digest_body(length_base = 60)
-    @_digest_body ||= plain_body.gsub(/\[.+?\]/, "").truncate(length_base * rank)
+    @_digest_body ||= plain_body.gsub(/(\[.+?\]|\<.+?\>)/, "").truncate(length_base * rank)
   end
 
   def pickup_photo
