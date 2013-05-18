@@ -11,6 +11,15 @@ ready = ->
     $(@).append('<iframe src="http://www.facebook.com/plugins/like.php?href=' + url + '&amp;layout=button_count&amp;show_faces=false&amp;width=450&amp;action=like&amp;font&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; width:110px; height:21px;" allowTransparency="true"></iframe>')
     return
 
+  if ($("#new_photo"))
+    $("#new_photo").submit ->
+      if (!$("#photo_image").val())
+        alert("choich photo to upload")
+        return false
+      $("#backup_article_title").val($("#article_title").val())
+      $("#backup_article_body").val($("#article_body").val())
+      return
+    return
 
 $(document).ready(ready)
 $(document).on('page:load', ready)

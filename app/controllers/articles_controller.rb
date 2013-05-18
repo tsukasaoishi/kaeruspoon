@@ -37,7 +37,11 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @article = Article.new(publish_at: Time.now)
+    @article = Article.new(
+      title: params[:backup_article_title],
+      body: params[:backup_article_title],
+      publish_at: Time.now
+    )
   end
 
   def create
@@ -47,6 +51,11 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
+    if params.has_key?(:backup_article_title)
+      @article.title = params[:backup_article_title]
+      @article.body = params[:backup_article_body]
+    end
+
     render "new"
   end
 

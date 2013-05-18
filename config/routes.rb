@@ -9,6 +9,8 @@ Kaeruspoon::Application.routes.draw do
     end
   end
 
+  resources :photos
+
   get '/diary/:year/:month/(:day)' => redirect("/articles/date/%{year}/%{month}/%{day}")
 
   get 'manage' => 'manages#top', as: :manage
