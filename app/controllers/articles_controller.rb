@@ -1,6 +1,9 @@
 class ArticlesController < ApplicationController
   before_filter :required_login, only: [:new, :create, :edit, :update, :destroy]
 
+  caches_action :show, expires_in: 1.day, cache_path: Proc.new{|c| c.params[:id]}
+  caches_action :archive, expires_in: 1.day
+
   def recent
     @articles = Article.includes(:content).order("publish_at DESC").limit(6).to_a
     @articles.first.top_rank!
@@ -68,6 +71,7 @@ class ArticlesController < ApplicationController
   def update
     article = Article.find(params[:id])
     article.update_attributes!(require_params)
+    Rails.cache.delete("views/#{article.id}")
     redirect_to article
   end
 
