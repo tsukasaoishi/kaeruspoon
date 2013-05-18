@@ -11,6 +11,15 @@ class ArticlesController < ApplicationController
     @title = @article.title
   end
 
+  def popular
+    @articles = Article.includes(:content).order("access_count DESC").limit(20)
+    Article.calc_rank(@articles)
+
+    @title = I18n.t(:popular_articles)
+    @no_turbolink = true
+    render "index"
+  end
+
   def date
     y, m, d = params.values_at(:year, :month, :day)
     period_end_method = d ? :end_of_day : :end_of_month

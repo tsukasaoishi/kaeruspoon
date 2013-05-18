@@ -2,7 +2,7 @@
   <h1><%= link_to "kaeruspoon", root_path %></h1>
   <nav>
     <ul>
-      <li>人気記事</li>
+      <li><%= link_to I18n.t(:popular_articles), popular_articles_path %></li>
       <li>月別で読む</li>
       <li>キーワード</li>
       <li><%= link_to "おおいしつかさ", "https://twitter.com/tsukasa_oishi", target: "_blank" %></li>
