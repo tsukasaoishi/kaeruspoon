@@ -4,7 +4,8 @@
 
 body {
   color: #333333;
-  background: #FFFFFF url(http://s3-ap-northeast-1.amazonaws.com/kaeruspoon/images/back/10/original.JPG?1355319270) no-repeat right top;
+  background: #FFFFFF url(http://s3-ap-northeast-1.amazonaws.com/kaeruspoondevelopment/images/background/1/original.JPG?1368867888) no-repeat right top;
+  background-size: cover;
   background-attachment: fixed;
   width: 100%;
   height: 100%;
@@ -238,17 +239,17 @@ pre {
   background-color: #ffffff;
 }
 
-.edit_article input {
+.field input {
   width: 40em;
 }
 
-.edit_article textarea {
+.field textarea {
   width: 40em;
   height: 20em;
   margin-bottom: 1em;
 }
 
-.edit_article .actions {
+.field .actions {
   margin: 1em 0 2em;
 }
 

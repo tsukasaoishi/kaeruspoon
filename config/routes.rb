@@ -15,6 +15,7 @@ Kaeruspoon::Application.routes.draw do
 
   get 'manage' => 'manages#top', as: :manage
   resource :session
+  resources :back_images
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

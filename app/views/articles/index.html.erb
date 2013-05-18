@@ -11,7 +11,7 @@
     </aside>
     <p>
     <% if article.pickup_photo -%>
-      <%= image_tag(article.pickup_photo.image.url(article.photo_size)) %><br>
+      <%= image_tag(article.pickup_photo.image.url(:medium)) %><br>
     <% end -%>
     <%= article.digest_body %>
     </p>

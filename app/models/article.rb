@@ -70,10 +70,6 @@ class Article < ActiveRecord::Base
     end
   end
 
-  def photo_size
-    rank == RANK[:top] ? :large : :medium
-  end
-
   private
 
   def set_publish_at

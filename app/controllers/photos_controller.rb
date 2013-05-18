@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-  before_filter :required_login, only: :create
+  before_filter :required_login
 
   def create                                                                                          
     article = Article.find_by_id(params[:article_id])

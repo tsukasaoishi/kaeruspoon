@@ -1,0 +1,2 @@
+module BackImagesHelper
+end
