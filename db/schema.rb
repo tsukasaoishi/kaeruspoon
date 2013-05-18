@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130226121801) do
+ActiveRecord::Schema.define(version: 20130518012320) do
 
   create_table "amazon_stocks", force: true do |t|
     t.string   "asin",                             null: false
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20130226121801) do
     t.datetime "updated_at"
   end
 
-  add_index "amazon_stocks", ["asin"], name: "index_amazon_stocks_on_asin", length: {"asin"=>10}
+  add_index "amazon_stocks", ["asin"], name: "index_amazon_stocks_on_asin", length: {"asin"=>10}, using: :btree
 
   create_table "article_contents", force: true do |t|
     t.integer  "article_id", null: false
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20130226121801) do
     t.datetime "updated_at"
   end
 
-  add_index "article_contents", ["article_id"], name: "index_article_contents_on_article_id", unique: true
+  add_index "article_contents", ["article_id"], name: "index_article_contents_on_article_id", unique: true, using: :btree
 
   create_table "articles", force: true do |t|
     t.string   "title",                    null: false
@@ -50,8 +50,8 @@ ActiveRecord::Schema.define(version: 20130226121801) do
     t.datetime "updated_at"
   end
 
-  add_index "articles", ["access_count"], name: "index_articles_on_access_count"
-  add_index "articles", ["publish_at"], name: "index_articles_on_publish_at"
+  add_index "articles", ["access_count"], name: "index_articles_on_access_count", using: :btree
+  add_index "articles", ["publish_at"], name: "index_articles_on_publish_at", using: :btree
 
   create_table "photos", force: true do |t|
     t.string   "image_file_name",    null: false
@@ -62,6 +62,13 @@ ActiveRecord::Schema.define(version: 20130226121801) do
     t.datetime "updated_at"
   end
 
-  add_index "photos", ["image_updated_at"], name: "index_photos_on_image_updated_at"
+  add_index "photos", ["image_updated_at"], name: "index_photos_on_image_updated_at", using: :btree
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "password_digest"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

@@ -102,6 +102,7 @@ GEM
       nokogiri (~> 1.4)
       ruby-hmac (~> 0.3)
     atomic (1.0.2)
+    bcrypt-ruby (3.0.1)
     builder (3.1.4)
     capybara (2.0.3)
       mime-types (>= 1.16)
@@ -226,6 +227,7 @@ DEPENDENCIES
   amazon-ecs
   arel!
   aws-sdk!
+  bcrypt-ruby
   capybara
   coderay
   coffee-rails!

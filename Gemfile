@@ -51,3 +51,4 @@ gem "paperclip"
 gem 'aws-sdk', github: 'aws/aws-sdk-ruby'
 gem 'amazon-ecs'
 gem "js-routes"
+gem "bcrypt-ruby"

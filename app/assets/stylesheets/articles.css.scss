@@ -143,8 +143,11 @@ article aside {
   margin: 0 5px;
 }
 
+article aside span.operate a {
+  vertical-align: top;
+}
+
 article aside span.accessCount {
-  padding: 0 5px;
   vertical-align: top;
   color: #555555;
   padding: 0 1px;

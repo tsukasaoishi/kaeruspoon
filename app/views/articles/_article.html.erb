@@ -3,6 +3,10 @@
     <h3 itemprop="name"><%= link_to(article.title, article_path(article), rel: :bookmark) %></h3>
     <time itemprop="datePublished" datetime="<%= I18n.l(article.publish_at, format: :publish) %>"><%= I18n.l(article.publish_at, format: :article) %></time>
     <aside class="socialButton" data-article-id="<%= article.id %>">
+      <% if logged_in? %>
+        <span class="operate"><%= link_to I18n.t(:edit), edit_article_path(article) %></span>
+        <span class="operate"><%= link_to I18n.t(:delete), article, :confirm => I18n.t(:confirm_to_article_delete), :method => :delete %></span>
+      <% end %>
       <span class="accessCount"><%= article.access_count %></span>
     </aside>
   </header>

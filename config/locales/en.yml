@@ -1,4 +1,7 @@
 en:
+  edit: edit
+  delete: delete
+  confirm_to_article_delete: "Do you delete this article?"
   date:
     abbr_day_names:
     - Sun
