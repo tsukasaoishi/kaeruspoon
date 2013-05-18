@@ -1,14 +1,11 @@
 class ArticlesController < ApplicationController
+  before_filter :required_login, only: [:new, :create, :edit, :update, :destroy]
+
   def recent
     @articles = Article.includes(:content).order("publish_at DESC").limit(7).to_a
     @articles.first.top_rank!
     @no_turbolink = true
     render "index"
-  end
-
-  def show
-    @article = Article.includes(:content).find(params[:id])
-    @title = @article.title
   end
 
   def popular
@@ -32,5 +29,42 @@ class ArticlesController < ApplicationController
     @title = I18n.l(start, format: (d ? :day : :month))
     @no_turbolink = true
     render "index"
+  end
+
+  def show
+    @article = Article.includes(:content).find(params[:id])
+    @title = @article.title
+  end
+
+  def new
+    @article = Article.new(publish_at: Time.now)
+  end
+
+  def create
+    article = Article.create!(require_params)
+    redirect_to article
+  end
+
+  def edit
+    @article = Article.find(params[:id])
+    render "new"
+  end
+
+  def update
+    article = Article.find(params[:id])
+    article.update_attributes!(require_params)
+    redirect_to article
+  end
+
+  def destroy
+    article = Article.find(params[:id])
+    article.destroy
+    redirect_to root_path
+  end
+
+  private
+
+  def require_params
+    params.require(:article).permit(:title, :body, :publish_at)
   end
 end

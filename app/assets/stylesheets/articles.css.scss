@@ -233,3 +233,21 @@ pre {
   width: 98%;
   height: 100%;
 }
+
+.field {
+  background-color: #ffffff;
+}
+
+.edit_article input {
+  width: 40em;
+}
+
+.edit_article textarea {
+  width: 40em;
+  height: 20em;
+  margin-bottom: 1em;
+}
+
+.edit_article .actions {
+  margin: 1em 0;
+}
