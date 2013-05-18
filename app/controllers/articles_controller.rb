@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_filter :required_login, only: [:new, :create, :edit, :update, :destroy]
+  before_filter :access_count, only: :show
 
   caches_action :show, expires_in: 1.day, cache_path: Proc.new{|c| c.params[:id]}
   caches_action :archive, expires_in: 1.day
@@ -41,7 +42,6 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.includes(:content).find(params[:id])
     @title = @article.title
   end
 
@@ -85,5 +85,10 @@ class ArticlesController < ApplicationController
 
   def require_params
     params.require(:article).permit(:title, :body, :publish_at)
+  end
+
+  def access_count
+    @article = Article.find(params[:id])
+    @article.count_up
   end
 end

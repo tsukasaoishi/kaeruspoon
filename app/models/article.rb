@@ -80,6 +80,24 @@ class Article < ActiveRecord::Base
     end
   end
 
+  def count_up
+    if buffer = Rails.cache.read(counter_key)
+      count, set_time = buffer.split(":").map{|i| i.to_i}
+      count += 1
+      if (Time.now.to_i - set_time) > 600
+        Rails.cache.delete(counter_key)
+        self.access_count += count
+        self.save
+      else
+        write_counter_cache(count, set_time)
+      end
+    else
+      self.access_count += 1
+      self.save
+      write_counter_cache(0, Time.now.to_i)
+    end
+  end
+
   private
 
   def set_publish_at
@@ -96,5 +114,13 @@ class Article < ActiveRecord::Base
 
   def plain_body
     @_plain_body ||= body.gsub(/[\r\n]/, "").gsub(/>\|.*?\|.+?\|\|</, "")
+  end
+
+  def write_counter_cache(count, set_time)
+    Rails.cache.write(counter_key, "#{count}:#{set_time}", expires_in: 4.weeks)
+  end
+
+  def counter_key
+    "Articles:#{self.id}_count"
   end
 end
