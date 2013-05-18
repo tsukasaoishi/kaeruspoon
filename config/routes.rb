@@ -11,6 +11,7 @@ Kaeruspoon::Application.routes.draw do
 
   get '/diary/:year/:month/(:day)' => redirect("/articles/date/%{year}/%{month}/%{day}")
 
+  get 'manage' => 'manages#top', as: :manage
   resource :session
 
   # The priority is based upon order of creation: first created -> highest priority.
