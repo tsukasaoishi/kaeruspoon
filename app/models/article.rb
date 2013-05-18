@@ -26,6 +26,16 @@ class Article < ActiveRecord::Base
         end
       end
     end
+
+    def find_archives
+      archives = []
+      next_month = Time.at(0)
+      while a = self.where(["created_at >= ?", next_month]).order("created_at").first
+        archives << {:year => a.publish_at.year, :month => a.publish_at.month}
+        next_month = a.publish_at.next_month.beginning_of_month
+      end
+      archives
+    end
   end
 
   def body

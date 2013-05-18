@@ -2,15 +2,17 @@ class ArticlesController < ApplicationController
   before_filter :required_login, only: [:new, :create, :edit, :update, :destroy]
 
   def recent
-    @articles = Article.includes(:content).order("publish_at DESC").limit(7).to_a
+    @articles = Article.includes(:content).order("publish_at DESC").limit(6).to_a
     @articles.first.top_rank!
+    @articles[1..2].each{|a| a.middle_rank!}
     @no_turbolink = true
     render "index"
   end
 
   def popular
-    @articles = Article.includes(:content).order("access_count DESC").limit(20)
-    Article.calc_rank(@articles)
+    @articles = Article.includes(:content).order("access_count DESC").limit(20).to_a
+    @articles.first.top_rank!
+    @articles[1..2].each{|a| a.middle_rank!}
 
     @title = I18n.t(:popular_articles)
     @no_turbolink = true
@@ -23,12 +25,16 @@ class ArticlesController < ApplicationController
     start = Time.local(y, m, d || 1)
     period = (start..(start.__send__(period_end_method)))
 
-    @articles = Article.includes(:content).where(publish_at: period).order("publish_at")
+    @articles = Article.includes(:content).where(publish_at: period).order("publish_at").to_a
     Article.calc_rank(@articles)
 
     @title = I18n.l(start, format: (d ? :day : :month))
     @no_turbolink = true
     render "index"
+  end
+
+  def archive
+    @title = I18n.t(:archive_articles)
   end
 
   def show
