@@ -1,6 +1,6 @@
 <div class="row">
 <% if @title %>
-  <p class="caption"><%= @title %></p>
+  <h2 class="caption"><%= @title %></h2>
 <% end %>
 <% @articles.each do |article| -%>
   <article class="col_<%= article.rank %>">

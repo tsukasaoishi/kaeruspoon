@@ -1,3 +1,9 @@
+<% content_for :meta do %>
+<meta property="og:description" content="<%= @article.digest_body.strip %>">
+<% if @article.pickup_photo %>
+  <meta property="og:image" content="<%= @article.pickup_photo.image.url(:large) %>">
+<% end %>
+<% end %>
 <!-- google_ad_section_start -->
 <%= render @article -%>
 <!-- google_ad_section_end -->

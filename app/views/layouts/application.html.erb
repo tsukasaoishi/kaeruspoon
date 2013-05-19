@@ -1,9 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-  <title><%= @title.presence || "kaeruspoon" %></title>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
-  <meta property="fb:admins" content="671652438" />
+  <meta name="author" content="おおいしつかさ">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="kaeruspoon">
+  <% if @title.present? %>
+  <meta property="og:title" content="<%= @title %>">
+  <% end %>
+  <meta property="og:url" content="<%= request.url %>">
+  <%= yield :meta -%>
+  <meta property="fb:admins" content="671652438">
+  <title><%= @title.presence || "kaeruspoon" %></title>
   <%= stylesheet_link_tag "application", media: "all" %>
   <link href="/favicon.png" rel="shortcut icon">
   <%= auto_discovery_link_tag :atom, articles_url(:format => "atom") %>
