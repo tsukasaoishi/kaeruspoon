@@ -79,7 +79,8 @@ class TextDecorator
           image_tag(photo.image.url(:large)),
           photo.image.url(:original),
           target: "_blank",
-          class:  "article_image"
+          class:  "article_image",
+          itemprop: "image"
         )
       else
         content_tag(:scan, "[NotFound:p:#{photo_id}]", style: "font-size:4em")
