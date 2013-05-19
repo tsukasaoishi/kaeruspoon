@@ -93,9 +93,16 @@ class TextDecorator
           amazon_image(a)
         when "detail"
           inner_detail = []
-          inner_detail << amazon_image(a)
-          inner_detail << link_to(a.product_name, a.url)
-          content_tag(:div, inner_detail.join.html_safe)
+          inner_detail << content_tag(:div, amazon_image(a), class: "amazon_image")
+          infos = []
+          infos << link_to(a.product_name, a.url)
+          infos << a.creator if a.creator.present?
+          infos << a.manufacturer if a.manufacturer.present?
+          infos << a.media if a.media.present?
+          infos << a.release_date if a.release_date.present?
+          inner_detail << content_tag(:div, infos.join("<br>").html_safe, class: "amazon_info")
+          inner_detail << content_tag(:div, "", class: "amazon_clear")
+          content_tag(:div, inner_detail.join.html_safe, class: "amazon_box")
         else
           link_to("「#{a.product_name}」", a.url)
         end
