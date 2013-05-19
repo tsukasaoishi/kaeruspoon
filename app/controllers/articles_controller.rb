@@ -5,6 +5,14 @@ class ArticlesController < ApplicationController
   caches_action :show, expires_in: 1.day, cache_path: Proc.new{|c| c.params[:id]}
   caches_action :archive, expires_in: 1.day
 
+  def index
+    if request.format != :atom
+      redirect_to root_path
+    else
+      @articles = Article.includes(:content).order("publish_at DESC").limit(20).to_a
+    end
+  end
+
   def recent
     @articles = Article.includes(:content).order("publish_at DESC").limit(6).to_a
     @articles.first.top_rank!
