@@ -14,19 +14,19 @@
 ActiveRecord::Schema.define(version: 20130518080137) do
 
   create_table "amazon_stocks", force: true do |t|
-    t.string   "asin",                             null: false
-    t.string   "url",                              null: false
-    t.string   "medium_image_url",    default: "", null: false
-    t.integer  "medium_image_width",  default: 0,  null: false
-    t.integer  "medium_image_height", default: 0,  null: false
-    t.string   "small_image_url",     default: "", null: false
-    t.integer  "small_image_width",   default: 0,  null: false
-    t.integer  "small_image_height",  default: 0,  null: false
-    t.string   "product_name",        default: "", null: false
-    t.string   "creator",             default: "", null: false
-    t.string   "manufacturer",        default: "", null: false
-    t.string   "media",               default: "", null: false
-    t.string   "release_date",        default: "", null: false
+    t.string   "asin",                                          null: false
+    t.string   "url",                 limit: 2048,              null: false
+    t.string   "medium_image_url",                 default: "", null: false
+    t.integer  "medium_image_width",               default: 0,  null: false
+    t.integer  "medium_image_height",              default: 0,  null: false
+    t.string   "small_image_url",                  default: "", null: false
+    t.integer  "small_image_width",                default: 0,  null: false
+    t.integer  "small_image_height",               default: 0,  null: false
+    t.string   "product_name",                     default: "", null: false
+    t.string   "creator",                          default: "", null: false
+    t.string   "manufacturer",                     default: "", null: false
+    t.string   "media",                            default: "", null: false
+    t.string   "release_date",                     default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -74,8 +74,8 @@ ActiveRecord::Schema.define(version: 20130518080137) do
   add_index "photos", ["image_updated_at"], name: "index_photos_on_image_updated_at", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "password_digest"
+    t.string   "name",            default: "", null: false
+    t.string   "password_digest",              null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

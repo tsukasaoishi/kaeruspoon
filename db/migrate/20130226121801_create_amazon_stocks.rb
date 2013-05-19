@@ -2,7 +2,7 @@ class CreateAmazonStocks < ActiveRecord::Migration
   def change
     create_table :amazon_stocks do |t|
       t.string :asin, :null => false
-      t.string :url, :null => false, :length => 2048
+      t.string :url, :null => false, :limit => 2048
       t.string :medium_image_url, :null => false, :default => ""
       t.integer :medium_image_width, :null => false, :default => 0
       t.integer :medium_image_height, :null => false, :default => 0
