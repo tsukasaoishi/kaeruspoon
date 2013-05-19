@@ -4,23 +4,19 @@
   <title><%= @title.presence || "kaeruspoon" %></title>
   <meta name="viewport" content="width=device-width">
   <meta property="fb:admins" content="671652438" />
-  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag "application", media: "all" %>
   <link href="/favicon.png" rel="shortcut icon">
   <%= auto_discovery_link_tag :atom, articles_url(:format => "atom") %>
   <%= csrf_meta_tags %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <!--[if lt IE 9]>
   <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
   <![endif]-->
 </head>
-<% if @no_turbolink %>
-<body data-no-turbolink>
-<% else %>
 <body>
-<% end %>
 <%= render "header_navi" %>
 <div id="contents">
 <%= yield -%>
 </div>
+<%= javascript_include_tag "application" %>
 </body>
 </html>

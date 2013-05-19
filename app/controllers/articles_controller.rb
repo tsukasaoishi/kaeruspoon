@@ -18,7 +18,6 @@ class ArticlesController < ApplicationController
     @articles.first.top_rank!
     @articles[1..2].each{|a| a.middle_rank!}
 
-    @no_turbolink = true
     render "index"
   end
 
@@ -28,7 +27,6 @@ class ArticlesController < ApplicationController
     @articles[1..2].each{|a| a.middle_rank!}
 
     @title = I18n.t(:popular_articles)
-    @no_turbolink = true
     render "index"
   end
 
@@ -42,7 +40,6 @@ class ArticlesController < ApplicationController
     Article.calc_rank(@articles)
 
     @title = I18n.l(start, format: (d ? :day : :month))
-    @no_turbolink = true
     render "index"
   end
 
