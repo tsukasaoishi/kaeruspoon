@@ -1,43 +1,56 @@
 #!/usr/bin/env puma
-
-# Start Puma with next command:
-# RAILS_ENV=production bundle exec puma -e production -C ./config/puma.rb
-
-application_path = '/home/rails/kaeruspoon'
-
+rails_root = '/home/rails/kaeru'
 # The directory to operate out of.
 #
 # The default is the current directory.
 #
-directory application_path
+directory rails_root
 
-# Set the environment in which the rack's app will run.
+# Use a object or block as the rack application. This allows the
+# config file to be the application itself.
+#
+# app do |env|
+#   puts env
+#
+#   body = 'Hello, World!'
+#
+#   [200, { 'Content-Type' => 'text/plain', 'Content-Length' => body.length.to_s }, [body]]
+# end
+
+# Load “path” as a rackup file.
+#
+# The default is “config.ru”.
+#
+# rackup '/u/apps/lolcat/config.ru'
+
+# Set the environment in which the rack's app will run. The value must be a string.
 #
 # The default is “development”.
 #
-environment = :production
+environment 'production'
 
 # Daemonize the server into the background. Highly suggest that
 # this be combined with “pidfile” and “stdout_redirect”.
 #
 # The default is “false”.
 #
+# daemonize
 daemonize true
 
 # Store the pid of the server in the file at “path”.
 #
-pidfile "#{application_path}/tmp/pids/puma.pid"
+pidfile rails_root + '/tmp/pids/puma.pid'
 
 # Use “path” as the file to store the server info state. This is
 # used by “pumactl” to query and control the server.
 #
-state_path "#{application_path}/tmp/pids/puma.state"
+state_path rails_root + '/tmp/pids/puma.state'
 
 # Redirect STDOUT and STDERR to files specified. The 3rd parameter
 # (“append”) specifies whether the output is appended, the default is
 # “false”.
 #
-stdout_redirect "#{application_path}/log/puma.stdout.log", "#{application_path}/log/puma.stderr.log"
+stdout_redirect rails_root + '/log/puma.stdout', rails_root + '/log/puma.stderr'
 # stdout_redirect '/u/apps/lolcat/log/stdout', '/u/apps/lolcat/log/stderr', true
 
 # Disable request logging.
@@ -59,6 +72,9 @@ stdout_redirect "#{application_path}/log/puma.stdout.log", "#{application_path}/
 # The default is “tcp://0.0.0.0:9292”.
 #
 # bind 'tcp://0.0.0.0:9292'
+# bind 'unix:///var/run/puma.sock'
+# bind 'unix:///var/run/puma.sock?umask=0777'
+# bind 'ssl://127.0.0.1:9292?key=path_to_key&cert=path_to_cert'
 
 # Instead of “bind 'ssl://127.0.0.1:9292?key=path_to_key&cert=path_to_cert'” you
 # can also use the “ssl_bind” option.
