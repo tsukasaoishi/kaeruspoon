@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130518080137) do
+ActiveRecord::Schema.define(version: 20130519080021) do
 
   create_table "amazon_stocks", force: true do |t|
     t.string   "asin",                                          null: false
@@ -42,6 +42,16 @@ ActiveRecord::Schema.define(version: 20130518080137) do
 
   add_index "article_contents", ["article_id"], name: "index_article_contents_on_article_id", unique: true, using: :btree
 
+  create_table "article_keywords", force: true do |t|
+    t.integer  "article_id"
+    t.integer  "keyword_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "article_keywords", ["article_id"], name: "index_article_keywords_on_article_id", using: :btree
+  add_index "article_keywords", ["keyword_id"], name: "index_article_keywords_on_keyword_id", using: :btree
+
   create_table "articles", force: true do |t|
     t.string   "title",                    null: false
     t.datetime "publish_at",               null: false
@@ -61,6 +71,15 @@ ActiveRecord::Schema.define(version: 20130518080137) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "keywords", force: true do |t|
+    t.string   "name",                    default: "", null: false
+    t.string   "body",       limit: 1000, default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "keywords", ["name"], name: "index_keywords_on_name", unique: true, using: :btree
 
   create_table "photos", force: true do |t|
     t.string   "image_file_name",    null: false

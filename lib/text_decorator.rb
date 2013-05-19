@@ -28,7 +28,7 @@ class TextDecorator
       end
 
       output << block_buffer.flash
-      output.html_safe
+      Keyword.convert(output).force_encoding('utf-8').html_safe
     end
   end
 end

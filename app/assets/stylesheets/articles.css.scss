@@ -262,6 +262,16 @@ pre {
   clear: both;
 }
 
+.keyword_articles {
+  background-color: #ffffff;
+  @include roundBox;
+}
+
+.keyword_articles li {
+  list-style: none;
+  margin-bottom: 1em;
+}
+
 .field {
   background-color: #ffffff;
 }

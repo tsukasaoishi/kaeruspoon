@@ -55,3 +55,5 @@ gem "bcrypt-ruby"
 gem "dalli"
 gem "actionpack-action_caching"
 gem "puma"
+gem "word_scoop"
+gem 'will_paginate', '~> 3.0'

@@ -11,6 +11,7 @@ Kaeruspoon::Application.routes.draw do
   end
 
   resources :photos
+  resources :keywords
 
   get '/diary/:year/:month/(:day)' => redirect("/articles/date/%{year}/%{month}/%{day}")
 

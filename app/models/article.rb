@@ -1,9 +1,11 @@
 class Article < ActiveRecord::Base
   has_one :content, :class_name => "ArticleContent", :dependent => :destroy
+  has_many :article_keywords, :dependent => :destroy
+  has_many :keywords, :through => :article_keywords
 
   before_create :set_publish_at
   after_create :make_content
-  after_save :save_content
+  after_save :save_content, :keyword_check
 
   RANK = {
     top: 3,
@@ -110,6 +112,11 @@ class Article < ActiveRecord::Base
 
   def save_content
     self.content.save!
+  end
+
+  def keyword_check
+    keyword_list = Keyword.search(self.body)
+    self.keywords = Keyword.where(:name => keyword_list).to_a
   end
 
   def plain_body
