@@ -12,10 +12,14 @@
 /db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
-/log/*.log
+/log
 /tmp
+
+/.ruby-version
 
 /vendor/bundle
 
 /config/s3.yml
 /config/amazon.yml
+
+/public/assets
