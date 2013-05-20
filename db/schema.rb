@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 20130519080021) do
   end
 
   create_table "keywords", force: true do |t|
-    t.string   "name",                    default: "", null: false
+    t.string   "name"
     t.string   "body",       limit: 1000, default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"

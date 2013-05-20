@@ -17,9 +17,9 @@
   <link href="/favicon.png" rel="shortcut icon">
   <%= auto_discovery_link_tag :atom, articles_url(:format => "atom") %>
   <%= csrf_meta_tags %>
-  <!--[if lt IE 9]>
-  <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
-  <![endif]-->
+	<!--[if lt IE 9]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 </head>
 <body>
 <%= render "header_navi" %>
