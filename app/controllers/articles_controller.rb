@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   before_filter :required_login, only: [:new, :create, :edit, :update, :destroy]
   before_filter :access_count, only: :show
 
-  caches_action :show, expires_in: 1.day, cache_path: Proc.new{|c| c.params[:id]}
+  caches_action :show, expires_in: 1.day, if: lamda{ !loggend_in? }, cache_path: Proc.new{|c| c.params[:id]}
   caches_action :archive, expires_in: 1.day
 
   def index
