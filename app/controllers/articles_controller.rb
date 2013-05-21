@@ -61,6 +61,7 @@ class ArticlesController < ApplicationController
 
   def create
     article = Article.create!(require_params)
+    Rails.cache.delete("views/#{article.prev_article.id}") if article.prev_article
     redirect_to article
   end
 
