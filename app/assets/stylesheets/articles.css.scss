@@ -209,6 +209,10 @@ pre {
 }
 
 @media handheld, only screen and (max-width: 640px) {
+  body {
+    background: #222222;
+  }
+
 	div#contents { width: 100% !important; max-width: 100% !important; }
 
   .col_1, .col_2, .col_3, .col_center {
