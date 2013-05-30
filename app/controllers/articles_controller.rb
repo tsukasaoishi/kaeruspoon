@@ -9,12 +9,12 @@ class ArticlesController < ApplicationController
     if request.format != :atom
       redirect_to root_path
     else
-      @articles = Article.includes(:content).order("publish_at DESC").limit(20).to_a
+      @articles = Article.includes(:content).where("publish_at <= ?", Time.now).order("publish_at DESC").limit(20).to_a
     end
   end
 
   def recent
-    @articles = Article.includes(:content).order("publish_at DESC").limit(6).to_a
+    @articles = Article.includes(:content).where("publish_at <= ?", Time.now).order("publish_at DESC").limit(6).to_a
     @articles.first.top_rank!
     @articles[1..2].each{|a| a.middle_rank!}
 
@@ -34,7 +34,10 @@ class ArticlesController < ApplicationController
     y, m, d = params.values_at(:year, :month, :day)
     period_end_method = d ? :end_of_day : :end_of_month
     start = Time.local(y, m, d || 1)
-    period = (start..(start.__send__(period_end_method)))
+    finish = start.__send__(period_end_method)
+    now = Time.now
+    finish = now if finish > now
+    period = (start..finish)
 
     @articles = Article.includes(:content).where(publish_at: period).order("publish_at").to_a
     Article.calc_rank(@articles)
@@ -95,7 +98,7 @@ class ArticlesController < ApplicationController
   end
 
   def access_count
-    @article = Article.find(params[:id])
+    @article = Article.where("publish_at <= ?", Time.now).find(params[:id])
     @article.count_up
   end
 end
