@@ -14,7 +14,10 @@ class ArticlesController < ApplicationController
   end
 
   def recent
-    @articles = Article.includes(:content).where("publish_at <= ?", Time.now).order("publish_at DESC").limit(6).to_a
+    article_conds = Article.includes(:content).order("publish_at DESC").limit(6)
+    article_conds = article_conds.where("publish_at <= ?", Time.now) unless logged_in?
+    @articles = article_conds.to_a
+
     @articles.first.top_rank!
     @articles[1..2].each{|a| a.middle_rank!}
 
@@ -98,7 +101,8 @@ class ArticlesController < ApplicationController
   end
 
   def access_count
-    @article = Article.where("publish_at <= ?", Time.now).find(params[:id])
+    @article = Article.find(params[:id])
+    raise ActiveRecord::RecordNotFound if !logged_in? && @article.publish_at > Time.now
     @article.count_up
   end
 end
