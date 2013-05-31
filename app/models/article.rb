@@ -41,7 +41,7 @@ class Article < ActiveRecord::Base
   end
 
   def body
-    self.content.try(:body) || ""
+    self.content.try(:body) || @_body || ""
   end
 
   def body=(text)

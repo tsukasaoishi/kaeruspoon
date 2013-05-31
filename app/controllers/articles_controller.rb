@@ -60,7 +60,7 @@ class ArticlesController < ApplicationController
   def new
     @article = Article.new(
       title: params[:backup_article_title],
-      body: params[:backup_article_title],
+      body: params[:backup_article_body],
       publish_at: Time.now
     )
   end
