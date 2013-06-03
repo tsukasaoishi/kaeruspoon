@@ -1,0 +1,25 @@
+doctype 5
+html [ lang="ja" ]
+head
+  meta [ charset="UTF-8" ]
+  meta [ name="viewport" content="width=device-width" ]
+  meta [ name="author" content="おおいしつかさ" ]
+  meta [ property="og:type" content="website" ]
+  meta [ property="og:site_name" content="kaeruspoon" ]
+  - if @title.present?
+    meta [ property="og:title" content=@title ]
+  meta [ property="og:url" content=request.url ]
+  = yield(:meta)
+  meta [property="fb:admins" content="671652438" ]
+  title = (@title.presence || "kaeruspoon")
+  = stylesheet_link_tag("application", media: "all")
+  = favicon_link_tag("favicon.png")
+  = auto_discovery_link_tag(:atom, articles_url(:format => "atom"))
+  = csrf_meta_tags
+  /[if lt IE 9]
+    script [ src="http://html5shiv.googlecode.com/svn/trunk/html5.js" ]
+body
+  = render("header_navi")
+  div [ id="contents" ]
+    = yield
+  = javascript_include_tag("application")
