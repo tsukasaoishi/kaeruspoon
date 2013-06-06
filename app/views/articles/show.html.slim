@@ -1,0 +1,18 @@
+- content_for :meta do
+  meta [ property="og:description" content="#{@article.digest_body.strip}" ]
+  - if @article.pickup_photo
+    meta [ property="og:image" content="#{@article.pickup_photo.image.url(:large)}" ]
+/! google_ad_section_start
+= render @article
+/! google_ad_section_end
+nav [ class="row" ]
+  aside [ class="col_1" ]
+    = render "google_ad_article_show_square"
+  - if @article.prev_article
+    div [ class="col_1 previous_paging_box" ]
+      span [ class="entypo-left-bold" ]
+      = link_to(@article.prev_article.title, article_path(@article.prev_article), rel: "prev bookmark")
+  - if @article.next_article
+    div [ class="col_1 next_paging_box" ]
+      = link_to(@article.next_article.title, article_path(@article.next_article), rel: "next bookmark")
+      span [ class="entypo-right-bold" ]

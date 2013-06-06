@@ -1,0 +1,21 @@
+div [ class="row" ]
+  div [class="col_center field edit_article" ]
+    h3 create or edit article
+    = form_for @article do |f|
+      div
+        = f.text_field :title
+      div
+        = f.text_area :body
+      div
+        = f.datetime_select :publish_at
+      div [ class="actions" ] 
+        = submit_tag "create or edit"
+    = form_for Photo.new, :html => { :multipart => true } do |f|
+      h4 photo
+      = hidden_field_tag :article_id, @article.id
+      = hidden_field_tag :backup_article_title
+      = hidden_field_tag :backup_article_body
+      div
+        = f.file_field :image
+      div [ class="action" ]
+        = submit_tag "upload image"

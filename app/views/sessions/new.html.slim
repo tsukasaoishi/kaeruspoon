@@ -1,0 +1,15 @@
+div [ class="row" ]
+  div [ class="col_center field" ]
+    - if logged_in?
+      = button_to "LogOut", session_path, method: :delete
+    - else
+      h3 LogIn
+      = form_tag session_path do
+        div
+          = label_tag :name
+          = text_field_tag :name, params[:name]
+        div [ class="field" ]
+          = label_tag :password
+          = password_field_tag :password
+        div [ class="actions" ]
+          = submit_tag "LogIn"

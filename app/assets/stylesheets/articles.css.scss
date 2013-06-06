@@ -151,6 +151,7 @@ article aside {
 
 article aside span.operate a {
   vertical-align: top;
+  margin-right: 5px;
 }
 
 article aside span.accessCount {
@@ -160,6 +161,7 @@ article aside span.accessCount {
   border-left: 2px solid #00bfff;
   border-right: 2px solid #00bfff;
   background-color: #87ceeb;
+  margin-right: 5px;
 }
 
 article p {
@@ -248,6 +250,10 @@ pre {
 
 .article_archive {
   line-height: 170%;
+}
+
+.article_archive a{
+  margin-right: 5px;
 }
 
 .archive_year {
