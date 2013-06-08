@@ -103,6 +103,11 @@ div#contents {
   padding: 10px 20px;
 }
 
+td, th, p, h1, h2, h3, h4, h5, h6, label {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
 img, object, embed { max-width: 100%; }
 img { height: auto; }
 figure img { max-width: 100%; }
