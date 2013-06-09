@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
   end
 
   def recent
-    article_conds = Article.includes(:content).order("publish_at DESC").limit(6)
+    article_conds = Article.includes(:content).order("publish_at DESC").limit(10)
     article_conds = article_conds.where("publish_at <= ?", Time.now) unless logged_in?
     @articles = article_conds.to_a
 
@@ -25,7 +25,7 @@ class ArticlesController < ApplicationController
   end
 
   def popular
-    @articles = Article.includes(:content).order("access_count DESC").limit(20).to_a
+    @articles = Article.includes(:content).order("access_count DESC").limit(100).to_a
     @articles.first.top_rank!
     @articles[1..2].each{|a| a.middle_rank!}
 
