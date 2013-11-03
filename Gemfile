@@ -59,7 +59,7 @@ gem 'amazon-ecs'
 gem "js-routes"
 gem "dalli"
 gem "actionpack-action_caching"
-gem "puma"
+gem "unicorn"
 gem "word_scoop"
 gem 'will_paginate', '~> 3.0'
 gem 'slim'
