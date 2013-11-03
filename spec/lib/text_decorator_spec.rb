@@ -82,13 +82,19 @@ describe TextDecorator do
       original_image_url = "original_image_url"
 
       Photo.should_receive(:find_by_id).with(1).and_return(photo)
-      photo.should_receive(:image).any_number_of_times.and_return(image)
-      image.should_receive(:url).with(:large).any_number_of_times.and_return(large_image_url)
-      image.should_receive(:url).with(:original).any_number_of_times.and_return(original_image_url)
+      allow(photo).to receive(:image).and_return(image)
+      allow(image).to receive(:url).with(:large).and_return(large_image_url)
+      allow(image).to receive(:url).with(:original).and_return(original_image_url)
 
       text = "[p:1]"
       TextDecorator.replace(text).should match(
-        link_to(image_tag(photo.image.url(:large)), photo.image.url(:original), :target => "_blank", :class => "article_image")
+        link_to(
+          image_tag(photo.image.url(:large)),
+          photo.image.url(:original),
+          :target => "_blank",
+          :class => "article_image",
+          :itemprop => "image"
+        )
       )
     end
 

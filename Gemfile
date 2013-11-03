@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.1'
 
 # Use mysql as the database for Active Record
 gem 'mysql2'
@@ -45,6 +45,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # gem 'debugger', group: [:development, :test]
 
 group :development, :test do
+  gem 'guard', '~> 2.1.1'
   gem "rspec-rails"
   gem "capybara"
   gem "guard-rspec"
