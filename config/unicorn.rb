@@ -28,5 +28,6 @@ after_fork do |server, worker|
   defined?(ActiveRecord::Base) and
   ActiveRecord::Base.establish_connection
 
+  Keyword.clear!
   Rails.cache.instance_variable_get(:@data).reset if Rails.cache.instance_variable_get(:@data).respond_to?(:reset)
 end

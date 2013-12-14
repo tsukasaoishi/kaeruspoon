@@ -19,6 +19,10 @@ class Keyword < ActiveRecord::Base
       @tree ||= init_tree
     end
 
+    def clear!
+      @tree = nil
+    end
+
     private
 
     def init_tree
