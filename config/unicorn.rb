@@ -1,5 +1,4 @@
 worker_processes 3
-working_directory '/home/rails/kaeru'
 listen 9292, :tcp_nopush => true
 timeout 30
 pid 'tmp/pids/unicorn.pid'
@@ -16,6 +15,7 @@ before_fork do |server, worker|
   if File.exists?(old_pid) && server.pid != old_pid
     begin
       sig = (worker.nr + 1) >= server.worker_processes ? :QUIT : :TTOU
+      puts "Sending #{sig} signal to old unicorn master..."
       Process.kill(sig, File.read(old_pid).to_i)
     rescue Errno::ENOENT, Errno::ESRCH
     end
