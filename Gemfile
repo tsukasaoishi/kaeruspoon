@@ -63,6 +63,7 @@ gem "unicorn"
 gem "word_scoop"
 gem 'will_paginate', '~> 3.0'
 gem 'slim'
+gem 'wikipedia-client'
 
 # get test
 gem 'fresh_connection'
