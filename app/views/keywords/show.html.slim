@@ -26,7 +26,7 @@ div [ class="row" ]
     = will_paginate(@articles, class: "paginate", previous_label: "< 前", next_label: "次 >")
     ul
       - @articles.each do |a|
-        li 
+        li
           = link_to a.title, article_path(a)
-          = " (#{a.publish_at.to_s(:local)})"
+          = " (#{l(a.publish_at, format: :day)})"
     = will_paginate(@articles, class: "paginate", previous_label: "< 前", next_label: "次 >")

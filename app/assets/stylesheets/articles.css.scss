@@ -67,7 +67,7 @@ div#contents {
 .row:after { clear: both; }
 .row { *zoom: 1; }
 
-.col_3, .col_2, .col_1, .col_center .google_ad_box {
+.col_3, .col_2, .col_1, .col_center .google_ad_box .related_articles {
 	margin-left: 1.0%;
   margin-right: 0.2%;
 	margin-bottom: 10px;
@@ -78,6 +78,11 @@ div#contents {
   width: 96%;
   margin-right: 1.0%;
 	float: left;
+}
+
+.related_articles {
+  width: 60%;
+  float: left;
 }
 
 .col_2 {
@@ -114,7 +119,6 @@ img { height: auto; }
 figure img { max-width: 100%; }
 
 @mixin roundBox {
-  background-color: rgba(255,255,255,0.9);
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -125,6 +129,7 @@ h2.caption {
 }
 
 article {
+  background-color: rgba(255,255,255,0.9);
   font-size: 110%;
   padding-left: 0.8%;
   padding-right: 0.8%;
@@ -192,11 +197,13 @@ pre {
 }
 
 .previous_paging_box {
+  background-color: rgba(255,205,205,0.9);
   padding-left: 0.5%;
   @include pagingBox
 }
 
 .next_paging_box {
+  background-color: rgba(205,205,255,0.9);
   padding-right: 0.5%;
   text-align: right;
   @include pagingBox;
@@ -214,6 +221,10 @@ pre {
   .google_ad_box {
     width: 46%;
   }
+
+  .related_articles {
+    width: 96%;
+  }
 }
 
 @media handheld, only screen and (max-width: 640px) {
@@ -223,7 +234,7 @@ pre {
 
 	div#contents { width: 100% !important; max-width: 100% !important; }
 
-  .col_1, .col_2, .col_3, .col_center {
+  .col_1, .col_2, .col_3, .col_center, .related_articles {
     width: 92%;
     margin-left: 0%;
     margin-right: 0%;
@@ -286,11 +297,24 @@ pre {
 }
 
 .keyword_articles {
-  background-color: #ffffff;
+  background-color: rgba(255,255,255,0.9);
   @include roundBox;
 }
 
 .keyword_articles li {
+  list-style: none;
+  margin-bottom: 1em;
+}
+
+.related_articles {
+  background-color: rgba(255,255,255,0.9);
+  margin-top: 10px;
+  padding: 10px;
+  @include roundBox;
+}
+
+.related_articles li {
+  font-size: 90%;
   list-style: none;
   margin-bottom: 1em;
 }
