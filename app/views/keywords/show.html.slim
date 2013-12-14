@@ -13,11 +13,12 @@ div [ class="row" ]
               = link_to I18n.t(:delete), @keyword, :confirm => I18n.t(:confirm_to_keyword_delete), :method => :delete
     div [ itemprop="description" ]
       == TextDecorator.replace(@keyword.body)
-    aside
-      p [ style="margin:10px;backgroud-color:#EEE" ]
-        = link_to("#{@keyword.name} - wikipedia より抜粋", "http://ja.wikipedia.org/wiki/#{@keyword.name}", target: "_blank")
-        br
-        = @wiki_content
+    - if @wiki_content
+      aside
+        p [ style="margin:10px;backgroud-color:#EEE" ]
+          = link_to("#{@keyword.name} - wikipedia より抜粋", "http://ja.wikipedia.org/wiki/#{@keyword.name}", target: "_blank")
+          br
+          = @wiki_content
   </article>
   aside [ class="col_3 keyword_articles" ]
     h4

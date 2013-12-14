@@ -10,7 +10,8 @@ module Wikipedia
     end
 
     def sample_content
-      pickup_str = sanitized_content.chars[0..400].join.gsub(/<[^>]+>/, "").sub(/<.+$/,"")
+      return nil unless sanitized_content
+      sanitized_content.chars[0..400].join.gsub(/<[^>]+>/, "").sub(/<.+$/,"") + "..."
     end
   end
 end
