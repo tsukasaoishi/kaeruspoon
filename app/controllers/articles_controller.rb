@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   before_filter :required_login, only: [:new, :create, :edit, :update, :destroy]
   before_filter :access_count, only: :show
 
-  caches_action :show, expires_in: 1.day, if: lambda{ !logged_in? }, cache_path: Proc.new{|c| c.params[:id]}
+  caches_action :show, expires_in: 1.day, if: lambda{ !logged_in? }
   caches_action :archive, expires_in: 1.day
 
   def index
@@ -84,7 +84,7 @@ class ArticlesController < ApplicationController
   def update
     article = Article.find(params[:id])
     article.update_attributes!(require_params)
-    Rails.cache.delete("views/#{article.id}")
+    expire_action(article)
     redirect_to article
   end
 

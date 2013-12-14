@@ -1,7 +1,7 @@
 class KeywordsController < ApplicationController
   before_filter :required_login, only: [:new, :create, :edit, :update, :destroy]
 
-  caches_action :show, expires_in: 1.day, if: lambda{ !logged_in? }, cache_path: Proc.new{|c| c.params[:id]}
+  caches_action :show, expires_in: 1.day, if: lambda{ !logged_in? }
 
   def show
     @keyword = Keyword.where(:name => params[:id]).first ||
@@ -29,6 +29,7 @@ class KeywordsController < ApplicationController
   def update
     keyword = Keyword.find(params[:id])
     keyword.update_attributes!(require_params)
+    expire_action(action: :show, id: keyword.name)
     redirect_to keyword_path(:id => keyword.name)
   end
 
