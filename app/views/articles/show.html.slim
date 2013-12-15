@@ -8,6 +8,14 @@
 nav [ class="row" ]
   aside [ class="col_1" ]
     = render "google_ad_article_show_square"
+  - if @article.related_articles.present?
+    div [ class="col_2 related_articles" ]
+      h4 関連する記事
+      ul
+        - @article.related_articles.each do |article|
+          li
+            = "[#{l(article.publish_at, format: :day)}] "
+            = link_to(article.title, article_path(article), rel: "related")
   - if @article.prev_article
     div [ class="col_1 previous_paging_box" ]
       span [ class="entypo-left-bold" ]
@@ -17,12 +25,4 @@ nav [ class="row" ]
       = link_to(@article.next_article.title, article_path(@article.next_article), rel: "next bookmark")
       span [ class="entypo-right-bold" ]
 
-  - if @article.related_articles.present?
-    div [ class="col_2 related_articles" ]
-      h4 関連する記事
-      ul
-        - @article.related_articles.each do |article|
-          li
-            = "[#{l(article.publish_at, format: :day)}] "
-            = link_to(article.title, article_path(article), rel: "related")
 
