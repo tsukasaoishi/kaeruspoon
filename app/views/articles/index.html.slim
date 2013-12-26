@@ -6,8 +6,9 @@ div [ class="row" ]
       h3 = link_to(article.title, article_path(article), rel: :bookmark)
       time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ] 
         = I18n.l(article.publish_at, format: :article)
-      aside
-        span [ class="accessCount" ] = article.access_count
+      - if logged_in?
+        aside
+          span [ class="accessCount" ] = article.access_count
       p
         - if article.pickup_photo
           = image_tag(article.pickup_photo.image.url(:medium)) 

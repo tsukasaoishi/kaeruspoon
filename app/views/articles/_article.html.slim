@@ -10,8 +10,8 @@
           = link_to I18n.t(:edit), edit_article_path(article)
         span [ class="operate" ]
           = link_to I18n.t(:delete), article, :confirm => I18n.t(:confirm_to_article_delete), :method => :delete
-      span [ class="accessCount" ]
-        = article.access_count
+        span [ class="accessCount" ]
+          = article.access_count
   div [ itemprop="description" ]
     == TextDecorator.replace(article.body)
 </article>
