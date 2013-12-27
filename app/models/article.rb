@@ -109,7 +109,7 @@ class Article < ActiveRecord::Base
           list << k_scope.where("articles.publish_at < ?", self.publish_at).order("articles.publish_at DESC").first
           list << k_scope.where("articles.publish_at > ?", self.publish_at).order("articles.publish_at").first
         end
-        list.compact.uniq.sort{|a,b| b.publish_at <=> a.publish_at}
+        list.compact.uniq.sort{|a,b| b.access_count <=> a.access_count}
       end
   end
 
