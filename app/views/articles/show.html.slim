@@ -17,11 +17,11 @@ nav [ class="row" ]
             = "[#{l(article.publish_at, format: :day)}] "
             = link_to(article.title, article_path(article), rel: "related")
   - if @article.prev_article
-    div [ class="col_1 previous_paging_box" ]
+    div [ class="col_1 previous_paging_box" id="previous_page" data-url=article_path(@article.prev_article) ]
       span [ class="entypo-left-bold" ]
       = link_to(@article.prev_article.title, article_path(@article.prev_article), rel: "prev bookmark")
   - if @article.next_article
-    div [ class="col_1 next_paging_box" ]
+    div [ class="col_1 next_paging_box" id="next_page" data-url=article_path(@article.next_article) ]
       = link_to(@article.next_article.title, article_path(@article.next_article), rel: "next bookmark")
       span [ class="entypo-right-bold" ]
 
