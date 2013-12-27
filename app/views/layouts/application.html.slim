@@ -16,6 +16,7 @@ html [ lang="ja" ]
     = favicon_link_tag("favicon.png")
     = auto_discovery_link_tag(:atom, articles_url(:format => "atom"))
     = csrf_meta_tags
+    script [ src="//www.google.com/jsapi" ]
     = javascript_include_tag("application", "data-turbolinks-track" => true)
     /[if lt IE 9]
       script [ src="http://html5shiv.googlecode.com/svn/trunk/html5.js" ]
