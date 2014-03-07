@@ -38,6 +38,10 @@ class Article < ActiveRecord::Base
       end
       archives
     end
+
+    def paginate_by_publish(page_num)
+      order("articles.publish_at DESC").page(page_num)
+    end
   end
 
   def body

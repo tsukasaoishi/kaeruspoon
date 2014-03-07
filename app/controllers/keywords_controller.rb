@@ -1,13 +1,12 @@
 class KeywordsController < ApplicationController
-  before_filter :required_login, only: [:new, :create, :edit, :update, :destroy]
+  before_filter :required_login, except: :show
 
   caches_action :show, expires_in: 1.day, if: lambda{ !logged_in? }
 
   def show
-    @keyword = Keyword.where(:name => params[:id]).first ||
-      Keyword.new(:name => params[:id])
+    @keyword = Keyword.where(:name => params[:id]).first_or_initialize
     @title = @keyword.name
-    @articles = @keyword.articles.paginate(:order => "articles.publish_at DESC", :per_page => 20, :page => params[:page])
+    @articles = @keyword.paginate_articles(params[:page])
 
     @wiki_content = Wikipedia.find(@keyword.name).sample_content
   end
