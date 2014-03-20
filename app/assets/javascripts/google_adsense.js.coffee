@@ -17,8 +17,17 @@ class AdSense
     window.google_prev_ad_slotnames_by_region[''] = '' if window.google_prev_ad_slotnames_by_region
     window.google_num_ad_slots = 0
 
-  newAd: (container, options) ->
-    id = (options.format || 'ad') + '_' + container.id
+  newAd: (container) ->
+    options = {}
+    id = 'ad_' + container.id
+    if $(window).width() > 730
+      options.ad_slot = "8559817519"
+      options.ad_width = 728
+      options.ad_height = 90
+    else
+      options.ad_slot = "3304854312"
+      options.ad_width = 300
+      options.ad_height = 250
     @ads[id] = new Ad @, id, container, options
 
 class Ad
