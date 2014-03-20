@@ -20,10 +20,15 @@ class AdSense
   newAd: (container) ->
     options = {}
     id = 'ad_' + container.id
-    if $(window).width() > 730
+    w = $(window).width()
+    if w > 730
       options.ad_slot = "8559817519"
       options.ad_width = 728
       options.ad_height = 90
+    else if w > 360
+      options.ad_slot = "5142019510"
+      options.ad_width = 336
+      options.ad_height = 280
     else
       options.ad_slot = "3304854312"
       options.ad_width = 300
