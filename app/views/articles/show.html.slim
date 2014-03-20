@@ -6,10 +6,10 @@
 = render @article
 /! google_ad_section_end
 nav [ class="row" ]
-  aside [ class="col_1" ]
+  aside [ class="col_3" ]
     = render "google_ad_article_show_wide"
   - if @article.related_articles.present?
-    div [ class="col_2 related_articles" ]
+    div [ class="col_3 related_articles" ]
       h4 関連する記事
       ul
         - @article.related_articles.each do |article|
