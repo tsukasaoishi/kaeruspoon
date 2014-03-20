@@ -14,4 +14,4 @@ div [ class="row" ]
           = image_tag(article.pickup_photo.image.url(:medium)) 
           br
         = article.digest_body
-  = render "google_ad_article_show_square"
+  div [ class="google_ad_box" id="my_ad" ]

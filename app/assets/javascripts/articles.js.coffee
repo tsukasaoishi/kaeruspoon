@@ -31,4 +31,7 @@ ready = ->
       return
     return
 
+  if ($('#my_ad').length)
+    window.MyAdSense.newAd(document.getElementById('my_ad'))
+
 $(document).ready(ready)
