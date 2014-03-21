@@ -14,21 +14,6 @@ class Article < ActiveRecord::Base
   }
 
   class << self
-    def calc_rank(articles)
-      max = articles.max_by{|a| a.access_count}.access_count
-      min = articles.min_by{|a| a.access_count}.access_count
-      border = (max - min).to_f / 3
-      first_border = min + border
-      articles.each do |article|
-        case article.access_count
-        when (first_border...(first_border + border))
-          article.middle_rank!
-        when ((first_border + border)..max)
-          article.top_rank!
-        end
-      end
-    end
-
     def find_archives
       archives = []
       next_month = Time.at(0)
@@ -65,18 +50,8 @@ class Article < ActiveRecord::Base
     @next_article ||= self.class.where("publish_at >= ? AND id <> ?", publish_at, id).order("publish_at ASC").first
   end
 
-  def rank
-    @rank || RANK[:low]
-  end
-
-  RANK.each do |k, v|
-    define_method("#{k}_rank!") do
-      @rank = v
-    end
-  end
-
-  def digest_body(length_base = 60)
-    @_digest_body ||= plain_body.gsub(/(\[.+?\]|\<.+?\>)/, "").truncate(length_base * rank)
+  def digest_body(length = 180)
+    @_digest_body ||= plain_body.gsub(/(\[.+?\]|\<.+?\>)/, "").truncate(length)
   end
 
   def pickup_photo

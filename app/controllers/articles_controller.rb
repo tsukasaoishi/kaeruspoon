@@ -18,16 +18,11 @@ class ArticlesController < ApplicationController
     article_conds = article_conds.where("publish_at <= ?", Time.now) unless logged_in?
     @articles = article_conds.to_a
 
-    @articles.first.top_rank!
-    @articles[1..2].each{|a| a.middle_rank!}
-
     render "index"
   end
 
   def popular
     @articles = Article.includes(:content).order("access_count DESC").limit(100).to_a
-    @articles.first.top_rank!
-    @articles[1..2].each{|a| a.middle_rank!}
 
     @title = I18n.t(:popular_articles)
     render "index"
@@ -43,7 +38,6 @@ class ArticlesController < ApplicationController
     period = (start..finish)
 
     @articles = Article.includes(:content).where(publish_at: period).order("publish_at").to_a
-    Article.calc_rank(@articles)
 
     @title = I18n.l(start, format: (d ? :day : :month))
     render "index"
