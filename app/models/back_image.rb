@@ -9,6 +9,8 @@ class BackImage < ActiveRecord::Base
     s3_credentials: "#{Rails.root}/config/s3.yml",
     path: ":attachment/background/:id/:style.:extension"
 
+  validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
+
   class << self
     def url
       return "" unless self.last

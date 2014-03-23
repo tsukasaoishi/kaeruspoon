@@ -11,6 +11,8 @@ class Photo < ActiveRecord::Base
     s3_credentials: "#{Rails.root}/config/s3.yml",
     path: ":attachment/:id/:style.:extension"
 
+  validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
+
   private
 
   def destroy_image
