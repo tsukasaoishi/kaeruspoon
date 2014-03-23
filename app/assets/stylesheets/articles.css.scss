@@ -16,6 +16,7 @@ body {
 }
 
 body > header {
+  position: fixed;
   width: 100%;
   top: 0px;
   background-color: rgba(0,0,0,0.6);
@@ -47,7 +48,7 @@ body > header nav li {
 
 div#contents {
   clear: both;
-  margin: 0 auto;
+  margin: 80px auto 0;
 }
 
 .row {
@@ -67,16 +68,11 @@ div#contents {
 .row:after { clear: both; }
 .row { *zoom: 1; }
 
-.col_3, .col_2, .col_1, .col_center .google_ad_box .related_articles {
+.col_center, .google_ad_box, .related_articles {
 	margin-left: 1.0%;
   margin-right: 0.2%;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 	display: block;
-}
-
-.col_3 {
-  width: 96%;
-  margin-right: 1.0%;
 }
 
 .related_articles {
@@ -85,24 +81,14 @@ div#contents {
   padding: 10px 20px;
 }
 
-.col_2 {
-  width: 46%;
-  float: left;
-}
-
-.col_1 {
-  width: 30%;
-}
-
 .google_ad_box {
-  width: 96%;
+  margin: 0 auto;
+  max-width: 960px;
   text-align: center;
-  margin-top: 10px;
-  margin-right: 1.0%;
 }
 
 .col_center {
-  margin: 0 auto;
+  margin: 10px auto;
   max-width: 960px;
   padding: 10px 20px;
 }
@@ -178,6 +164,10 @@ article p {
   margin-top: 2em;
 }
 
+span.continue_reading {
+  margin-left: 1em;
+}
+
 pre {
   font-family: Consolas,"Liberation Mono",Courier,monospace;
   color: black;
@@ -196,26 +186,20 @@ pre {
 }
 
 .previous_paging_box {
+  margin: 10px auto;
+  max-width: 960px;
+  padding: 10px 20px;
   background-color: rgba(255,205,205,0.9);
-  padding-left: 0.5%;
   @include pagingBox
 }
 
 .next_paging_box {
+  margin: 10px auto;
+  max-width: 960px;
+  padding: 10px 20px;
   background-color: rgba(205,205,255,0.9);
-  padding-right: 0.5%;
   text-align: right;
   @include pagingBox;
-}
-
-@media handheld, only screen and (max-width: 960px) {
-  .col_2 {
-    width: 96%;
-  }
-
-  .col_1 {
-    width: 46%;
-  }
 }
 
 @media handheld, only screen and (max-width: 640px) {
@@ -225,7 +209,7 @@ pre {
 
 	div#contents { width: 100% !important; max-width: 100% !important; }
 
-  .col_1, .col_2, .col_3, .col_center, .related_articles {
+  .col_center, .related_articles {
     width: 92%;
     margin-left: 0%;
     margin-right: 0%;

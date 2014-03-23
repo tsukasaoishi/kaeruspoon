@@ -6,10 +6,10 @@
 = render @article
 /! google_ad_section_end
 nav [ class="row" ]
-  aside [ class="col_3" ]
+  aside [ class="col_center" ]
     div [ class="google_ad_box" id="my_ad" ]
   - if @article.related_articles.present?
-    div [ class="col_3 related_articles" ]
+    div [ class="col_center related_articles" ]
       h4 関連する記事
       ul
         - @article.related_articles.each do |article|
@@ -17,12 +17,12 @@ nav [ class="row" ]
             = "[#{l(article.publish_at, format: :day)}] "
             = link_to(article.title, article_path(article), rel: "related")
   - if @article.prev_article
-    div [ class="col_2 previous_paging_box" id="previous_page" data-url=article_path(@article.prev_article) ]
+    div [ class="previous_paging_box" id="previous_page" data-url=article_path(@article.prev_article) ]
       span [ class="entypo-left-bold" ]
-      = link_to(@article.prev_article.title, article_path(@article.prev_article), rel: "prev bookmark")
+      = link_to("<< " + @article.prev_article.title, article_path(@article.prev_article), rel: "prev bookmark")
   - if @article.next_article
-    div [ class="col_2 next_paging_box" id="next_page" data-url=article_path(@article.next_article) ]
-      = link_to(@article.next_article.title, article_path(@article.next_article), rel: "next bookmark")
+    div [ class="next_paging_box" id="next_page" data-url=article_path(@article.next_article) ]
+      = link_to(@article.next_article.title + " >>", article_path(@article.next_article), rel: "next bookmark")
       span [ class="entypo-right-bold" ]
 
 
