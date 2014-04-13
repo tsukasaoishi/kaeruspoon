@@ -1,0 +1,12 @@
+development:
+  slave:
+    - "localhost, 10"
+
+test:
+  slave:
+    - "localhost, 10"
+
+production:
+  slave:
+    - "localhost, 10"
+
