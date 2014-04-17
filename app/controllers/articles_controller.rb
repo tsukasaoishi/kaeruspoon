@@ -57,6 +57,7 @@ class ArticlesController < ApplicationController
       body: params[:backup_article_body],
       publish_at: Time.now
     )
+    @article.build_content
   end
 
   def create
@@ -91,7 +92,7 @@ class ArticlesController < ApplicationController
   private
 
   def require_params
-    params.require(:article).permit(:title, :body, :publish_at)
+    params.require(:article).permit(:title, :publish_at, content_attributes: [:body])
   end
 
   def access_count

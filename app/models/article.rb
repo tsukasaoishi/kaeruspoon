@@ -4,8 +4,10 @@ class Article < ActiveRecord::Base
   has_many :keywords, :through => :article_keywords
 
   before_create :set_publish_at
-  after_create :make_content
-  after_save :save_content, :keyword_check
+  after_save :keyword_check
+
+  accepts_nested_attributes_for :content, :allow_destroy => true
+  delegate :body, to: :content, allow_nil: true
 
   RANK = {
     top: 3,
@@ -28,19 +30,6 @@ class Article < ActiveRecord::Base
       order("articles.publish_at DESC").page(page_num)
     end
   end
-
-  def body
-    self.content.try(:body) || @_body || ""
-  end
-
-  def body=(text)
-    if self.content
-      self.content.body = text
-    else
-      @_body = text
-    end
-  end
-
 
   def prev_article
     @prev_article ||= self.class.where("publish_at <= ? AND id <> ?", publish_at, id).order("publish_at DESC").first
@@ -98,16 +87,8 @@ class Article < ActiveRecord::Base
     self.publish_at ||= Time.now
   end
 
-  def make_content
-    self.create_content!(:body => @_body || "")
-  end
-
-  def save_content
-    self.content.save!
-  end
-
   def keyword_check
-    keyword_list = Keyword.search(self.body)
+    keyword_list = Keyword.search(body)
     self.keywords = Keyword.where(:name => keyword_list).to_a
   end
 

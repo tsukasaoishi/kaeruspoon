@@ -5,7 +5,8 @@ div [ class="row" ]
       div
         = f.text_field :title
       div
-        = f.text_area :body
+        = f.fields_for :content do |c|
+          = c.text_area :body
       div
         = f.datetime_select :publish_at
       div [ class="actions" ] 
