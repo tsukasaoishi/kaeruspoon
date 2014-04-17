@@ -9,12 +9,6 @@ class Article < ActiveRecord::Base
   accepts_nested_attributes_for :content, :allow_destroy => true
   delegate :body, to: :content, allow_nil: true
 
-  RANK = {
-    top: 3,
-    middle: 2,
-    low: 1
-  }
-
   class << self
     def find_archives
       archives = []
