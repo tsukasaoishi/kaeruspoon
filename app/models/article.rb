@@ -9,10 +9,12 @@ class Article < ActiveRecord::Base
   accepts_nested_attributes_for :content, :allow_destroy => true
 
   scope :published, -> { where("publish_at <= ?", Time.now) }
+  scope :newest, -> { order("publish_at DESC, id DESC") }
+  scope :oldest, -> { order("publish_at, id") }
 
   class << self
     def recent_articles(limit = 10)
-      self.includes(:content).order("publish_at DESC").limit(limit)
+      self.includes(:content).newest.limit(limit)
     end
 
     def popular(limit = 100)
@@ -24,7 +26,7 @@ class Article < ActiveRecord::Base
       finish = start.__send__(period_end_method)
       period = (start..finish)
 
-      self.includes(:content).where(publish_at: period).order("publish_at")
+      self.includes(:content).where(publish_at: period).oldest
     end
 
     def calendar
@@ -34,20 +36,22 @@ class Article < ActiveRecord::Base
     end
 
     def paginate_by_publish(page_num)
-      order("articles.publish_at DESC").page(page_num)
+      newest.page(page_num)
     end
+  end
+
+  def prev_article(user = nil)
+    articles = user ? user.articles : self.class.default_scoped
+    @prev_article ||= articles.where("publish_at <= ? AND id <> ?", publish_at, id).newest.first
+  end
+
+  def next_article(user = nil)
+    articles = user ? user.articles : self.class.default_scoped
+    @next_article ||= articles.where("publish_at >= ? AND id <> ?", publish_at, id).oldest.first
   end
 
   def body
     content.try(:body) || ""
-  end
-
-  def prev_article
-    @prev_article ||= self.class.where("publish_at <= ? AND id <> ?", publish_at, id).order("publish_at DESC").first
-  end
-
-  def next_article
-    @next_article ||= self.class.where("publish_at >= ? AND id <> ?", publish_at, id).order("publish_at ASC").first
   end
 
   def digest_body(length = 180)
