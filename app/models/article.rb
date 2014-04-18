@@ -76,9 +76,9 @@ class Article < ActiveRecord::Base
       begin
         list = []
         keywords[0..9].each do |k|
-          k_scope = k.articles.where("articles.publish_at <= ?", Time.now)
-          list << k_scope.where("articles.publish_at < ?", self.publish_at).order("articles.publish_at DESC").first
-          list << k_scope.where("articles.publish_at > ?", self.publish_at).order("articles.publish_at").first
+          k_scope = k.articles.published
+          list << k_scope.where("articles.publish_at < ?", self.publish_at).newest.first
+          list << k_scope.where("articles.publish_at > ?", self.publish_at).oldest.first
         end
         list.compact.uniq.sort{|a,b| b.access_count <=> a.access_count}
       end
