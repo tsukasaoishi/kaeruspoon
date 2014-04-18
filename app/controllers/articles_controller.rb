@@ -1,28 +1,15 @@
 class ArticlesController < ApplicationController
   before_filter :required_login, only: [:new, :create, :edit, :update, :destroy]
-  before_filter :access_count, only: :show
 
   caches_action :show, expires_in: 1.day, if: lambda{ !logged_in? }
   caches_action :archive, expires_in: 1.day
 
   def index
-    if request.format != :atom
-      redirect_to root_path
-    else
-      @articles = Article.includes(:content).where("publish_at <= ?", Time.now).order("publish_at DESC").limit(20).to_a
-    end
-  end
-
-  def recent
-    article_conds = Article.includes(:content).order("publish_at DESC").limit(10)
-    article_conds = article_conds.where("publish_at <= ?", Time.now) unless logged_in?
-    @articles = article_conds.to_a
-
-    render "index"
+    @articles = current_user.articles.recent_articles(10)
   end
 
   def popular
-    @articles = Article.includes(:content).order("access_count DESC").limit(100).to_a
+    @articles = current_user.articles.popular(100)
 
     @title = I18n.t(:popular_articles)
     render "index"
@@ -30,16 +17,11 @@ class ArticlesController < ApplicationController
 
   def date
     y, m, d = params.values_at(:year, :month, :day)
-    period_end_method = d ? :end_of_day : :end_of_month
+    date_range = d ? :day : :month
     start = Time.local(y, m, d || 1)
-    finish = start.__send__(period_end_method)
-    now = Time.now
-    finish = now if finish > now
-    period = (start..finish)
+    @articles = current_user.articles.period(start, date_range)
 
-    @articles = Article.includes(:content).where(publish_at: period).order("publish_at").to_a
-
-    @title = I18n.l(start, format: (d ? :day : :month))
+    @title = I18n.l(start, format: date_range)
     render "index"
   end
 
@@ -48,16 +30,14 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @article = current_user.articles.find(params[:id])
+    @article.count_up
     @title = @article.title
   end
 
   def new
-    @article = Article.new(
-      title: params[:backup_article_title],
-      body: params[:backup_article_body],
-      publish_at: Time.now
-    )
-    @article.build_content
+    @article = Article.new(title: params[:backup_article_title], publish_at: Time.now)
+    @article.build_content(body: params[:backup_article_body])
   end
 
   def create
@@ -93,11 +73,5 @@ class ArticlesController < ApplicationController
 
   def require_params
     params.require(:article).permit(:title, :publish_at, content_attributes: [:body])
-  end
-
-  def access_count
-    @article = Article.find(params[:id])
-    raise ActiveRecord::RecordNotFound if !logged_in? && @article.publish_at > Time.now
-    @article.count_up
   end
 end

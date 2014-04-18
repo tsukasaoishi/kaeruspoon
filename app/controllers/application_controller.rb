@@ -10,11 +10,11 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    !!current_user
+    !current_user.guest?
   end
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @current_user ||= session[:user_id] ? User.find(session[:user_id]) : User.guest
   end
 
   helper_method :current_user, :logged_in?

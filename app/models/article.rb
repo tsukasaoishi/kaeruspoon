@@ -7,9 +7,26 @@ class Article < ActiveRecord::Base
   after_save :keyword_check
 
   accepts_nested_attributes_for :content, :allow_destroy => true
-  delegate :body, to: :content, allow_nil: true
+
+  scope :published, -> { where("publish_at <= ?", Time.now) }
 
   class << self
+    def recent_articles(limit = 10)
+      self.includes(:content).order("publish_at DESC").limit(limit)
+    end
+
+    def popular(limit = 100)
+      self.includes(:content).order("access_count DESC").limit(limit)
+    end
+
+    def period(start, range)
+      period_end_method = (range == :day ? :end_of_day : :end_of_month)
+      finish = start.__send__(period_end_method)
+      period = (start..finish)
+
+      self.includes(:content).where(publish_at: period).order("publish_at")
+    end
+
     def find_archives
       archives = []
       next_month = Time.at(0)
@@ -23,6 +40,10 @@ class Article < ActiveRecord::Base
     def paginate_by_publish(page_num)
       order("articles.publish_at DESC").page(page_num)
     end
+  end
+
+  def body
+    content.try(:body) || ""
   end
 
   def prev_article

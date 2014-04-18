@@ -16,5 +16,27 @@ class User < ActiveRecord::Base
       end
       user
     end
+
+    def guest
+      inst = self.new
+      inst.guest!
+      inst
+    end
+  end
+
+  def articles
+    if @guest
+      Article.published
+    else
+      Article.default_scoped
+    end
+  end
+
+  def guest!
+    @guest = true
+  end
+
+  def guest?
+    @guest
   end
 end

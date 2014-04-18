@@ -1,5 +1,5 @@
 Kaeruspoon::Application.routes.draw do
-  root to: 'articles#recent'
+  root to: 'articles#index'
 
   resources :articles do
     collection do
