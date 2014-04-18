@@ -27,14 +27,10 @@ class Article < ActiveRecord::Base
       self.includes(:content).where(publish_at: period).order("publish_at")
     end
 
-    def find_archives
-      archives = []
-      next_month = Time.at(0)
-      while a = self.where(["created_at >= ?", next_month]).order("created_at").first
-        archives << {:year => a.publish_at.year, :month => a.publish_at.month}
-        next_month = a.publish_at.next_month.beginning_of_month
-      end
-      archives
+    def calendar
+      self.select(
+        "YEAR(publish_at) as year, MONTH(publish_at) as month, count(*) as count"
+      ).group("year, month").order("publish_at")
     end
 
     def paginate_by_publish(page_num)

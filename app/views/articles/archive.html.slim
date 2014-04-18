@@ -3,8 +3,8 @@ div [ class="row" ]
     h3 日記一覧
     div [ class="article_archive" ]
       - year = 0
-      - Article.find_archives.each do |a|
-        - if year != a[:year]
-          - year = a[:year]
+      - @calendar.each do |c|
+        - if year != c.year
+          - year = c.year
           div [ class="archive_year"] = "#{year}年"
-        = link_to "#{a[:month]}月", date_articles_path(:year => a[:year], :month => a[:month])
+        = link_to "#{c.month}月", date_articles_path(year: c.year, month: c.month)
