@@ -58,6 +58,14 @@ class Article < ActiveRecord::Base
     content.try(:body) || ""
   end
 
+  def body=(text)
+    if content
+      content.body = text
+    else
+      build_content(body: text)
+    end
+  end
+
   def digest_body(length = 180)
     @_digest_body ||= plain_body.gsub(/(\[.+?\]|\<.+?\>)/, "").truncate(length)
   end
