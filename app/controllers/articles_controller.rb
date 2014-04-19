@@ -2,7 +2,6 @@ class ArticlesController < ApplicationController
   before_filter :required_login, only: [:new, :create, :edit, :update, :destroy]
 
   caches_action :show, expires_in: 1.day, if: -> { !logged_in? }
-  caches_action :archive, expires_in: 1.day
 
   def index
     @articles = current_user.articles.recent_articles(10)
