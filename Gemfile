@@ -58,3 +58,5 @@ gem 'will_paginate', '~> 3.0'
 gem 'slim'
 gem 'wikipedia-client'
 gem 'ebisu_connection'
+
+gem 'whenever', :require => false
