@@ -8,7 +8,7 @@ div [ class="row" ]
             span [ class="operate" ]
               = link_to I18n.t(:edit), edit_keyword_path(@keyword)
             span [ class="operate" ]
-              = link_to I18n.t(:delete), @keyword, :confirm => I18n.t(:confirm_to_keyword_delete), :method => :delete
+              = link_to I18n.t(:delete), @keyword, method: :delete, data: {confirm: I18n.t(:confirm_to_keyword_delete)}
     div [ itemprop="description" ]
       == TextDecorator.replace(@keyword.body)
     - if @wiki_content
