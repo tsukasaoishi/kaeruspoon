@@ -32,7 +32,6 @@ class ArticlesController < ApplicationController
 
   def show
     @article = current_user.articles.find(params[:id])
-    @article.count_up
     @title = @article.title
   end
 

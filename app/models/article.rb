@@ -1,6 +1,4 @@
 class Article < ActiveRecord::Base
-  include Counter
-
   has_one :content, :class_name => "ArticleContent", :dependent => :destroy
   has_many :article_keywords, :dependent => :destroy
   has_many :keywords, :through => :article_keywords
