@@ -9,3 +9,7 @@ set :environment, :production
 every 10.minutes do
   runner 'Tasks::KaeruAccessAnalyze.run("/var/log/httpd/access_log")'
 end
+
+every 1.hour do
+  runner 'Tasks::ArticleContentAnalyze.run'
+end
