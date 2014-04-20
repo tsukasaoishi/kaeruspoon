@@ -2,6 +2,8 @@ class Article < ActiveRecord::Base
   has_one :content, :class_name => "ArticleContent", :dependent => :destroy
   has_many :article_keywords, :dependent => :destroy
   has_many :keywords, :through => :article_keywords
+  has_one :article_photo, :dependent => :destroy
+  has_one :pickup_photo, :through => :article_photo, :source => :photo
 
   before_create :set_publish_at
 
@@ -69,11 +71,10 @@ class Article < ActiveRecord::Base
     @_digest_body ||= plain_body.gsub(/(\[.+?\]|\<.+?\>)/, "").truncate(length)
   end
 
-  def pickup_photo
-    @_pickup_photo ||= begin
-      photo_id = plain_body.scan(/\[p\:(\d+)\]/).flatten.first
-      photo_id && Photo.find_by_id(photo_id)
-    end
+  def choose_pickup_photo!
+    photo_id = plain_body.scan(/\[p\:(\d+)\]/).flatten.first
+    photo = Photo.find_by_id(photo_id) if photo_id
+    self.pickup_photo = photo
   end
 
   def related_articles
@@ -92,6 +93,12 @@ class Article < ActiveRecord::Base
   def keyword_check!
     keyword_list = Keyword.search(body)
     self.keywords = Keyword.where(:name => keyword_list).to_a
+  end
+
+  def choose_pickup_photo!
+    photo_id = plain_body.scan(/\[p\:(\d+)\]/).flatten.first
+    photo = Photo.find_by_id(photo_id) if photo_id
+    self.pickup_photo = photo
   end
 
   private

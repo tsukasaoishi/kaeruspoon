@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130519080021) do
+ActiveRecord::Schema.define(version: 20140420123831) do
 
   create_table "amazon_stocks", force: true do |t|
     t.string   "asin",                                          null: false
@@ -51,6 +51,15 @@ ActiveRecord::Schema.define(version: 20130519080021) do
 
   add_index "article_keywords", ["article_id"], name: "index_article_keywords_on_article_id", using: :btree
   add_index "article_keywords", ["keyword_id"], name: "index_article_keywords_on_keyword_id", using: :btree
+
+  create_table "article_photos", force: true do |t|
+    t.integer  "article_id"
+    t.integer  "photo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "article_photos", ["article_id", "photo_id"], name: "index_article_photos_on_article_id_and_photo_id", using: :btree
 
   create_table "articles", force: true do |t|
     t.string   "title",                    null: false
