@@ -64,8 +64,15 @@ class ArticlesController < ApplicationController
 
   def destroy
     article = Article.find(params[:id])
+    prev_article = article.prev_article
+    next_article = article.next_article
+
     expire_action(article)
     article.destroy
+
+    expire_action(prev_article) if prev_article
+    expire_action(next_article) if next_article
+
     redirect_to root_path
   end
 
