@@ -4,11 +4,11 @@ class ArticlesController < ApplicationController
   caches_action :show, expires_in: 1.day, if: -> { !logged_in? }
 
   def index
-    @articles = current_user.articles.recent_articles(10)
+    @articles = current_user.recent_articles(10)
   end
 
   def popular
-    @articles = current_user.articles.popular(100)
+    @articles = current_user.popular_articles(100)
 
     @title = I18n.t(:popular_articles)
     render "index"
@@ -18,7 +18,7 @@ class ArticlesController < ApplicationController
     y, m, d = params.values_at(:year, :month, :day)
     date_range = d ? :day : :month
     start = Time.local(y, m, d || 1)
-    @articles = current_user.articles.period(start, date_range)
+    @articles = current_user.period_articles(start, date_range)
 
     @title = I18n.l(start, format: date_range)
     render "index"

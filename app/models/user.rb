@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   has_secure_password
   validates_presence_of :password, :on => :create
 
+  delegate :recent_articles, :popular_articles, :period_articles, to: :articles
+
   class << self
     #
     # To use to create master user

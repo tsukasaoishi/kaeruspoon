@@ -16,11 +16,11 @@ class Article < ActiveRecord::Base
       self.includes(:content).newest.limit(limit)
     end
 
-    def popular(limit = 100)
+    def popular_articles(limit = 100)
       self.includes(:content).order("access_count DESC").limit(limit)
     end
 
-    def period(start, range)
+    def period_articles(start, range)
       period_end_method = (range == :day ? :end_of_day : :end_of_month)
       finish = start.__send__(period_end_method)
       period = (start..finish)
