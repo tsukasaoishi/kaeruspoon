@@ -15,6 +15,10 @@ class Keyword < ActiveRecord::Base
       tree.search(text).uniq
     end
 
+    def pickup(text)
+      tree.search(text)
+    end
+
     def tree
       @tree ||= init_tree
     end

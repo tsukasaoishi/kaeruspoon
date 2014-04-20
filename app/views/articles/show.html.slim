@@ -8,11 +8,11 @@
 nav [ class="row" ]
   aside [ class="col_center" ]
     div [ class="google_ad_box" id="my_ad" ]
-  - if @article.related_articles.present?
+  - if @article.similar_articles.present?
     div [ class="col_center related_articles" ]
       h4 関連する記事
       ul
-        - @article.related_articles.each do |article|
+        - @article.similar_articles.each do |article|
           li
             = "[#{l(article.publish_at, format: :day)}] "
             = link_to(article.title, article_path(article), rel: "related")

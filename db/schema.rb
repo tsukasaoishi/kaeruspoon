@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140420123831) do
+ActiveRecord::Schema.define(version: 20140420125243) do
 
   create_table "amazon_stocks", force: true do |t|
     t.string   "asin",                                          null: false
@@ -100,6 +100,15 @@ ActiveRecord::Schema.define(version: 20140420123831) do
   end
 
   add_index "photos", ["image_updated_at"], name: "index_photos_on_image_updated_at", using: :btree
+
+  create_table "related_articles", force: true do |t|
+    t.integer  "article_id"
+    t.integer  "related_article_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "related_articles", ["article_id", "related_article_id"], name: "index_related_articles_on_article_id_and_related_article_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name",            default: "", null: false

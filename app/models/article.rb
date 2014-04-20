@@ -4,6 +4,8 @@ class Article < ActiveRecord::Base
   has_many :keywords, :through => :article_keywords
   has_one :article_photo, :dependent => :destroy
   has_one :pickup_photo, :through => :article_photo, :source => :photo
+  has_many :related_articles, :dependent => :destroy
+  has_many :similar_articles, :through => :related_articles, :source => :related_article
 
   before_create :set_publish_at
 
@@ -77,28 +79,19 @@ class Article < ActiveRecord::Base
     self.pickup_photo = photo
   end
 
-  def related_articles
-    @related_articles ||=
-      begin
-        list = []
-        keywords[0..9].each do |k|
-          k_scope = k.articles.published
-          list << k_scope.where("articles.publish_at < ?", self.publish_at).newest.first
-          list << k_scope.where("articles.publish_at > ?", self.publish_at).oldest.first
-        end
-        list.compact.uniq.sort{|a,b| b.access_count <=> a.access_count}
-      end
+  def choose_similar_articles!
+    list = []
+    keywords[0..9].each do |k|
+      k_scope = k.articles.published
+      list << k_scope.where("articles.publish_at < ?", self.publish_at).newest.first
+      list << k_scope.where("articles.publish_at > ?", self.publish_at).oldest.first
+    end
+    self.similar_articles = list.compact.uniq
   end
 
   def keyword_check!
     keyword_list = Keyword.search(body)
     self.keywords = Keyword.where(:name => keyword_list).to_a
-  end
-
-  def choose_pickup_photo!
-    photo_id = plain_body.scan(/\[p\:(\d+)\]/).flatten.first
-    photo = Photo.find_by_id(photo_id) if photo_id
-    self.pickup_photo = photo
   end
 
   private
