@@ -59,6 +59,8 @@ class ArticlesController < ApplicationController
     article = Article.find(params[:id])
     article.update_attributes!(require_params)
     expire_action(article)
+    expire_action(article.prev_article) if article.prev_article
+    expire_action(article.next_article) if article.next_article
     redirect_to article
   end
 
