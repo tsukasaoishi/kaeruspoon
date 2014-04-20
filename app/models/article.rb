@@ -4,7 +4,6 @@ class Article < ActiveRecord::Base
   has_many :keywords, :through => :article_keywords
 
   before_create :set_publish_at
-  after_save :keyword_check
 
   accepts_nested_attributes_for :content, :allow_destroy => true
 
@@ -90,22 +89,18 @@ class Article < ActiveRecord::Base
       end
   end
 
+  def keyword_check!
+    keyword_list = Keyword.search(body)
+    self.keywords = Keyword.where(:name => keyword_list).to_a
+  end
+
   private
 
   def set_publish_at
     self.publish_at ||= Time.now
   end
 
-  def keyword_check
-    keyword_list = Keyword.search(body)
-    self.keywords = Keyword.where(:name => keyword_list).to_a
-  end
-
   def plain_body
     @_plain_body ||= body.gsub(/[\r\n]/, "").gsub(/>\|.*?\|.+?\|\|</, "")
-  end
-
-  def counter_key
-    "Articles:#{self.id}_count"
   end
 end

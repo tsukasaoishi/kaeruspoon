@@ -11,7 +11,6 @@ module Tasks
       end
 
       save_article_count
-      set_checked_time
     end
 
     private

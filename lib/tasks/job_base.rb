@@ -1,13 +1,26 @@
 module Tasks
   class JobBase
     def self.run(*args)
-      new(*args).run
+      ActiveRecord::Base.connection.enable_query_cache!
+      ActiveRecord::Base.cache do
+        inst = new(*args)
+        inst.run
+        inst.set_checked_time
+        inst
+      end
     end
 
     def initialize(*args)
     end
 
     def run
+    end
+
+    def set_checked_time
+      return unless @latest_time
+      File.open(checked_time_file, "w") do |f|
+        f.write(@latest_time.to_s(:db))
+      end
     end
 
     private
@@ -23,13 +36,6 @@ module Tasks
 
     def default_checked_time
       Time.now.beginning_of_day
-    end
-
-    def set_checked_time
-      return unless @latest_time
-      File.open(checked_time_file, "w") do |f|
-        f.write(@latest_time.to_s(:db))
-      end
     end
 
     def checked_time_file
