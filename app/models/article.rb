@@ -17,11 +17,11 @@ class Article < ActiveRecord::Base
 
   class << self
     def recent_articles(limit = 10)
-      self.includes(:content).newest.limit(limit)
+      self.includes(:content, :pickup_photo).newest.limit(limit)
     end
 
     def popular_articles(limit = 100)
-      self.includes(:content).order("access_count DESC").limit(limit)
+      self.includes(:content, :pickup_photo).order("access_count DESC").limit(limit)
     end
 
     def period_articles(start, range)
@@ -29,7 +29,7 @@ class Article < ActiveRecord::Base
       finish = start.__send__(period_end_method)
       period = (start..finish)
 
-      self.includes(:content).where(publish_at: period).oldest
+      self.includes(:content, :pickup_photo).where(publish_at: period).oldest
     end
 
     def calendar
