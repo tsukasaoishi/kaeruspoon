@@ -1,12 +1,15 @@
 module Tasks
   class ArticleContentAnalyze < JobBase
     def run
-      article_ids = ArticleContent.where("updated_at > ?", checked_time).select("article_id").map(&:article_id)
+      contents = ArticleContent.where("updated_at > ?", checked_time)
+      return unless latest_content = contents.order("updated_at DESC").select(:updated_at).first
+      @latest_time = latest_content.updated_at
+      article_ids = contents.select(:article_id).map(&:article_id)
+
       Article.includes(:content, :keywords).where(id: article_ids).each do |article|
         article.keyword_check!
         article.choose_similar_articles!
         article.choose_pickup_photo!
-        @latest_time = article.content.updated_at if !@latest_time || @latest_time > article.content.updated_at
       end
     end
 
