@@ -8,6 +8,7 @@ class Article < ActiveRecord::Base
   has_many :similar_articles, :through => :related_articles, :source => :related_article
 
   before_create :set_publish_at
+  after_create :keyword_check!, :choose_pickup_photo!, :choose_similar_articles!
 
   accepts_nested_attributes_for :content, :allow_destroy => true
 

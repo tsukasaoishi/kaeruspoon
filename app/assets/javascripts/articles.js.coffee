@@ -27,7 +27,7 @@ ready = ->
         alert("choich photo to upload")
         return false
       $("#backup_article_title").val($("#article_title").val())
-      $("#backup_article_body").val($("#article_body").val())
+      $("#backup_article_body").val($("#article_content_attributes_body").val())
       return
     return
 
