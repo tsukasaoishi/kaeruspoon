@@ -9,11 +9,7 @@ div [ class="row" ]
       - if logged_in?
         aside
           span [ class="accessCount" ] = article.access_count
-      p
-        - if article.pickup_photo
-          = image_tag(article.pickup_photo.image.url(:medium)) 
-          br
-        = article.digest_body
-        span [class="continue_reading"]
-          = link_to("#{I18n.t(:continue_reading)} >>", article_path(article), rel: :bookmark)
+      == TextDecorator.replace(article.body.truncate(400))
+      span [class="continue_reading"]
+        = link_to("#{I18n.t(:continue_reading)} >>", article_path(article), rel: :bookmark)
   div [ class="google_ad_box" id="my_ad" ]

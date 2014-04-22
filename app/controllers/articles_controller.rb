@@ -35,8 +35,9 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @article = Article.new(title: params[:backup_article_title], publish_at: Time.now)
-    @article.build_content(body: params[:backup_article_body])
+    title, body = repair_article
+    @article = Article.new(title: title, publish_at: Time.now)
+    @article.build_content(body: body)
   end
 
   def create
@@ -47,9 +48,11 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
-    if params.has_key?(:backup_article_title)
-      @article.title = params[:backup_article_title]
-      @article.body = params[:backup_article_body]
+
+    title, body = repair_article
+    if title
+      @article.title = title
+      @article.body = body
     end
 
     render "new"
@@ -82,5 +85,13 @@ class ArticlesController < ApplicationController
 
   def require_params
     params.require(:article).permit(:title, :publish_at, content_attributes: [:body])
+  end
+
+  def repair_article
+    title = session[:backup_article_title]
+    body = session[:backup_article_body]
+    session[:backup_article_title] = nil
+    session[:backup_article_body] = nil
+    [title, body]
   end
 end

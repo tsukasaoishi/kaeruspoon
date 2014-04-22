@@ -11,7 +11,7 @@ html [ lang="ja" ]
     meta [ property="og:url" content=request.url ]
     = yield(:meta)
     meta [property="fb:admins" content="671652438" ]
-    title = (@title.presence || "kaeruspoon")
+    title = [@title.presence, "kaeruspoon - おおいしつかさ"].compact.join(" | ")
     = stylesheet_link_tag("application", media: "all", "data-turbolinks-track" => true)
     = favicon_link_tag("favicon.png")
     = auto_discovery_link_tag(:atom, articles_url(:format => "atom"))
