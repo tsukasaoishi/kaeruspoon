@@ -28,7 +28,7 @@ class TextDecorator
         when "a", "d"
           article_link(type, data)
         when "p"
-          photo_link(data.to_i)
+          photo_link(data.to_i, option)
         when "amazon"
           amazon_link(data, option)
         when "youtube"
@@ -73,12 +73,12 @@ class TextDecorator
       end
     end
 
-    def photo_link(photo_id)
+    def photo_link(photo_id, size)
+      Rails.logger.info size
       if photo = Photo.find_by_id(photo_id)
-        link_to(
-          image_tag(photo.image.url(:large)),
-          photo.image.url(:original),
-          target: "_blank",
+        size ||= :large
+        image_tag(
+          photo.image.url(size),
           class:  "article_image",
           itemprop: "image"
         )
