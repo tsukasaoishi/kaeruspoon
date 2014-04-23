@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
   end
 
   def popular
-    @articles = current_user.popular_articles(100)
+    @articles = current_user.popular_articles(20)
 
     @title = I18n.t(:popular_articles)
     render "index"
