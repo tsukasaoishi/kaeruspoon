@@ -10,6 +10,8 @@ class Article < ActiveRecord::Base
   before_create :set_publish_at
   after_create :keyword_check!, :choose_pickup_photo!, :choose_similar_articles!
 
+  validates :title, presence: true
+
   accepts_nested_attributes_for :content, :allow_destroy => true
 
   scope :published, -> { where("publish_at <= ?", Time.now) }

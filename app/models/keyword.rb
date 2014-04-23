@@ -2,9 +2,9 @@ class Keyword < ActiveRecord::Base
   has_many :article_keywords, dependent: :destroy
   has_many :articles, through: :article_keywords
 
-  validates_uniqueness_of :name
-
   after_save :tree_add
+
+  validates :name, uniqueness: true
 
   class << self
     def convert(text)
