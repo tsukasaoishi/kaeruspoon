@@ -22,25 +22,27 @@ class TextDecorator
       inner = join(tag(:br)).gsub(/\[(.+?)\]/) do
         part = $1
         type, data, option = part.split(":")
-        case type
-        when /^https?$/
-          http_link(type, data, option)
-        when "a", "d"
-          article_link(type, data)
-        when "p"
-          photo_link(data.to_i, option)
-        when "amazon"
-          amazon_link(data, option)
-        when "youtube"
-          youtube_link(data)
-        when "nico"
-          niconico_link(data)
-        when "slideshare"
-          slideshare_link(data)
-        when /^\[/
-          part
+        if data
+          case type
+          when "http", "https"
+            http_link("#{type}:#{data}", option)
+          when "a", "d"
+            article_link(type, data)
+          when "p"
+            photo_link(data.to_i, option)
+          when "amazon"
+            amazon_link(data, option)
+          when "youtube"
+            youtube_link(data)
+          when "nico"
+            niconico_link(data)
+          when "slideshare"
+            slideshare_link(data)
+          else
+            simple_deco(part, type)
+          end
         else
-          content_tag(:span, part, class: "accent")
+          simple_deco(part, type)
         end
       end
 
@@ -51,8 +53,7 @@ class TextDecorator
 
     private
 
-    def http_link(type, data, option)
-      url = "#{type}:#{data}"
+    def http_link(url, option)
       title = option.scan(/^title=(.+?)$/).flatten.first if option
       link_to(title.presence || url, url, target: "_blank")
     end
@@ -74,7 +75,6 @@ class TextDecorator
     end
 
     def photo_link(photo_id, size)
-      Rails.logger.info size
       if photo = Photo.find_by_id(photo_id)
         size ||= :large
         image_tag(
@@ -135,6 +135,10 @@ class TextDecorator
 
     def slideshare_link(slideshare_id)
       %Q|<iframe src="http://www.slideshare.net/slideshow/embed_code/#{slideshare_id}" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>|
+    end
+
+    def simple_deco(part, type)
+      (type =~ /^\[/) ? part : content_tag(:span, part, class: "accent")
     end
   end
 end
