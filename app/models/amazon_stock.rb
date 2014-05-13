@@ -31,7 +31,7 @@ class AmazonStock < ActiveRecord::Base
         amazon.product_name = element.get("Title").slice(0, 255)
         amazon.manufacturer = element.get("Manufacturer").slice(0, 255)
         amazon.media = element.get("Binding").slice(0, 255)
-        amazon.release_date = element.get("PublicationDate").presence || element.get("ReleaseDate")
+        amazon.release_date = element.get("PublicationDate").presence || element.get("ReleaseDate") || ""
 
         authors = element.get_array("Author")
         amazon.creator = authors.join(", ") if authors.size < 10
