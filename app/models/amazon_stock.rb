@@ -28,18 +28,21 @@ class AmazonStock < ActiveRecord::Base
           amazon.small_image_height = small_image["Height"]
         end
 
-        amazon.product_name = element.get("Title")
-        amazon.creator = element.get_array("Author").join(", ")
-        amazon.manufacturer = element.get("Manufacturer")
-        amazon.media = element.get("Binding")
+        amazon.product_name = element.get("Title").slice(0, 255)
+        amazon.manufacturer = element.get("Manufacturer").slice(0, 255)
+        amazon.media = element.get("Binding").slice(0, 255)
         amazon.release_date = element.get("PublicationDate").presence || element.get("ReleaseDate")
-        
+
+        authors = element.get_array("Author")
+        amazon.creator = authors.join(", ") if authors.size < 10
+
         amazon.updated_at = Time.now
         amazon.save!
       end
 
       amazon
-    rescue Exception
+    rescue => ex
+      Rails.logger.warn(ex.inspect)
       nil
     end
 
