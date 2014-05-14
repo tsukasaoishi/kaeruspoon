@@ -1,8 +1,9 @@
 class ArticlesController < ApplicationController
   before_filter :required_login, only: [:new, :create, :edit, :update, :destroy]
 
-  caches_action :show, expires_in: 1.day, if: -> { !logged_in? }
+  caches_action :index, expires_in: 1.day, if: lambda{ !logged_in? }
   caches_action :popular, expires_in: 1.day, if: -> { !logged_in? }
+  caches_action :show, expires_in: 1.day, if: -> { !logged_in? }
 
   def index
     @articles = current_user.recent_articles(10)
@@ -44,6 +45,8 @@ class ArticlesController < ApplicationController
   def create
     article = Article.create!(require_params)
     expire_action(article.prev_article) if article.prev_article
+    expire_index_action
+
     redirect_to article
   end
 
@@ -65,6 +68,8 @@ class ArticlesController < ApplicationController
     expire_action(article)
     expire_action(article.prev_article) if article.prev_article
     expire_action(article.next_article) if article.next_article
+    expire_index_action
+
     redirect_to article
   end
 
@@ -78,6 +83,7 @@ class ArticlesController < ApplicationController
 
     expire_action(prev_article) if prev_article
     expire_action(next_article) if next_article
+    expire_index_action
 
     redirect_to root_path
   end
@@ -94,5 +100,10 @@ class ArticlesController < ApplicationController
     session[:backup_article_title] = nil
     session[:backup_article_body] = nil
     [title, body]
+  end
+
+  def expire_index_action
+    expire_action(action: :index)
+    expire_action(action: :index, format: :atom)
   end
 end
