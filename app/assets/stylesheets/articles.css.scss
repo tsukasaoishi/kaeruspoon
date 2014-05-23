@@ -136,18 +136,18 @@ article time {
   margin: 0 10px;
 }
 
-article aside {
+span.operate {
   font-size: 80%;
   color: #888888;
-  margin: 0 5px;
 }
 
-article aside span.operate a {
+span.operate a {
   vertical-align: top;
   margin-right: 5px;
 }
 
-article aside span.accessCount {
+span.accessCount {
+  font-size: 80%;
   vertical-align: top;
   color: #555555;
   padding: 0 1px;
