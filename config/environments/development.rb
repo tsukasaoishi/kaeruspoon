@@ -27,4 +27,6 @@ Kaeruspoon::Application.configure do
 
   # Debug mode disables concatenation and preprocessing of assets.
   config.assets.debug = false
+
+  config.rack_dev_mark.enable = true
 end
