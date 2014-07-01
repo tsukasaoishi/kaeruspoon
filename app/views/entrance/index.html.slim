@@ -1,25 +1,27 @@
 div [ class="row" ]
-  div [ class="col_2" ]
-    h2 [ class="caption" ]
-      | 最新の日記
-    article
-      h3 [ itemprop="name" ]
-        = link_to("(#{@diary.publish_at.month}/#{@diary.publish_at.day}) #{@diary.title}", date_diaries_path(year: @diary.publish_at.year, month: @diary.publish_at.month, anchor: @diary.id))
-      time [ itemprop="datePublished" datetime="#{I18n.l(@diary.publish_at, format: :publish)}" ]
-      == TextDecorator.replace(@diary.body.truncate(400))
-      span [class="continue_reading"]
-        = link_to("#{I18n.t(:continue_reading)} >>", date_diaries_path(year: @diary.publish_at.year, month: @diary.publish_at.month, anchor: @diary.id))
+  - if @diary
+    div [ class="col_2" ]
+      h2 [ class="caption" ]
+        | 最新の日記
+      article
+        h3 [ itemprop="name" ]
+          = link_to("(#{@diary.publish_at.month}/#{@diary.publish_at.day}) #{@diary.title}", date_diaries_path(year: @diary.publish_at.year, month: @diary.publish_at.month, anchor: @diary.id))
+        time [ itemprop="datePublished" datetime="#{I18n.l(@diary.publish_at, format: :publish)}" ]
+        == TextDecorator.replace(@diary.body.truncate(400))
+        span [class="continue_reading"]
+          = link_to("#{I18n.t(:continue_reading)} >>", date_diaries_path(year: @diary.publish_at.year, month: @diary.publish_at.month, anchor: @diary.id))
 
-  div [ class="col_2" ]
-    h2 [ class="caption" ]
-      | 最新の技術記事
-    article
-      h3 = link_to(@article.title, article_path(@article), rel: :bookmark)
-      time [ itemprop="datePublished" datetime="#{I18n.l(@article.publish_at, format: :publish)}" ]
-        = I18n.l(@article.publish_at, format: :article)
-      - if logged_in?
-        aside
-          span [ class="accessCount" ] = @article.access_count
-      == TextDecorator.replace(@article.body.truncate(400))
-      span [class="continue_reading"]
-        = link_to("#{I18n.t(:continue_reading)} >>", article_path(@article), rel: :bookmark)
+  - if @article
+    div [ class="col_2" ]
+      h2 [ class="caption" ]
+        | 最新の技術記事
+      article
+        h3 = link_to(@article.title, article_path(@article), rel: :bookmark)
+        time [ itemprop="datePublished" datetime="#{I18n.l(@article.publish_at, format: :publish)}" ]
+          = I18n.l(@article.publish_at, format: :article)
+        - if logged_in?
+          aside
+            span [ class="accessCount" ] = @article.access_count
+        == TextDecorator.replace(@article.body.truncate(400))
+        span [class="continue_reading"]
+          = link_to("#{I18n.t(:continue_reading)} >>", article_path(@article), rel: :bookmark)
