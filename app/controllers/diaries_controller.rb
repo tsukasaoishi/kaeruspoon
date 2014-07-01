@@ -5,4 +5,9 @@ class DiariesController < ApplicationController
 
     @title = I18n.l(start, format: :month) + "の日記"
   end
+
+  def archive
+    @calendar = Article.diary_calendar
+    @title = I18n.t(:archive_diaries)
+  end
 end

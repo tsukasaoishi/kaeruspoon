@@ -1,6 +1,7 @@
 en:
   popular_articles: popular
   archive_articles: archive
+  archive_diaries: diary
   edit: edit
   delete: delete
   confirm_to_article_delete: "Do you delete this article?"

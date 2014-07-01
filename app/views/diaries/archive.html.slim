@@ -1,10 +1,10 @@
 div [ class="row" ]
   div [ class="col_center field" ]
-    h3 = I18n.t(:archive_articles)
+    h3 = I18n.t(:archive_diaries)
     div [ class="article_archive" ]
       - year = 0
       - @calendar.each do |c|
         - if year != c.year
           - year = c.year
           div [ class="archive_year"] = "#{year}年"
-        = link_to "#{c.month}月", date_articles_path(year: c.year, month: c.month)
+        = link_to "#{c.month}月", date_diaries_path(year: c.year, month: c.month)

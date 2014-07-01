@@ -38,13 +38,23 @@ class Article < ActiveRecord::Base
     end
 
     def tech_calendar
-      tech.select(
-        "YEAR(publish_at) as year, MONTH(publish_at) as month, count(*) as count"
-      ).group("year, month").order("publish_at")
+      archive_articles(tech)
+    end
+
+    def diary_calendar
+      archive_articles(diary)
     end
 
     def paginate_by_publish(page_num)
       newest.page(page_num)
+    end
+
+    private
+
+    def archive_articles(base_scope)
+      base_scope.select(
+        "YEAR(publish_at + INTERVAL 9 HOUR) as year, MONTH(publish_at + INTERVAL 9 HOUR) as month, count(*) as count"
+      ).group("year, month").order("publish_at")
     end
   end
 
