@@ -20,14 +20,14 @@ class ArticlesController < ApplicationController
     y, m, d = params.values_at(:year, :month, :day)
     date_range = d ? :day : :month
     start = Time.local(y, m, d || 1)
-    @articles = current_user.period_articles(start, date_range)
+    @articles = current_user.period_articles(start, date_range).tech
 
     @title = I18n.l(start, format: date_range)
     render "index"
   end
 
   def archive
-    @calendar = Article.calendar
+    @calendar = Article.tech_calendar
     @title = I18n.t(:archive_articles)
   end
 

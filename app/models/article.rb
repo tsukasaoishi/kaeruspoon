@@ -22,11 +22,11 @@ class Article < ActiveRecord::Base
 
   class << self
     def recent_articles(limit = 10)
-      self.includes(:content, :pickup_photo).newest.limit(limit)
+      tech.includes(:content, :pickup_photo).newest.limit(limit)
     end
 
     def popular_articles(limit = 100)
-      self.includes(:content, :pickup_photo).order("access_count DESC").limit(limit)
+      tech.includes(:content, :pickup_photo).order("access_count DESC").limit(limit)
     end
 
     def period_articles(start, range)
@@ -34,11 +34,11 @@ class Article < ActiveRecord::Base
       finish = start.__send__(period_end_method)
       period = (start..finish)
 
-      self.includes(:content, :pickup_photo).where(publish_at: period).oldest
+      includes(:content, :pickup_photo).where(publish_at: period).oldest
     end
 
-    def calendar
-      self.select(
+    def tech_calendar
+      tech.select(
         "YEAR(publish_at) as year, MONTH(publish_at) as month, count(*) as count"
       ).group("year, month").order("publish_at")
     end
@@ -49,17 +49,13 @@ class Article < ActiveRecord::Base
   end
 
   def prev_article(user = nil)
-    @prev_article ||= begin
-      articles = user ? user.articles : self.class.default_scoped
-      articles.where("publish_at <= ? AND id <> ?", publish_at, id).newest.first
-    end
+    @prev_article ||=
+      neighbor_article_scope(user).where("publish_at <= ? AND id <> ?", publish_at, id).newest.first
   end
 
   def next_article(user = nil)
-    @next_article ||= begin
-      articles = user ? user.articles : self.class.default_scoped
-      articles.where("publish_at >= ? AND id <> ?", publish_at, id).oldest.first
-    end
+    @next_article ||=
+      neighbor_article_scope(user).where("publish_at >= ? AND id <> ?", publish_at, id).oldest.first
   end
 
   def body
@@ -87,7 +83,7 @@ class Article < ActiveRecord::Base
   def choose_similar_articles!
     list = []
     keywords[0..9].each do |k|
-      k_scope = k.articles.published
+      k_scope = k.articles.published.tech
       list << k_scope.where("articles.publish_at < ?", self.publish_at).newest.first
       list << k_scope.where("articles.publish_at > ?", self.publish_at).oldest.first
     end
@@ -107,5 +103,10 @@ class Article < ActiveRecord::Base
 
   def plain_body
     @_plain_body ||= body.gsub(/[\r\n]/, "").gsub(/>\|.*?\|.+?\|\|</, "")
+  end
+
+  def neighbor_article_scope(user)
+    articles = user ? user.articles : self.class.default_scoped
+    articles.__send__(self.category)
   end
 end

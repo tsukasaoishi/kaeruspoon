@@ -1,6 +1,8 @@
 Kaeruspoon::Application.routes.draw do
   root to: 'articles#index'
 
+  get '/diary/:year/:month/(:day)' => "diaries#index"
+
   resources :articles do
     collection do
       get 'popular' => 'articles#popular', as: :popular
@@ -10,14 +12,12 @@ Kaeruspoon::Application.routes.draw do
     end
   end
 
+
   resources :photos
   resources :keywords
 
-  get '/diary/:year/:month/(:day)' => redirect("/articles/date/%{year}/%{month}/%{day}")
-
   get 'manage' => 'manages#top', as: :manage
   resource :session
-  resources :back_images
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

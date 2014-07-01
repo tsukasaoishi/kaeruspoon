@@ -27,11 +27,7 @@ class User < ActiveRecord::Base
   end
 
   def articles
-    if @guest
-      Article.published
-    else
-      Article.default_scoped
-    end
+    @guest ? Article.published : Article.default_scoped
   end
 
   def guest!

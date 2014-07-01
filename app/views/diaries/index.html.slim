@@ -1,0 +1,5 @@
+div [ class="row" ]
+  - if @title
+    h2 [ class="caption" ] = @title
+  - @articles.each do |article|
+    = render partial: "article", locals: {article: article}
