@@ -25,6 +25,10 @@ class Article < ActiveRecord::Base
       tech.includes(:content, :pickup_photo).newest.limit(limit)
     end
 
+    def recent_diaries(limit = 10)
+      diary.includes(:content).newest.limit(limit)
+    end
+
     def popular_articles(limit = 100)
       tech.includes(:content, :pickup_photo).order("access_count DESC").limit(limit)
     end
