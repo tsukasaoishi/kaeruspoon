@@ -7,6 +7,8 @@ class Article < ActiveRecord::Base
   has_many :related_articles, :dependent => :destroy
   has_many :similar_articles, :through => :related_articles, :source => :related_article
 
+  enum category: %i(tech diary)
+
   before_create :set_publish_at
   after_create :keyword_check!, :choose_pickup_photo!, :choose_similar_articles!
 
