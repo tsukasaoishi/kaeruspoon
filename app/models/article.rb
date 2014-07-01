@@ -72,6 +72,14 @@ class Article < ActiveRecord::Base
       neighbor_article_scope(user).where("publish_at >= ? AND id <> ?", publish_at, id).oldest.first
   end
 
+  def prev_month_article(user = nil)
+    neighbor_article_scope(user).where("publish_at < ?", publish_at.beginning_of_month).newest.first
+  end
+
+  def next_month_article(user = nil)
+    neighbor_article_scope(user).where("publish_at > ?", publish_at.end_of_month).oldest.first
+  end
+
   def body
     content.try(:body) || ""
   end

@@ -1,7 +1,10 @@
 <article class="col_center" itempscope itemtype="http://schema.org/Article">
   header
     h3 [ itemprop="name" ]
-      = link_to(article.title, article_path(article), rel: :bookmark)
+      - if article.tech?
+        = link_to(article.title, article_path(article), rel: :bookmark)
+      - else
+        = link_to("(#{article.publish_at.month}/#{article.publish_at.day}) #{article.title}", article_path(article), rel: :bookmark)
     time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ]
       = I18n.l(article.publish_at, format: :article)
     - if logged_in?
@@ -17,4 +20,5 @@
     aside [ class="socialButton" data-article-id=article.id data-hatena=1 ]
   - else
     aside [ class="socialButton" data-article-id=article.id ]
+      div = link_to(">> #{I18n.l(article.publish_at, format: :month)}の日記を読む", date_diaries_path(year: article.publish_at.year, month: article.publish_at.month))
 </article>

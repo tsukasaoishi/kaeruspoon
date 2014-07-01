@@ -3,3 +3,13 @@ div [ class="row" ]
     h2 [ class="caption" ] = @title
   - @articles.each do |article|
     = render partial: "article", locals: {article: article}
+  - if @prev_article
+    div [ class="previous_paging_box" id="previous_page" ]
+      span [ class="entypo-left-bold" ]
+      = link_to("<< #{I18n.l(@prev_article.publish_at, format: :month)}の日記", date_diaries_path(year: @prev_article.publish_at.year, month: @prev_article.publish_at.month), rel: "prev bookmark")
+  - if @next_article
+    div [ class="next_paging_box" id="next_page" ]
+      = link_to("#{I18n.l(@next_article.publish_at, format: :month)}の日記 >>", date_diaries_path(year: @next_article.publish_at.year, month: @next_article.publish_at.month), rel: "next bookmark")
+      span [ class="entypo-right-bold" ]
+
+

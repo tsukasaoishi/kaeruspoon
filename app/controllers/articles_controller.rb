@@ -40,6 +40,7 @@ class ArticlesController < ApplicationController
     title, body = repair_article
     @article = Article.new(title: title, publish_at: Time.now)
     @article.build_content(body: body)
+    @categories = Article.categories
   end
 
   def create
@@ -58,6 +59,8 @@ class ArticlesController < ApplicationController
       @article.title = title
       @article.body = body
     end
+
+    @categories = Article.categories
 
     render "new"
   end
@@ -91,7 +94,7 @@ class ArticlesController < ApplicationController
   private
 
   def require_params
-    params.require(:article).permit(:title, :publish_at, content_attributes: [:body])
+    params.require(:article).permit(:title, :publish_at, :category,  content_attributes: [:body])
   end
 
   def repair_article
