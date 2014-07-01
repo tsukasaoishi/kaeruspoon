@@ -66,10 +66,10 @@ div#contents {
 .row:after { clear: both; }
 .row { *zoom: 1; }
 
-.col_center, .google_ad_box, .related_articles {
+.col_2, .col_center, .google_ad_box, .related_articles {
 	margin-left: 1.0%;
   margin-right: 0.2%;
-	margin-bottom: 5px;
+	margin-bottom: 10px;
 	display: block;
 }
 
@@ -77,6 +77,11 @@ div#contents {
   margin: 0 auto;
   max-width: 960px;
   padding: 10px 20px;
+}
+
+.col_2 {
+  width: 46%;
+  float: left;
 }
 
 .google_ad_box {
@@ -201,6 +206,12 @@ pre {
   @include pagingBox;
 }
 
+@media handheld, only screen and (max-width: 960px) {
+  .col_2 {
+    width: 96%;
+  }
+}
+
 @media handheld, only screen and (max-width: 640px) {
   body {
     background: #222222;
@@ -208,7 +219,7 @@ pre {
 
 	div#contents { width: 100% !important; max-width: 100% !important; }
 
-  .col_center, .related_articles {
+  .col_2, .col_center, .related_articles {
     width: 92%;
     margin-left: 0%;
     margin-right: 0%;
