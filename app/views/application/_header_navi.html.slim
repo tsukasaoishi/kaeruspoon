@@ -1,5 +1,5 @@
 header
-  h1 = link_to("kaeruspoon", root_path)
+  h1 = link_to("1kaeruspoon", root_path, data: { no_turbolink: true })
   nav
     ul
       li = link_to(I18n.t(:archive_diaries), archive_diaries_path)
