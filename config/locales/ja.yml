@@ -199,7 +199,7 @@ ja:
       article: ! '%Y年%m月%d日(%a)'
       month : ! '%Y年%m月'
       day : ! '%Y年%m月%d日'
-      diary : ! '%m/%d(%a)'
+      diary : ! '%-m/%-d(%a)'
     pm: 午後
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
