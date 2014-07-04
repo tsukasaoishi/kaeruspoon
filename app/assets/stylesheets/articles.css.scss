@@ -3,36 +3,38 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body {
-  color: #333333;
+  color: #1F1F1F;
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
   line-height:1;
   font-size: 80%;
-  background-color: #4D4D4D;
+  background-color: #3F3F3F;
 }
 
 body > header {
-  position: fixed;
   width: 100%;
   top: 0px;
-  background-color: rgba(0,0,0,0.6);
+  padding-bottom: 10px;
+  background-color: #FFFFFF;
 }
 
 body > header h1 {
   float: left;
   margin-left: 10px;
+  font-family: 'Overlock', cursive;
 }
 
 body > header a {
-  color: #FFFFFF;
+  color: #000000;
   text-decoration: none;
 }
 
 body > header nav {
   padding-top: 20px;
-  color: #FFFFFF;
+  margin-left: 120px;
+  color: #000000;
 }
 
 body > header nav ul {
@@ -46,7 +48,7 @@ body > header nav li {
 
 div#contents {
   clear: both;
-  margin: 80px auto 0;
+  margin: 20px auto 0;
 }
 
 .row {
@@ -116,7 +118,7 @@ h2.caption {
   color: #ffffff;
 }
 article {
-  background-color: rgba(255,255,255,0.95);
+  background-color: #FFFFFF;
   border: 1px solid black;
   font-size: 110%;
   padding-left: 0.8%;
@@ -191,8 +193,8 @@ pre {
   margin: 10px auto;
   max-width: 960px;
   padding: 10px 20px;
-  border: 1px solid rgba(255,205,205,0.9);
-  background-color: rgba(255,255,255,0.95);
+  border: 1px solid #FFCDCD;
+  background-color: #FFFFFF;
   @include pagingBox
 }
 
@@ -200,8 +202,8 @@ pre {
   margin: 10px auto;
   max-width: 960px;
   padding: 10px 20px;
-  border: 1px solid rgba(205,205,255,0.9);
-  background-color: rgba(255,255,255,0.95);
+  border: 1px solid #CDCDFF;
+  background-color: #FFFFFF;
   text-align: right;
   @include pagingBox;
 }
@@ -280,7 +282,7 @@ pre {
 }
 
 .keyword_articles {
-  background-color: rgba(255,255,255,0.9);
+  background-color: #FFFFFF;
   @include roundBox;
 }
 
@@ -290,7 +292,7 @@ pre {
 }
 
 .related_articles {
-  background-color: rgba(255,255,255,0.9);
+  background-color: #FFFFFF;
   margin-top: 10px;
   padding: 10px;
   @include roundBox;
