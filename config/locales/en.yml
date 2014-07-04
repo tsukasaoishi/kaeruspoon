@@ -207,6 +207,7 @@ en:
       article: ! '%a, %d %b %Y'
       month : ! '%b %Y'
       day : ! '%d %b %Y'
+      diary : ! '%m/%d %Y'
     pm: pm
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:

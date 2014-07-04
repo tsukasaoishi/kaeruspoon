@@ -1,10 +1,7 @@
 <article class="col_center" itempscope itemtype="http://schema.org/Article">
   header
     h3 [ itemprop="name" ]
-      - if article.tech?
-        = link_to(article.title, article_path(article), rel: :bookmark)
-      - else
-        = link_to("(#{article.publish_at.month}/#{article.publish_at.day}) #{article.title}", article_path(article), rel: :bookmark)
+      = link_to(article.formatted_title, article_path(article), rel: :bookmark)
     time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ]
       = I18n.l(article.publish_at, format: :article)
     - if logged_in?

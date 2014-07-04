@@ -2,7 +2,7 @@
   = content_tag(:a, nil, name: article.id)
   header
     h3 [ itemprop="name" ]
-      = link_to("(#{article.publish_at.month}/#{article.publish_at.day}) #{article.title}", article_path(article))
+      = link_to(article.formatted_title, article_path(article))
   time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ]
   - if logged_in?
     span [ class="operate" ]

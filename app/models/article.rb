@@ -62,6 +62,18 @@ class Article < ActiveRecord::Base
     end
   end
 
+  def formatted_title
+    if tech?
+      title
+    else
+      "#{I18n.l(publish_at, format: :diary)} #{title}"
+    end
+  end
+
+  def to_date_hash
+    {year: publish_at.year, month: publish_at.month}
+  end
+
   def prev_article(user = nil)
     @prev_article ||=
       neighbor_article_scope(user).where("publish_at <= ? AND id <> ?", publish_at, id).newest.first

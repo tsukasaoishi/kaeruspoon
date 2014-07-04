@@ -3,8 +3,8 @@ header
   nav
     ul
       li = link_to(I18n.t(:archive_diaries), archive_diaries_path)
-      li = link_to(I18n.t(:popular_articles), popular_articles_path)
       li = link_to(I18n.t(:archive_articles), archive_articles_path)
+      li = link_to(I18n.t(:popular_articles), popular_articles_path)
       <li itempprop="author" itemscope itemtype="http://schema.org/Person">
         = link_to("おおいしつかさ", "https://twitter.com/tsukasa_oishi", target: "_blank", itemprop: "name")
       </li>
