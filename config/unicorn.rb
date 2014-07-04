@@ -1,6 +1,6 @@
 worker_processes 3
 listen 9292, :tcp_nopush => true
-timeout 30
+timeout 300
 pid 'tmp/pids/unicorn.pid'
 preload_app true
 stderr_path 'log/unicorn.log'
