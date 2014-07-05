@@ -4,11 +4,11 @@ div [ class="row" ]
   - @articles.each do |article|
     = render partial: "article", locals: {article: article}
   - if @prev_article
-    div [ class="previous_paging_box" id="previous_page" ]
+    div [ class="previous_paging_box" id="previous_page" data-url=date_diaries_path(@prev_article.to_date_hash) ]
       span [ class="entypo-left-bold" ]
       = link_to("<< #{I18n.l(@prev_article.publish_at, format: :month)}の日記", date_diaries_path(@prev_article.to_date_hash), rel: "prev bookmark")
   - if @next_article
-    div [ class="next_paging_box" id="next_page" ]
+    div [ class="next_paging_box" id="next_page" data-url=date_diaries_path(@next_article.to_date_hash) ]
       = link_to("#{I18n.l(@next_article.publish_at, format: :month)}の日記 >>", date_diaries_path(@next_article.to_date_hash), rel: "next bookmark")
       span [ class="entypo-right-bold" ]
 
