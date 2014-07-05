@@ -1,4 +1,6 @@
 class DiariesController < ApplicationController
+  caches_action :index, expires_in: 1.day, if: lambda{ !logged_in? }
+
   def index
     start = Time.local(params[:year], params[:month], 1)
     @articles = current_user.period_articles(start, :month).diary
