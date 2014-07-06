@@ -23,9 +23,7 @@ class TextDecorator
     def flash
       return "" if empty?
 
-      lang = @lang
-      @lang = nil
-      CodeRay.scan(join("\n"), lang || :ruby).div
+      "<pre>#{join("\n")}</pre>"
     ensure
       @on = false
       clear

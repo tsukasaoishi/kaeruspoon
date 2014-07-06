@@ -60,5 +60,7 @@ gem 'wikipedia-client'
 gem 'ebisu_connection'
 gem 'reverse_markdown'
 gem 'redcarpet'
+gem "pygments.rb"
+gem "nokogiri"
 
 gem 'whenever', :require => false
