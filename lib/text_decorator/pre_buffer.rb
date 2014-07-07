@@ -23,7 +23,7 @@ class TextDecorator
     def flash
       return "" if empty?
 
-      "<pre>#{join("\n")}</pre>"
+      "<pre>#{CGI.escapeHTML(join("\n"))}</pre>"
     ensure
       @on = false
       clear
