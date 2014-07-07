@@ -22,3 +22,21 @@ div [ class="row" ]
         = f.file_field :image
       div [ class="action" ]
         = submit_tag "upload image"
+
+    = form_tag amazon_path, {id: :add_amazon} do
+      h4 amazon
+      = hidden_field_tag :article_id, @article.id
+      = hidden_field_tag :backup_article_title_for_amazon
+      = hidden_field_tag :backup_article_body_for_amazon
+      div
+        | タイトル
+        = radio_button_tag :amazon_type, :title, true
+      div
+        | 画像
+        = radio_button_tag :amazon_type, :image
+      div
+        | asin: 
+        = text_field_tag :asin
+      div [ class="action" ]
+        = submit_tag "get markdown"
+

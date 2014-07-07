@@ -19,6 +19,8 @@ Kaeruspoon::Application.routes.draw do
 
   get 'manage' => 'manages#top', as: :manage
   resource :session
+  
+  post 'amazon' => 'amazon#markdown', as: :amazon
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

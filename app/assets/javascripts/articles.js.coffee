@@ -32,7 +32,15 @@ ready = ->
       $("#backup_article_title").val($("#article_title").val())
       $("#backup_article_body").val($("#article_content_attributes_body").val())
       return
-    return
+
+  if ($("#add_amazon").length)
+    $("#add_amazon").submit ->
+      if (!$("#asin").val())
+        alert("input asin code")
+        return false
+      $("#backup_article_title_for_amazon").val($("#article_title").val())
+      $("#backup_article_body_for_amazon").val($("#article_content_attributes_body").val())
+      return
 
   if ($('#my_ad').length)
     window.MyAdSense.newAd(document.getElementById('my_ad'))
