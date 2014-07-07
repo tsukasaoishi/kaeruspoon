@@ -4,7 +4,7 @@ class AmazonController < ApplicationController
 
     if amazon = AmazonStock.find_by_asin(params[:asin])
       if params[:amazon_type][:image]
-        article_body += %Q|![Amazon](#{amazon.medium_image_url})|
+        article_body += %Q|[![Amazon](#{amazon.medium_image_url})](#{amazon.url})|
       end
 
       if params[:amazon_type][:title]
