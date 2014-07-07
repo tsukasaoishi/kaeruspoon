@@ -3,11 +3,12 @@ class AmazonController < ApplicationController
     article_body = params[:backup_article_body_for_amazon].dup
 
     if amazon = AmazonStock.find_by_asin(params[:asin])
-      case params[:amazon_type].to_s
-      when "title"
-        article_body += %Q|[「#{amazon.product_name}」](#{amazon.url})|
-      when "image"
+      if params[:amazon_type][:image]
         article_body += %Q|![Amazon](#{amazon.medium_image_url})|
+      end
+
+      if params[:amazon_type][:title]
+        article_body += %Q|[「#{amazon.product_name}」](#{amazon.url})|
       end
     end
 

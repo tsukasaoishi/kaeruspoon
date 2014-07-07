@@ -30,10 +30,10 @@ div [ class="row" ]
       = hidden_field_tag :backup_article_body_for_amazon
       div
         | タイトル
-        = radio_button_tag :amazon_type, :title, true
+        = check_box_tag 'amazon_type[title]', true, true, {}
       div
         | 画像
-        = radio_button_tag :amazon_type, :image
+        = check_box_tag 'amazon_type[image]', true, false, {}
       div
         | asin: 
         = text_field_tag :asin
