@@ -184,6 +184,12 @@ pre {
   border: solid 1px #dddddd;
 }
 
+code {
+  color: black;
+  background: #f7f7ff;
+  border: solid 1px #dddddd;
+}
+
 @mixin pagingBox {
   margin-top: 10px;
   padding-top: 10px;
