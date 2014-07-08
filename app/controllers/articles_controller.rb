@@ -33,7 +33,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = current_user.articles.find(params[:id])
-    @title = @article.title
+    @title = @article.formatted_title
   end
 
   def new
