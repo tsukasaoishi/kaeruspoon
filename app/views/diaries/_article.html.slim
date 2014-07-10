@@ -1,5 +1,4 @@
 <article class="col_center" itempscope itemtype="http://schema.org/Article">
-  = content_tag(:a, nil, name: article.id)
   header
     h3 [ itemprop="name" ]
       = link_to(article.formatted_title, article_path(article))
