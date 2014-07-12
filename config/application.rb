@@ -24,6 +24,6 @@ module Kaeruspoon
     config.i18n.enforce_available_locales = false
     config.i18n.default_locale = :ja
 
-    config.cache_store = :mem_cache_store
+    config.cache_store = :dalli_store
   end
 end
