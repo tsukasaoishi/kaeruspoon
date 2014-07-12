@@ -5,11 +5,11 @@ div [ class="row" ]
         = I18n.t(:archive_diaries)
       article
         h3 [ itemprop="name" ]
-          = link_to(@diary.formatted_title, date_diaries_path(@diary.to_date_hash.merge(anchor: "diary_tail")))
+          = link_to(@diary.formatted_title, date_diaries_path(@diary.to_date_hash.merge(anchor: "article-#{@diary.id}")))
         time [ itemprop="datePublished" datetime="#{I18n.l(@diary.publish_at, format: :publish)}" ]
         == TextDecorator.replace(@diary.body.truncate(200))
         span [class="continue_reading"]
-          = link_to("#{I18n.t(:continue_reading)} >>", date_diaries_path(@diary.to_date_hash.merge(anchor: "diary_tail")))
+          = link_to("#{I18n.t(:continue_reading)} >>", date_diaries_path(@diary.to_date_hash.merge(anchor: "article-#{@diary.id}")))
 
   - if @article
     div [ class="col_2" ]

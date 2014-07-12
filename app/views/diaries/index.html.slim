@@ -3,7 +3,6 @@ div [ class="row" ]
     h2 [ class="caption" ] = @title
   - @articles.each do |article|
     = render partial: "article", locals: {article: article}
-  = content_tag(:a, nil, name: "diary_tail")
   - if @prev_article
     div [ class="previous_paging_box" id="previous_page" data-url=date_diaries_path(@prev_article.to_date_hash) ]
       span [ class="entypo-left-bold" ]
