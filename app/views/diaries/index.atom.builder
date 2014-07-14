@@ -5,7 +5,7 @@ atom_feed(language: :ja) do |feed|
   @calendar.each do |c|
     feed.entry(
       c,
-      url: date_diaries_path(year: c.year, month: c.month),
+      url: date_diaries_url(year: c.year, month: c.month),
       id: %Q|tag:#{request.host},:#{date_diaries_path(year: c.year, month: c.month)}|
     ) do |entry|
       entry.title("#{c.year}年#{c.month}の日記")
