@@ -1,5 +1,9 @@
 class DiariesController < ApplicationController
   def index
+    @calendar = Article.diary_calendar.where("publish_at < ?", Date.today.beginning_of_month)
+  end
+
+  def date
     start = Time.local(params[:year], params[:month], 1)
     @articles = current_user.period_articles(start, :month).diary
     @title = I18n.l(start, format: :month) + "の日記"

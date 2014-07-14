@@ -1,7 +1,8 @@
 Kaeruspoon::Application.routes.draw do
   root to: 'entrance#index'
 
-  get '/diary/:year/:month/(:day)' => "diaries#index", as: :date_diaries
+  get '/diaries.:format' => "diaries#index", format: /atom/
+  get '/diary/:year/:month/(:day)' => "diaries#date", as: :date_diaries
   get '/diary/archive' => "diaries#archive", as: :archive_diaries
 
   resources :articles do
