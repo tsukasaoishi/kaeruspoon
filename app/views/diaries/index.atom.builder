@@ -1,6 +1,6 @@
 atom_feed(language: :ja) do |feed|
   feed.title "kaeruspoon"
-  feed.updated Time.local(@calendar.last.year, @calendar.last.month, 1)
+  feed.updated Time.local(@calendar.first.year, @calendar.first.month, 1)
 
   @calendar.each do |c|
     feed.entry(

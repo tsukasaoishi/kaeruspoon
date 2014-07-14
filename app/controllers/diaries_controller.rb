@@ -1,6 +1,6 @@
 class DiariesController < ApplicationController
   def index
-    @calendar = Article.diary_calendar.where("publish_at < ?", Date.today.beginning_of_month)
+    @calendar = Article.diary_calendar.where("publish_at < ?", Date.today.beginning_of_month).reorder("publish_at DESC")
   end
 
   def date
