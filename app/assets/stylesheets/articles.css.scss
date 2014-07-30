@@ -3,13 +3,14 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body {
-  color: #1F1F1F;
+  color: #222222;
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
-  line-height:1;
-  font-size: 80%;
+  line-height: 1.7;
+  font-size: 14px;
+  font-family: "HalisR-Regular",'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, sans-serif;
   background-color: #3F3F3F;
   background-image: image-url("background.jpg")
 }
@@ -24,7 +25,6 @@ body > header {
 body > header h1 {
   float: left;
   margin-left: 10px;
-  font-family: 'Overlock', cursive;
 }
 
 body > header a {
@@ -117,19 +117,16 @@ figure img { max-width: 100%; }
 
 h2.caption {
   color: #ffffff;
-  font-family: 'Overlock', cursive;
 }
 article {
-  background-color: #FFFFFF;
+  background-color: #F7F7F7;
   border: 1px solid black;
-  font-size: 110%;
   padding-left: 0.8%;
   padding-right: 0.8%;
-  line-height: 170%;
+  line-height: 1.7;
 }
 
 article h3 {
-  font-family: 'Overlock', cursive;
   font-size: 140%;
   margin-bottom: 0;
 }
@@ -180,7 +177,7 @@ pre {
   color: black;
   background: #f7f7ff;
   overflow: auto;
-  line-height: 1.4em;
+  line-height: 1.4;
   margin: 1em 0.5em;
   border: solid 1px #dddddd;
 }
@@ -257,10 +254,6 @@ code {
   height: 100%;
   max-width: 640px;
   max-height: 480px;
-}
-
-.article_archive {
-  line-height: 170%;
 }
 
 .article_archive a{

@@ -13,7 +13,6 @@ html [ lang="ja" ]
     meta [property="fb:admins" content="671652438" ]
     title = [@title.presence, "kaeruspoon - おおいしつかさ"].compact.join(" | ")
     = stylesheet_link_tag("application", media: "all", "data-turbolinks-track" => true)
-    = stylesheet_link_tag('http://fonts.googleapis.com/css?family=Overlock')
     = favicon_link_tag("favicon.png")
     = auto_discovery_link_tag(:atom, articles_url(:format => "atom"))
     = csrf_meta_tags
