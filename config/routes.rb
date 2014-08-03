@@ -9,6 +9,7 @@ Kaeruspoon::Application.routes.draw do
     collection do
       get 'popular' => 'articles#popular', as: :popular
       get 'archive' => 'articles#archive', as: :archive
+      get 'tech' => 'articles#tech'
       get 'date/:year/:month/(:day)' => 'articles#date', as: :date,
         year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/
     end
