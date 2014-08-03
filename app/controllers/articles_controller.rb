@@ -26,11 +26,6 @@ class ArticlesController < ApplicationController
     render "index"
   end
 
-  def tech
-    @articles = current_user.recent_tech_articles(10)
-    render "index"
-  end
-
   def archive
     @calendar = Article.tech_calendar
     @title = I18n.t(:archive_articles)

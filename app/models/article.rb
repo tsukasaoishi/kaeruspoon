@@ -22,10 +22,6 @@ class Article < ActiveRecord::Base
 
   class << self
     def recent_articles(limit = 10)
-      includes(:content, :pickup_photo).newest.limit(limit)
-    end
-
-    def recent_tech_articles(limit = 10)
       tech.includes(:content, :pickup_photo).newest.limit(limit)
     end
 

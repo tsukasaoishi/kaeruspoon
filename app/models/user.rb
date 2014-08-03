@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, presence: true, on: :create
 
-  delegate :recent_articles, :recent_tech_articles, :recent_diaries, :popular_articles, :period_articles, to: :articles
+  delegate :recent_articles, :recent_diaries, :popular_articles, :period_articles, to: :articles
 
   class << self
     #
