@@ -33,12 +33,13 @@ class Article < ActiveRecord::Base
       tech.includes(:content, :pickup_photo).order("access_count DESC").limit(limit)
     end
 
-    def period_articles(start, range)
+    def period_articles(start, range, reverse = false)
       period_end_method = (range == :day ? :end_of_day : :end_of_month)
       finish = start.__send__(period_end_method)
       period = (start..finish)
 
-      includes(:content, :pickup_photo).where(publish_at: period).oldest
+      list = includes(:content, :pickup_photo).where(publish_at: period)
+      reverse ? list.newest : list.oldest
     end
 
     def tech_calendar

@@ -5,7 +5,7 @@ class DiariesController < ApplicationController
 
   def date
     start = Time.local(params[:year], params[:month], 1)
-    @articles = current_user.period_articles(start, :month).diary
+    @articles = current_user.period_articles(start, :month, params[:reverse]).diary
     @title = I18n.l(start, format: :month) + "の日記"
 
     if @articles.present?
