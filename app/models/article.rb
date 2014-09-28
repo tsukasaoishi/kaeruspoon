@@ -94,7 +94,7 @@ class Article < ActiveRecord::Base
   end
 
   def body
-    content.try(:body) || ""
+    content ? content.body : ""
   end
 
   def body=(text)
