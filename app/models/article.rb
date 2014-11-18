@@ -7,12 +7,8 @@ class Article < ActiveRecord::Base
   has_many :related_articles, :dependent => :destroy
   has_many :similar_articles, :through => :related_articles, :source => :related_article
 
-  enum category: %i(tech diary)
-
   before_create :set_publish_at
   after_create :keyword_check!, :choose_pickup_photo!, :choose_similar_articles!
-
-  validates :title, presence: true, if: -> { tech? }
 
   accepts_nested_attributes_for :content, :allow_destroy => true
 
@@ -22,15 +18,11 @@ class Article < ActiveRecord::Base
 
   class << self
     def recent_articles(limit = 10)
-      tech.includes(:content, :pickup_photo).newest.limit(limit)
-    end
-
-    def recent_diaries(limit = 10)
-      diary.includes(:content).newest.limit(limit)
+      includes(:content, :pickup_photo).newest.limit(limit)
     end
 
     def popular_articles(limit = 100)
-      tech.includes(:content, :pickup_photo).order("access_count DESC").limit(limit)
+      includes(:content, :pickup_photo).order("access_count DESC").limit(limit)
     end
 
     def period_articles(start, range, reverse = false)
@@ -42,33 +34,19 @@ class Article < ActiveRecord::Base
       reverse ? list.newest : list.oldest
     end
 
-    def tech_calendar
-      archive_articles(tech)
-    end
-
-    def diary_calendar
-      archive_articles(diary)
-    end
-
     def paginate_by_publish(page_num)
       newest.page(page_num)
     end
 
-    private
-
-    def archive_articles(base_scope)
-      base_scope.select(
+    def archive_articles
+      select(
         "YEAR(publish_at + INTERVAL 9 HOUR) as year, MONTH(publish_at + INTERVAL 9 HOUR) as month, count(*) as count"
       ).group("year, month").order("publish_at")
     end
   end
 
   def formatted_title
-    if tech?
-      title
-    else
-      "#{I18n.l(publish_at, format: :diary)} #{title}"
-    end
+    title.presence || I18n.l(publish_at, format: :diary)
   end
 
   def to_date_hash
@@ -118,7 +96,7 @@ class Article < ActiveRecord::Base
   def choose_similar_articles!
     list = []
     keywords[0..9].each do |k|
-      k_scope = k.articles.published.tech
+      k_scope = k.articles.published
       list << k_scope.where("articles.publish_at < ?", self.publish_at).newest.first
       list << k_scope.where("articles.publish_at > ?", self.publish_at).oldest.first
     end
@@ -141,7 +119,6 @@ class Article < ActiveRecord::Base
   end
 
   def neighbor_article_scope(user)
-    articles = user ? user.articles : self.class.default_scoped
-    articles.__send__(self.category)
+    user ? user.articles : self.class.default_scoped
   end
 end

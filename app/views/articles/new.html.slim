@@ -3,8 +3,6 @@ div [ class="row" ]
     h3 create or edit article
     = form_for @article do |f|
       div
-        = f.select :category, options_for_select(@categories.map {|c| [c[0].humanize, c[0]] }, selected: @article.category)
-      div
         = f.text_field :title
       div
         = f.fields_for :content do |c|

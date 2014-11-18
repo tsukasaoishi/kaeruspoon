@@ -20,14 +20,14 @@ class ArticlesController < ApplicationController
     y, m, d = params.values_at(:year, :month, :day)
     date_range = d ? :day : :month
     start = Time.local(y, m, d || 1)
-    @articles = current_user.period_articles(start, date_range).tech
+    @articles = current_user.period_articles(start, date_range)
 
     @title = I18n.l(start, format: date_range)
     render "index"
   end
 
   def archive
-    @calendar = Article.tech_calendar
+    @calendar = Article.archive_articles
     @title = I18n.t(:archive_articles)
   end
 
@@ -94,7 +94,7 @@ class ArticlesController < ApplicationController
   private
 
   def require_params
-    params.require(:article).permit(:title, :publish_at, :category,  content_attributes: [:body])
+    params.require(:article).permit(:title, :publish_at, content_attributes: [:body])
   end
 
   def repair_article

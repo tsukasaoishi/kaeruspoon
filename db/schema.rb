@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140701121946) do
+ActiveRecord::Schema.define(version: 20141118142634) do
 
   create_table "amazon_stocks", force: true do |t|
     t.string   "asin",                                          null: false
@@ -32,6 +32,22 @@ ActiveRecord::Schema.define(version: 20140701121946) do
   end
 
   add_index "amazon_stocks", ["asin"], name: "index_amazon_stocks_on_asin", length: {"asin"=>10}, using: :btree
+
+  create_table "amazons", force: true do |t|
+    t.string   "asin"
+    t.text     "url"
+    t.text     "medium_image_url"
+    t.text     "small_image_url"
+    t.string   "product_name"
+    t.string   "creator"
+    t.string   "manufacturer"
+    t.string   "media"
+    t.string   "release_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "amazons", ["asin"], name: "index_amazons_on_asin", using: :btree
 
   create_table "article_contents", force: true do |t|
     t.integer  "article_id", null: false
@@ -67,12 +83,56 @@ ActiveRecord::Schema.define(version: 20140701121946) do
     t.integer  "access_count", default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "category",     default: 0, null: false
   end
 
   add_index "articles", ["access_count"], name: "index_articles_on_access_count", using: :btree
-  add_index "articles", ["category", "publish_at"], name: "index_articles_on_category_and_publish_at", using: :btree
   add_index "articles", ["publish_at"], name: "index_articles_on_publish_at", using: :btree
+
+  create_table "back_images", force: true do |t|
+    t.string   "image_file_name",    null: false
+    t.string   "image_content_type", null: false
+    t.integer  "image_file_size",    null: false
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  create_table "comments", force: true do |t|
+    t.integer  "article_id"
+    t.integer  "user_id"
+    t.string   "name"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["article_id"], name: "index_comments_on_article_id", using: :btree
+  add_index "comments", ["created_at"], name: "index_comments_on_created_at", using: :btree
+
+  create_table "delayed_jobs", force: true do |t|
+    t.integer  "priority",   default: 0
+    t.integer  "attempts",   default: 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "facebook_tokens", force: true do |t|
+    t.integer  "user_id"
+    t.string   "token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "facebook_tokens", ["user_id"], name: "index_facebooks_on_user_id", using: :btree
 
   create_table "keywords", force: true do |t|
     t.string   "name"

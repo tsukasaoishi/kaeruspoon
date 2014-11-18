@@ -1,10 +1,6 @@
 Kaeruspoon::Application.routes.draw do
   root to: 'entrance#index'
 
-  get '/diaries.:format' => "diaries#index", format: /atom/
-  get '/diary/:year/:month/(:day)' => "diaries#date", as: :date_diaries
-  get '/diary/archive' => "diaries#archive", as: :archive_diaries
-
   resources :articles do
     collection do
       get 'popular' => 'articles#popular', as: :popular
@@ -14,14 +10,15 @@ Kaeruspoon::Application.routes.draw do
     end
   end
 
-
   resources :photos
   resources :keywords
 
   get 'manage' => 'manages#top', as: :manage
   resource :session
-  
+
   post 'amazon' => 'amazon#markdown', as: :amazon
+
+  get '/diary/:year/:month/(:day)', to: redirect("date/:year/:month/(:day)")
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
