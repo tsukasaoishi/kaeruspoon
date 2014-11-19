@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   caches_action :show, expires_in: 1.day, if: -> { !logged_in? }
 
   def index
-    @articles = current_user.recent_articles(10)
+    @articles = current_user.recent_articles(30)
   end
 
   def popular
