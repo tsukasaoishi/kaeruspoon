@@ -10,9 +10,7 @@ div [ class="row" ]
         - if logged_in?
           aside
             span [ class="accessCount" ] = @article.access_count
-        == TextDecorator.replace(@article.body.truncate(200))
-        span [class="continue_reading"]
-          = link_to("#{I18n.t(:continue_reading)} >>", article_path(@article), rel: :bookmark)
+        == TextDecorator.replace(@article.body)
 
   div [ class="col_2" ]
     <a class="twitter-timeline" href="https://twitter.com/tsukasa_oishi" data-widget-id="448445594210557953" data-tweet-limit=1>@tsukasa_oishi からのツイート</a>

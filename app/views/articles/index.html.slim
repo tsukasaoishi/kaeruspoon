@@ -4,12 +4,10 @@ div [ class="row" ]
   - @articles.each do |article|
     article [ class="col_center" ]
       h3 = link_to(article.title, article_path(article), rel: :bookmark)
-      time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ] 
+      time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ]
         = I18n.l(article.publish_at, format: :article)
       - if logged_in?
         aside
           span [ class="accessCount" ] = article.access_count
-      == TextDecorator.replace(article.body.truncate(400))
-      span [class="continue_reading"]
-        = link_to("#{I18n.t(:continue_reading)} >>", article_path(article), rel: :bookmark)
+      == TextDecorator.replace(article.body)
   div [ class="google_ad_box" id="my_ad" ]

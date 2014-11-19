@@ -5,7 +5,6 @@ en:
   delete: delete
   confirm_to_article_delete: "Do you delete this article?"
   confirm_to_article_delete: "Do you delete this keyword?"
-  continue_reading: "Continue reading"
   date:
     abbr_day_names:
     - Sun
