@@ -45,10 +45,6 @@ class Article < ActiveRecord::Base
     end
   end
 
-  def formatted_title
-    title.presence || I18n.l(publish_at, format: :diary)
-  end
-
   def to_date_hash
     {year: publish_at.year, month: publish_at.month}
   end
