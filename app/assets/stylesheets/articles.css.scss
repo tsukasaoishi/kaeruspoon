@@ -11,8 +11,7 @@ body {
   line-height: 1.7;
   font-size: 14px;
   font-family: "HalisR-Regular",'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, sans-serif;
-  background-color: #3F3F3F;
-  background-image: image-url("background.jpg")
+  background-color: #FFFFFF;
 }
 
 body > header {
@@ -118,6 +117,29 @@ figure img { max-width: 100%; }
 h2.caption {
   color: #ffffff;
 }
+
+ul.articles li {
+  list-style-type: none;
+  margin-bottom: 0;
+  padding: 7px 5px;
+}
+
+ul.articles li a {
+  text-decoration: none;
+}
+
+ul.articles li time {
+  padding-top: 2px;
+  float: right;
+  font-size: 12px;
+  color: #999;
+}
+
+ul.articles li aside {
+  padding-top: 2px;
+  float: right;
+}
+
 article {
   background-color: #F7F7F7;
   border: 1px solid black;

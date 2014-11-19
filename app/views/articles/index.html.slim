@@ -2,10 +2,10 @@ div [ class="row" ]
   - if @title
     h2 [ class="caption" ] = @title
   ul [ class="articles" ]
-  - @articles.each do |article|
-    li
-      = link_to(article.title, article_path(article), rel: :bookmark)
-      time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ]
-        = I18n.l(article.publish_at, format: :article)
-      aside
-        span [ class="accessCount" ] = article.access_count
+    - @articles.each do |article|
+      li
+        = link_to(article.title, article_path(article), rel: :bookmark)
+        time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ]
+          = I18n.l(article.publish_at, format: :article)
+        aside
+          span [ class="accessCount" ] = article.access_count
