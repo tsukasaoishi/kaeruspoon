@@ -14,27 +14,29 @@ body {
   background-color: #FFFFFF;
 }
 
-body > header {
-  width: 100%;
-  top: 0px;
-  padding-bottom: 10px;
-  background-color: #FFFFFF;
+a {
+  color: #307EA9;
+  text-decoration: none;
 }
 
-body > header h1 {
-  float: left;
-  margin-left: 10px;
+body > header {
+  width: 720px;
+  margin: 50px auto 25px;
+  font-weight: bold;
+  color: #444;
+}
+
+body > header span.name {
+  font-size: 28px;
 }
 
 body > header a {
-  color: #000000;
+  color: #444;
   text-decoration: none;
 }
 
 body > header nav {
-  padding-top: 20px;
-  margin-left: 120px;
-  color: #000000;
+  float: right;
 }
 
 body > header nav ul {
@@ -46,6 +48,8 @@ body > header nav li {
   display: inline;
 }
 
+body > header:after { clear: both; }
+
 div#contents {
   clear: both;
   margin: 20px auto 0;
@@ -53,7 +57,7 @@ div#contents {
 
 .row {
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 720px;
 }
 
 .row > * {
@@ -77,7 +81,7 @@ div#contents {
 
 .related_articles {
   margin: 0 auto;
-  max-width: 960px;
+  max-width: 720px;
   padding: 10px 20px;
 }
 
@@ -88,13 +92,13 @@ div#contents {
 
 .google_ad_box {
   margin: 0 auto;
-  max-width: 960px;
+  max-width: 720px;
   text-align: center;
 }
 
 .col_center {
   margin: 10px auto;
-  max-width: 960px;
+  max-width: 720px;
   padding: 10px 20px;
 }
 
@@ -141,19 +145,24 @@ ul.articles li aside {
 }
 
 article {
-  background-color: #F7F7F7;
-  border: 1px solid black;
   padding-left: 0.8%;
   padding-right: 0.8%;
   line-height: 1.7;
 }
 
-article h3 {
-  font-size: 140%;
-  margin-bottom: 0;
+article header {
+  border-left: 7px solid;
+  color: #eee;
+  margin: 40px -30px 30px -30px;
+  padding: 10px 10px 10px 23px;
 }
 
-article h3 a {
+article h1 {
+  font-size: 30px;
+  margin: 0;
+}
+
+article h1 a {
   color: #444444;
   text-decoration: none;
 }
@@ -162,7 +171,6 @@ article time {
   float: left;
   font-size: 80%;
   color: #888888;
-  margin: 0 10px;
 }
 
 span.operate {
@@ -187,6 +195,7 @@ span.accessCount {
 }
 
 article p {
+  font-size: 16px;
   margin-top: 2em;
 }
 
@@ -215,7 +224,7 @@ code {
 
 .previous_paging_box {
   margin: 10px auto;
-  max-width: 960px;
+  max-width: 720px;
   padding: 10px 20px;
   border: 1px solid #FFCDCD;
   background-color: #FFFFFF;
@@ -224,7 +233,7 @@ code {
 
 .next_paging_box {
   margin: 10px auto;
-  max-width: 960px;
+  max-width: 720px;
   padding: 10px 20px;
   border: 1px solid #CDCDFF;
   background-color: #FFFFFF;
@@ -232,17 +241,13 @@ code {
   @include pagingBox;
 }
 
-@media handheld, only screen and (max-width: 960px) {
+@media handheld, only screen and (max-width: 720px) {
   .col_2 {
     width: 96%;
   }
 }
 
 @media handheld, only screen and (max-width: 640px) {
-  body {
-    background: #222222;
-  }
-
 	div#contents { width: 100% !important; max-width: 100% !important; }
 
   .col_2, .col_center, .related_articles {

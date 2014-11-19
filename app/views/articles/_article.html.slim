@@ -1,6 +1,6 @@
 <article class="col_center" itempscope itemtype="http://schema.org/Article">
   header
-    h3 [ itemprop="name" ]
+    h1 [ itemprop="name" ]
       = link_to(article.title, article_path(article), rel: :bookmark)
     time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ]
       = I18n.l(article.publish_at, format: :article)
