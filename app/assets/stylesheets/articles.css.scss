@@ -72,7 +72,7 @@ div#contents {
 .row:after { clear: both; }
 .row { *zoom: 1; }
 
-.col_2, .col_center, .google_ad_box, .related_articles {
+.col_2, .col_center, .related_articles {
 	margin-left: 1.0%;
   margin-right: 0.2%;
 	margin-bottom: 10px;
@@ -88,12 +88,6 @@ div#contents {
 .col_2 {
   width: 46%;
   float: left;
-}
-
-.google_ad_box {
-  margin: 0 auto;
-  max-width: 720px;
-  text-align: center;
 }
 
 .col_center {
