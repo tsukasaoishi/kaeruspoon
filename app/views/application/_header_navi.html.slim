@@ -3,5 +3,6 @@ header
     = link_to("TsukasaOISHI", root_path, data: { no_turbolink: true })
   nav
     ul
+      li = link_to(I18n.t(:about), about_path)
       li = link_to(I18n.t(:archive_articles), archive_articles_path)
       li = link_to(I18n.t(:popular_articles), popular_articles_path)

@@ -1,6 +1,7 @@
 en:
-  popular_articles: popular
-  archive_articles: archive
+  popular_articles: POPULAR
+  archive_articles: BLOG
+  about: ABOUT
   edit: edit
   delete: delete
   confirm_to_article_delete: "Do you delete this article?"

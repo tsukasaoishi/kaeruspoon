@@ -1,6 +1,7 @@
 ja:
-  popular_articles: 人気記事
-  archive_articles: ブログ
+  popular_articles: 人気
+  archive_articles: 月別
+  about: 誰？
   edit: 編集
   delete: 削除
   confirm_to_article_delete: 記事を削除しますか？

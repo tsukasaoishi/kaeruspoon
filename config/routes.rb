@@ -13,6 +13,7 @@ Kaeruspoon::Application.routes.draw do
   resources :photos
   resources :keywords
 
+  get 'about' => 'about#index', as: :about
   get 'manage' => 'manages#top', as: :manage
   resource :session
 
