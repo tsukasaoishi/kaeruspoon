@@ -21,6 +21,10 @@ class ArticlesController < ApplicationController
     date_range = d ? :day : :month
     start = Time.local(y, m, d || 1)
     @articles = current_user.period_articles(start, date_range)
+    if @articles.present?
+      @prev_article = @articles.first.prev_article(current_user)
+      @next_article = @articles.last.next_article(current_user)
+    end
 
     @title = I18n.l(start, format: date_range)
     render "index"

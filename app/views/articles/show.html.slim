@@ -4,7 +4,6 @@
     meta [ property="og:image" content="#{@article.pickup_photo.image.url(:large)}" ]
 = render @article
 nav [ class="row" ]
-  aside [ class="col_center" ]
   - if @article.similar_articles.present?
     div [ class="col_center related_articles" ]
       h4 関連する記事

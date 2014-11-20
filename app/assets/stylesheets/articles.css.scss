@@ -221,19 +221,25 @@ code {
   margin: 10px auto;
   max-width: 720px;
   padding: 10px 20px;
-  border: 1px solid #FFCDCD;
-  background-color: #FFFFFF;
+  background-color: #AFAFAF;
   @include pagingBox
+}
+
+.previous_paging_box a {
+  color: #FFFFFF;
 }
 
 .next_paging_box {
   margin: 10px auto;
   max-width: 720px;
   padding: 10px 20px;
-  border: 1px solid #CDCDFF;
-  background-color: #FFFFFF;
+  background-color: #3F3F3F;
   text-align: right;
   @include pagingBox;
+}
+
+.next_paging_box a {
+  color: #FFFFFF;
 }
 
 @media handheld, only screen and (max-width: 720px) {
