@@ -9,7 +9,7 @@ div [ class="row" ]
           = c.text_area :body
       div
         = f.datetime_select :publish_at
-      div [ class="actions" ] 
+      div [ class="actions" ]
         = submit_tag "create or edit"
     = form_for Photo.new, :html => { :multipart => true } do |f|
       h4 photo

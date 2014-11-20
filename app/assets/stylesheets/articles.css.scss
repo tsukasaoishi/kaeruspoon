@@ -163,7 +163,6 @@ article h1 a {
 }
 
 article time {
-  float: left;
   font-size: 80%;
   color: #888888;
 }
@@ -192,6 +191,13 @@ span.accessCount {
 article p {
   font-size: 16px;
   margin-top: 2em;
+}
+
+article aside.socialButton {
+  border-top: 1px solid #eee;
+  margin-top: 75px;
+  padding-top: 15px;
+  text-align: right;
 }
 
 pre {
