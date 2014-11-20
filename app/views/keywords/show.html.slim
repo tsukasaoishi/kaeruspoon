@@ -1,7 +1,7 @@
 div [ class="row" ]
   <article class="col_center" itempscope itemtype="http://schema.org/Article">
     header
-      h3
+      h1
         = @keyword.name
         - if !@keyword.new_record? && logged_in?
           aside
