@@ -5,7 +5,7 @@
 = render @article
 nav [ class="row" ]
   - if @article.similar_articles.present?
-    div [ class="col_center related_articles" ]
+    div [ class="related_articles" ]
       h4 関連する記事
       ul
         - @article.similar_articles.each do |article|

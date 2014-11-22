@@ -19,6 +19,10 @@ a {
   text-decoration: none;
 }
 
+h1 {
+  margin-left: 10px;
+}
+
 body > header {
   margin: 50px auto 25px;
   font-weight: bold;
@@ -93,33 +97,22 @@ div#contents {
 }
 
 .row > * {
-	-webkit-transition	: all 400ms ease-out;
-	-moz-transition		: all 400ms ease-out;
-	-o-transition		: all 400ms ease-out;
-	-ms-transition		: all 400ms ease-out;
-	transition			: all 400ms ease-out;	
+  -webkit-transition: all 400ms ease-out;
+  -moz-transition: all 400ms ease-out;
+  -o-transition: all 400ms ease-out;
+  -ms-transition: all 400ms ease-out;
+  transition: all 400ms ease-out;	
 }
 
 .row:before, .row:after { content: ""; display: table; }
 .row:after { clear: both; }
 .row { *zoom: 1; }
 
-.col_2, .col_center, .related_articles {
-	margin-left: 1.0%;
-  margin-right: 0.2%;
-	margin-bottom: 10px;
-	display: block;
-}
-
 .related_articles {
+  background-color: #FFFFFF;
   margin: 0 auto;
   max-width: 720px;
   padding: 10px 20px;
-}
-
-.col_2 {
-  width: 46%;
-  float: left;
 }
 
 .col_center {
@@ -138,15 +131,6 @@ img, object, embed { max-width: 100%; }
 img { height: auto; }
 figure img { max-width: 100%; }
 
-@mixin roundBox {
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-}
-
-h2.caption {
-  color: #ffffff;
-}
 
 ul.articles li {
   list-style-type: none;
@@ -185,13 +169,12 @@ article header {
 
 article h1 {
   font-size: 30px;
-  color: #444444;
+  color: #444;
   margin: 0;
 }
 
 article h1 a {
-  color: #444444;
-  text-decoration: none;
+  color: #444;
 }
 
 article h2 {
@@ -210,17 +193,16 @@ article h3 {
 
 article time {
   font-size: 80%;
-  color: #888888;
+  color: #888;
 }
 
 span.operate {
   font-size: 80%;
-  color: #888888;
+  color: #888;
 }
 
 span.operate a {
-  vertical-align: top;
-  margin-right: 5px;
+  margin-left: 5px;
 }
 
 span.accessCount {
@@ -268,48 +250,45 @@ code {
 }
 
 @mixin pagingBox {
-  margin-top: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  @include roundBox;
-}
-
-.previous_paging_box {
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
   margin: 10px auto;
   max-width: 720px;
   padding: 10px 20px;
+}
+
+.previous_paging_box {
   background-color: #AFAFAF;
   @include pagingBox
+}
+
+.next_paging_box {
+  background-color: #3F3F3F;
+  text-align: right;
+  @include pagingBox;
 }
 
 .previous_paging_box a {
   color: #FFFFFF;
 }
 
-.next_paging_box {
-  margin: 10px auto;
-  max-width: 720px;
-  padding: 10px 20px;
-  background-color: #3F3F3F;
-  text-align: right;
-  @include pagingBox;
-}
-
 .next_paging_box a {
   color: #FFFFFF;
 }
 
-@media handheld, only screen and (max-width: 720px) {
-  .col_2 {
-    width: 96%;
-  }
-}
-
 @media handheld, only screen and (max-width: 640px) {
-  div#contents { width: 100% !important; max-width: 100% !important; }
-  header { width: 100% !important; max-width: 100% !important; }
+  div#contents {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
 
-  .col_2, .col_center, .related_articles {
+  header {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .col_center, .related_articles {
     width: 92%;
     margin-left: 0%;
     margin-right: 0%;
@@ -354,8 +333,8 @@ code {
   overflow: hidden;
 }
 
-.video-container iframe,  
-.video-container object,  
+.video-container iframe,
+.video-container object,
 .video-container embed {
   position: absolute;
   top: 0;
@@ -366,7 +345,7 @@ code {
   max-height: 480px;
 }
 
-.article_archive a{
+.article_archive a {
   margin-right: 5px;
 }
 
@@ -374,40 +353,13 @@ code {
   margin-top: 1em;
 }
 
-.amazon_box {
-  margin: 1em;
-  background-color: #ffffff;
-}
-
-.amazon_image {
-  margin: 0 1em;
-  float: left;
-}
-
-.amazon_info {
-  font-size: 85%;
-  padding: 0 1em;
-}
-
-.amazon_clear {
-  clear: both;
-}
-
 .keyword_articles {
   background-color: #FFFFFF;
-  @include roundBox;
 }
 
 .keyword_articles li {
   list-style: none;
   margin-bottom: 1em;
-}
-
-.related_articles {
-  background-color: #FFFFFF;
-  margin-top: 10px;
-  padding: 10px;
-  @include roundBox;
 }
 
 .related_articles li {
