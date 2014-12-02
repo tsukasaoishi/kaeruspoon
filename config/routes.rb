@@ -19,6 +19,7 @@ Kaeruspoon::Application.routes.draw do
 
   post 'amazon' => 'amazon#markdown', as: :amazon
 
+  get '/diary/archive', to: redirect('articles/archive')
   get '/diary/:year/:month/(:day)', to: redirect("date/:year/:month/(:day)")
 
   # The priority is based upon order of creation: first created -> highest priority.
