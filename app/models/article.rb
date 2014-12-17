@@ -8,7 +8,7 @@ class Article < ActiveRecord::Base
   has_many :similar_articles, :through => :related_articles, :source => :related_article
 
   before_create :set_publish_at
-  after_create :keyword_check!, :choose_pickup_photo!, :choose_similar_articles!
+  after_save :keyword_check!, :choose_pickup_photo!, :choose_similar_articles!
 
   accepts_nested_attributes_for :content, :allow_destroy => true
 
@@ -84,7 +84,7 @@ class Article < ActiveRecord::Base
   end
 
   def choose_pickup_photo!
-    photo_id = plain_body.scan(/\[p\:(\d+)\]/).flatten.first
+    photo_id = plain_body.scan(%r!\(http://s3.+amazonaws.com/.+/images/(\d+)/.+\.jpg.+\)!).flatten.first
     photo = Photo.find_by_id(photo_id) if photo_id
     self.pickup_photo = photo
   end
