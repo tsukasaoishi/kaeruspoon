@@ -49,7 +49,7 @@ end
 
 gem 'coderay'
 gem "paperclip"
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 gem 'amazon-ecs'
 gem "js-routes"
 gem "dalli"
