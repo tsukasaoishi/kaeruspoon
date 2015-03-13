@@ -34,10 +34,6 @@ class Article < ActiveRecord::Base
       reverse ? list.newest : list.oldest
     end
 
-    def paginate_by_publish(page_num)
-      newest.page(page_num)
-    end
-
     def archive_articles
       select(
         "YEAR(publish_at + INTERVAL 9 HOUR) as year, MONTH(publish_at + INTERVAL 9 HOUR) as month, count(*) as count"
@@ -57,14 +53,6 @@ class Article < ActiveRecord::Base
   def next_article(user = nil)
     @next_article ||=
       neighbor_article_scope(user).where("publish_at >= ? AND id <> ?", publish_at, id).oldest.first
-  end
-
-  def prev_month_article(user = nil)
-    neighbor_article_scope(user).where("publish_at < ?", publish_at.beginning_of_month).newest.first
-  end
-
-  def next_month_article(user = nil)
-    neighbor_article_scope(user).where("publish_at > ?", publish_at.end_of_month).oldest.first
   end
 
   def body

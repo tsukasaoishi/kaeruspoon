@@ -15,10 +15,6 @@ class Keyword < ActiveRecord::Base
       tree.search(text).uniq
     end
 
-    def pickup(text)
-      tree.search(text)
-    end
-
     def tree
       @tree ||= init_tree
     end
@@ -34,10 +30,6 @@ class Keyword < ActiveRecord::Base
       ret.link_url = %Q|<a href="/keywords/%s/">%s</a>|
       ret
     end
-  end
-
-  def paginate_articles(page_num)
-    articles.paginate_by_publish(page_num)
   end
 
   private
