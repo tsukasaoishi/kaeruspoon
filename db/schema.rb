@@ -13,54 +13,54 @@
 
 ActiveRecord::Schema.define(version: 20141118142634) do
 
-  create_table "amazon_stocks", force: true do |t|
-    t.string   "asin",                                          null: false
+  create_table "amazon_stocks", force: :cascade do |t|
+    t.string   "asin",                limit: 255,               null: false
     t.string   "url",                 limit: 2048,              null: false
-    t.string   "medium_image_url",                 default: "", null: false
-    t.integer  "medium_image_width",               default: 0,  null: false
-    t.integer  "medium_image_height",              default: 0,  null: false
-    t.string   "small_image_url",                  default: "", null: false
-    t.integer  "small_image_width",                default: 0,  null: false
-    t.integer  "small_image_height",               default: 0,  null: false
-    t.string   "product_name",                     default: "", null: false
-    t.string   "creator",                          default: "", null: false
-    t.string   "manufacturer",                     default: "", null: false
-    t.string   "media",                            default: "", null: false
-    t.string   "release_date",                     default: "", null: false
+    t.string   "medium_image_url",    limit: 255,  default: "", null: false
+    t.integer  "medium_image_width",  limit: 4,    default: 0,  null: false
+    t.integer  "medium_image_height", limit: 4,    default: 0,  null: false
+    t.string   "small_image_url",     limit: 255,  default: "", null: false
+    t.integer  "small_image_width",   limit: 4,    default: 0,  null: false
+    t.integer  "small_image_height",  limit: 4,    default: 0,  null: false
+    t.string   "product_name",        limit: 255,  default: "", null: false
+    t.string   "creator",             limit: 255,  default: "", null: false
+    t.string   "manufacturer",        limit: 255,  default: "", null: false
+    t.string   "media",               limit: 255,  default: "", null: false
+    t.string   "release_date",        limit: 255,  default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "amazon_stocks", ["asin"], name: "index_amazon_stocks_on_asin", length: {"asin"=>10}, using: :btree
 
-  create_table "amazons", force: true do |t|
-    t.string   "asin"
-    t.text     "url"
-    t.text     "medium_image_url"
-    t.text     "small_image_url"
-    t.string   "product_name"
-    t.string   "creator"
-    t.string   "manufacturer"
-    t.string   "media"
-    t.string   "release_date"
+  create_table "amazons", force: :cascade do |t|
+    t.string   "asin",             limit: 255
+    t.text     "url",              limit: 65535
+    t.text     "medium_image_url", limit: 65535
+    t.text     "small_image_url",  limit: 65535
+    t.string   "product_name",     limit: 255
+    t.string   "creator",          limit: 255
+    t.string   "manufacturer",     limit: 255
+    t.string   "media",            limit: 255
+    t.string   "release_date",     limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "amazons", ["asin"], name: "index_amazons_on_asin", using: :btree
 
-  create_table "article_contents", force: true do |t|
-    t.integer  "article_id", null: false
-    t.text     "body"
+  create_table "article_contents", force: :cascade do |t|
+    t.integer  "article_id", limit: 4,     null: false
+    t.text     "body",       limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "article_contents", ["article_id"], name: "index_article_contents_on_article_id", unique: true, using: :btree
 
-  create_table "article_keywords", force: true do |t|
-    t.integer  "article_id"
-    t.integer  "keyword_id"
+  create_table "article_keywords", force: :cascade do |t|
+    t.integer  "article_id", limit: 4
+    t.integer  "keyword_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -68,19 +68,19 @@ ActiveRecord::Schema.define(version: 20141118142634) do
   add_index "article_keywords", ["article_id"], name: "index_article_keywords_on_article_id", using: :btree
   add_index "article_keywords", ["keyword_id"], name: "index_article_keywords_on_keyword_id", using: :btree
 
-  create_table "article_photos", force: true do |t|
-    t.integer  "article_id"
-    t.integer  "photo_id"
+  create_table "article_photos", force: :cascade do |t|
+    t.integer  "article_id", limit: 4
+    t.integer  "photo_id",   limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "article_photos", ["article_id", "photo_id"], name: "index_article_photos_on_article_id_and_photo_id", using: :btree
 
-  create_table "articles", force: true do |t|
-    t.string   "title",                    null: false
-    t.datetime "publish_at",               null: false
-    t.integer  "access_count", default: 0, null: false
+  create_table "articles", force: :cascade do |t|
+    t.string   "title",        limit: 255,             null: false
+    t.datetime "publish_at",                           null: false
+    t.integer  "access_count", limit: 4,   default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -88,20 +88,20 @@ ActiveRecord::Schema.define(version: 20141118142634) do
   add_index "articles", ["access_count"], name: "index_articles_on_access_count", using: :btree
   add_index "articles", ["publish_at"], name: "index_articles_on_publish_at", using: :btree
 
-  create_table "back_images", force: true do |t|
-    t.string   "image_file_name",    null: false
-    t.string   "image_content_type", null: false
-    t.integer  "image_file_size",    null: false
+  create_table "back_images", force: :cascade do |t|
+    t.string   "image_file_name",    limit: 255, null: false
+    t.string   "image_content_type", limit: 255, null: false
+    t.integer  "image_file_size",    limit: 4,   null: false
     t.datetime "image_updated_at"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
-  create_table "comments", force: true do |t|
-    t.integer  "article_id"
-    t.integer  "user_id"
-    t.string   "name"
-    t.text     "body"
+  create_table "comments", force: :cascade do |t|
+    t.integer  "article_id", limit: 4
+    t.integer  "user_id",    limit: 4
+    t.string   "name",       limit: 255
+    t.text     "body",       limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -109,33 +109,33 @@ ActiveRecord::Schema.define(version: 20141118142634) do
   add_index "comments", ["article_id"], name: "index_comments_on_article_id", using: :btree
   add_index "comments", ["created_at"], name: "index_comments_on_created_at", using: :btree
 
-  create_table "delayed_jobs", force: true do |t|
-    t.integer  "priority",   default: 0
-    t.integer  "attempts",   default: 0
-    t.text     "handler"
-    t.text     "last_error"
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",   limit: 4,     default: 0
+    t.integer  "attempts",   limit: 4,     default: 0
+    t.text     "handler",    limit: 65535
+    t.text     "last_error", limit: 65535
     t.datetime "run_at"
     t.datetime "locked_at"
     t.datetime "failed_at"
-    t.string   "locked_by"
-    t.string   "queue"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "locked_by",  limit: 255
+    t.string   "queue",      limit: 255
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
-  create_table "facebook_tokens", force: true do |t|
-    t.integer  "user_id"
-    t.string   "token"
+  create_table "facebook_tokens", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.string   "token",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "facebook_tokens", ["user_id"], name: "index_facebooks_on_user_id", using: :btree
 
-  create_table "keywords", force: true do |t|
-    t.string   "name"
+  create_table "keywords", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.string   "body",       limit: 1000, default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -143,10 +143,10 @@ ActiveRecord::Schema.define(version: 20141118142634) do
 
   add_index "keywords", ["name"], name: "index_keywords_on_name", unique: true, using: :btree
 
-  create_table "photos", force: true do |t|
-    t.string   "image_file_name",    null: false
-    t.string   "image_content_type", null: false
-    t.integer  "image_file_size",    null: false
+  create_table "photos", force: :cascade do |t|
+    t.string   "image_file_name",    limit: 255, null: false
+    t.string   "image_content_type", limit: 255, null: false
+    t.integer  "image_file_size",    limit: 4,   null: false
     t.datetime "image_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -154,18 +154,18 @@ ActiveRecord::Schema.define(version: 20141118142634) do
 
   add_index "photos", ["image_updated_at"], name: "index_photos_on_image_updated_at", using: :btree
 
-  create_table "related_articles", force: true do |t|
-    t.integer  "article_id"
-    t.integer  "related_article_id"
+  create_table "related_articles", force: :cascade do |t|
+    t.integer  "article_id",         limit: 4
+    t.integer  "related_article_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "related_articles", ["article_id", "related_article_id"], name: "index_related_articles_on_article_id_and_related_article_id", using: :btree
 
-  create_table "users", force: true do |t|
-    t.string   "name",            default: "", null: false
-    t.string   "password_digest",              null: false
+  create_table "users", force: :cascade do |t|
+    t.string   "name",            limit: 255, default: "", null: false
+    t.string   "password_digest", limit: 255,              null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
