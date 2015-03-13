@@ -10,12 +10,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :photos
-  resources :keywords
+  resources :photos, only: [:create]
+  resources :keywords, except: [:index]
 
   get 'about' => 'about#index', as: :about
   get 'manage' => 'manages#top', as: :manage
-  resource :session
+  resource :session, only: [:new, :create, :destroy]
 
   post 'amazon' => 'amazon#markdown', as: :amazon
 
