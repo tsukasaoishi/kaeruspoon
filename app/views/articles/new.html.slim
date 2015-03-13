@@ -33,7 +33,7 @@ div [ class="row" ]
         | 画像
         = check_box_tag 'amazon_type[image]', true, false, {}
       div
-        | asin: 
+        | asin:
         = text_field_tag :asin
       div [ class="action" ]
         = submit_tag "get markdown"
