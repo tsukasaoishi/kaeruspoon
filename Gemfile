@@ -45,6 +45,7 @@ group :development, :test do
   gem "capybara"
   gem "guard-rspec"
   gem 'rb-fsevent', '~> 0.9'
+  gem "rails_best_practices"
 end
 
 gem 'coderay'
