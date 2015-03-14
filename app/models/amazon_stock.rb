@@ -8,36 +8,7 @@ class AmazonStock < ActiveRecord::Base
       amazon = self.where(asin: asin).first
       if !amazon || amazon.updated_at < 1.week.ago
         amazon ||= self.new(asin: asin)
-
-        item = item_lookup(asin).items.first
-        element = item.get_element('ItemAttributes')
-
-        amazon.url = item.get("DetailPageURL")
-        medium_image = item.get_hash("MediumImage")
-        small_image = item.get_hash("SmallImage")
-
-        if medium_image && medium_image["URL"].present?
-          amazon.medium_image_url = medium_image["URL"]
-          amazon.medium_image_width = medium_image["Width"]
-          amazon.medium_image_height = medium_image["Height"]
-        end
-
-        if small_image && small_image["URL"].present?
-          amazon.small_image_url = small_image["URL"]
-          amazon.small_image_width = small_image["Width"]
-          amazon.small_image_height = small_image["Height"]
-        end
-
-        amazon.product_name = element.get("Title").slice(0, 255)
-        amazon.manufacturer = element.get("Manufacturer").slice(0, 255)
-        amazon.media = element.get("Binding").slice(0, 255)
-        amazon.release_date = element.get("PublicationDate").presence || element.get("ReleaseDate") || ""
-
-        authors = element.get_array("Author")
-        amazon.creator = authors.join(", ") if authors.size < 10
-
-        amazon.updated_at = Time.now
-        amazon.save!
+        amazon.reload!
       end
 
       amazon
@@ -46,19 +17,9 @@ class AmazonStock < ActiveRecord::Base
       nil
     end
 
-    private
-
-    def item_lookup(asin)
-      load_config unless @_loaded_config
-
-      ::Amazon::Ecs.item_lookup(
-        asin,
-        response_group: 'ItemAttributes, Images',
-        country: 'jp'
-      )
-    end
-
     def load_config
+      return if @_loaded_config
+
       config = YAML.load_file(CONFIG_FILE)
 
       ::Amazon::Ecs.options = {
@@ -69,5 +30,47 @@ class AmazonStock < ActiveRecord::Base
 
       @_loaded_config = true
     end
+  end
+
+  def reload!
+    item = item_lookup(asin)
+    self.url = item.get("DetailPageURL")
+    url_will_change!
+
+    attribute_reload(item.get_element('ItemAttributes'))
+    image_reload(item, 'medium')
+    image_reload(item, 'small')
+
+    save!
+  end
+
+  private
+
+  def item_lookup(asin)
+    self.class.load_config
+
+    ::Amazon::Ecs.item_lookup(
+      asin,
+      response_group: 'ItemAttributes, Images',
+      country: 'jp'
+    ).items.first
+  end
+
+  def attribute_reload(element)
+    self.product_name = element.get("Title").slice(0, 255)
+    self.manufacturer = element.get("Manufacturer").slice(0, 255)
+    self.media = element.get("Binding").slice(0, 255)
+    self.release_date = element.get("PublicationDate").presence || element.get("ReleaseDate") || ""
+    authors = element.get_array("Author")
+    self.creator = authors.join(", ") if authors.size < 10
+
+  end
+
+  def image_reload(item, size)
+    image = item.get_hash("#{size.capitalize}Image")
+    return if image.nil? || image["URL"].blank?
+    write_attribute("#{size}_image_url", image["URL"])
+    write_attribute("#{size}_image_width", image["Width"])
+    write_attribute("#{size}_image_height", image["Height"])
   end
 end
