@@ -11,27 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141118142634) do
-
-  create_table "amazon_stocks", force: :cascade do |t|
-    t.string   "asin",                limit: 255,               null: false
-    t.string   "url",                 limit: 2048,              null: false
-    t.string   "medium_image_url",    limit: 255,  default: "", null: false
-    t.integer  "medium_image_width",  limit: 4,    default: 0,  null: false
-    t.integer  "medium_image_height", limit: 4,    default: 0,  null: false
-    t.string   "small_image_url",     limit: 255,  default: "", null: false
-    t.integer  "small_image_width",   limit: 4,    default: 0,  null: false
-    t.integer  "small_image_height",  limit: 4,    default: 0,  null: false
-    t.string   "product_name",        limit: 255,  default: "", null: false
-    t.string   "creator",             limit: 255,  default: "", null: false
-    t.string   "manufacturer",        limit: 255,  default: "", null: false
-    t.string   "media",               limit: 255,  default: "", null: false
-    t.string   "release_date",        limit: 255,  default: "", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "amazon_stocks", ["asin"], name: "index_amazon_stocks_on_asin", length: {"asin"=>10}, using: :btree
+ActiveRecord::Schema.define(version: 20150315065931) do
 
   create_table "amazons", force: :cascade do |t|
     t.string   "asin",             limit: 255

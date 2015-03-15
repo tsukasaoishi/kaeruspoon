@@ -99,10 +99,10 @@ class ArticlesController < ApplicationController
   end
 
   def repair_article
-    title = session[:backup_article_title]
-    body = session[:backup_article_body]
-    session[:backup_article_title] = nil
-    session[:backup_article_body] = nil
+    title = session[:article_title]
+    body = session[:article_body]
+    session[:article_title] = nil
+    session[:article_body] = nil
     [title, body]
   end
 

@@ -29,8 +29,8 @@ ready = ->
       if (!$("#photo_image").val())
         alert("choich photo to upload")
         return false
-      $("#backup_article_title").val($("#article_title").val())
-      $("#backup_article_body").val($("#article_content_attributes_body").val())
+      $("#title_for_photo").val($("#article_title").val())
+      $("#body_for_body").val($("#article_content_attributes_body").val())
       return
 
   if ($("#add_amazon").length)
@@ -38,8 +38,8 @@ ready = ->
       if (!$("#asin").val())
         alert("input asin code")
         return false
-      $("#backup_article_title_for_amazon").val($("#article_title").val())
-      $("#backup_article_body_for_amazon").val($("#article_content_attributes_body").val())
+      $("#title_for_amazon").val($("#article_title").val())
+      $("#body_for_amazon").val($("#article_content_attributes_body").val())
       return
 
   if ($('#my_ad').length)

@@ -14,8 +14,8 @@ div [ class="row" ]
     = form_for Photo.new, :html => { :multipart => true } do |f|
       h4 photo
       = hidden_field_tag :article_id, @article.id
-      = hidden_field_tag :backup_article_title
-      = hidden_field_tag :backup_article_body
+      = hidden_field_tag :title_for_photo
+      = hidden_field_tag :body_for_photo
       div
         = f.file_field :image
       div [ class="action" ]
@@ -24,8 +24,8 @@ div [ class="row" ]
     = form_tag amazon_path, {id: :add_amazon} do
       h4 amazon
       = hidden_field_tag :article_id, @article.id
-      = hidden_field_tag :backup_article_title_for_amazon
-      = hidden_field_tag :backup_article_body_for_amazon
+      = hidden_field_tag :title_for_amazon
+      = hidden_field_tag :body_for_amazon
       div
         | タイトル
         = check_box_tag 'amazon_type[title]', true, true, {}
