@@ -19,6 +19,11 @@ class User < ActiveRecord::Base
       user
     end
 
+    def authenticate(name, password)
+      return false unless user = find_by(name: name)
+      user.authenticate(password) && user
+    end
+
     def guest
       inst = self.new
       inst.guest!

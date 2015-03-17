@@ -3,8 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by_name(params[:name])
-    if user && user.authenticate(params[:password])
+    if user = User.authenticate(params[:name], params[:password])
       reset_session
       session[:user_id] = user.id
       redirect_to manage_path
