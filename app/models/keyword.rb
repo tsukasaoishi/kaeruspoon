@@ -32,6 +32,10 @@ class Keyword < ActiveRecord::Base
     end
   end
 
+  def paginate_articles(page_num)
+    articles.paginate_by_publish(page_num)
+  end
+
   private
 
   def tree_add

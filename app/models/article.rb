@@ -34,6 +34,10 @@ class Article < ActiveRecord::Base
       reverse ? list.newest : list.oldest
     end
 
+    def paginate_by_publish(page_num)
+      newest.page(page_num)
+    end
+
     def archive_articles
       select(
         "YEAR(publish_at + INTERVAL 9 HOUR) as year, MONTH(publish_at + INTERVAL 9 HOUR) as month, count(*) as count"
