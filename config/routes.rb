@@ -20,5 +20,6 @@ Rails.application.routes.draw do
   post 'amazon' => 'amazon#markdown', as: :amazon
 
   get '/diary/archive', to: redirect('articles/archive')
-  get '/diary/:year/:month/(:day)', to: redirect("date/:year/:month/(:day)")
+  get '/diary/:year/:month/(:day)', to: redirect("articles/date/:year/:month/(:day)")
+  get 'diaries.atom', to: redirect('articles.atom')
 end
