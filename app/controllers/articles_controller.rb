@@ -4,6 +4,7 @@ class ArticlesController < ApplicationController
   caches_action :index, expires_in: 1.day, if: lambda{ !logged_in? }
   caches_action :popular, expires_in: 1.day, if: -> { !logged_in? }
   caches_action :show, expires_in: 1.day, if: -> { !logged_in? }
+  cache_sweeper :articles_sweeper, only: %i|create update destrpy|
 
   def index
     @articles = current_user.recent_articles(30)
@@ -48,8 +49,6 @@ class ArticlesController < ApplicationController
 
   def create
     article = Article.create!(require_params)
-    expire_action(article.prev_article) if article.prev_article
-    expire_index_action
 
     redirect_to article
   end
@@ -69,25 +68,13 @@ class ArticlesController < ApplicationController
   def update
     article = Article.find(params[:id])
     article.update_attributes!(require_params)
-    expire_action(article)
-    expire_action(article.prev_article) if article.prev_article
-    expire_action(article.next_article) if article.next_article
-    expire_index_action
 
     redirect_to article
   end
 
   def destroy
     article = Article.find(params[:id])
-    prev_article = article.prev_article
-    next_article = article.next_article
-
-    expire_action(article)
     article.destroy
-
-    expire_action(prev_article) if prev_article
-    expire_action(next_article) if next_article
-    expire_index_action
 
     redirect_to root_path
   end
