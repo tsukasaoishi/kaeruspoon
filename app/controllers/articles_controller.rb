@@ -1,9 +1,9 @@
 class ArticlesController < ApplicationController
   before_filter :required_login, only: [:new, :create, :edit, :update, :destroy]
 
-  caches_action :index, expires_in: 1.day, if: lambda{ !logged_in? }
-  caches_action :popular, expires_in: 1.day, if: -> { !logged_in? }
-  caches_action :show, expires_in: 1.day, if: -> { !logged_in? }
+  caches_action :index, expires_in: 1.month, if: lambda{ !logged_in? }
+  caches_action :show, expires_in: 1.month, if: -> { !logged_in? }
+  caches_action :popular, expires_in: 1.week, if: -> { !logged_in? }
   cache_sweeper :articles_sweeper, only: %i|create update destrpy|
 
   def index
@@ -91,10 +91,5 @@ class ArticlesController < ApplicationController
     session[:article_title] = nil
     session[:article_body] = nil
     [title, body]
-  end
-
-  def expire_index_action
-    expire_action(action: :index)
-    expire_action(action: :index, format: :atom)
   end
 end
