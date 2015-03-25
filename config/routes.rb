@@ -23,4 +23,6 @@ Rails.application.routes.draw do
   get '/diary/:year/:month/:day', to: redirect("articles/date/%{year}/%{month}/%{day}")
   get '/diary/:year/:month', to: redirect("articles/date/%{year}/%{month}")
   get 'diaries.atom', to: redirect('articles.atom')
+  get '/date/:year/:month/:day', to: redirect("articles/date/%{year}/%{month}/%{day}")
+  get '/date/:year/:month', to: redirect("articles/date/%{year}/%{month}")
 end
