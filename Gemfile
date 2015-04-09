@@ -30,7 +30,6 @@ gem 'reverse_markdown'
 gem 'redcarpet'
 gem "pygments.rb"
 gem "nokogiri"
-gem 'rails-observers', git: 'https://github.com/rails/rails-observers.git'
 
 group :development, :test do
   gem 'byebug'
