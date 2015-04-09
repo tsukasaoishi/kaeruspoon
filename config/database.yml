@@ -36,8 +36,8 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  database: kaeruspoon_development
+  database: kaeruspoon_production
   pool: 5
   username: <%= db_account[:account] %>
   password: <%= db_account[:password] %>
-  socket: /tmp/mysql.sock
+  socket: /var/lib/mysql/mysql.sock
