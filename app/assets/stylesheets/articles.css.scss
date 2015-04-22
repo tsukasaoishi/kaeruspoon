@@ -24,9 +24,18 @@ h1 {
 }
 
 body > header {
-  margin: 50px auto 25px;
+  margin: 0 auto;
   font-weight: bold;
-  color: #444;
+  color: #fff;
+  background: linear-gradient(-135deg, #E4A972, #9941D8);
+}
+
+body > header.entrance {
+  padding: 250px 0;
+}
+
+body > header.common {
+  padding: 25px 0 25px;
 }
 
 body > header span.name {
@@ -35,7 +44,7 @@ body > header span.name {
 
 body > header a {
   padding-left: 10px;
-  color: #444;
+  color: #fff;
   text-decoration: none;
 }
 
