@@ -1,5 +1,5 @@
 class AboutController < ApplicationController
   def index
-    @title = "おおいしつかさ"
+    @title = "おおいしつかさ (大石司)"
   end
 end
