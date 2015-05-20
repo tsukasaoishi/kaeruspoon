@@ -9,4 +9,4 @@ if true#defined?(Unicorn) && ENV['RACK_ENV'] == "production"
 end
 
 require ::File.expand_path('../config/environment',  __FILE__)
-run Kaeruspoon::Application
+run Rails.application
