@@ -1,11 +1,7 @@
 # This file is used by Rack-based servers to start the application.
-if true#defined?(Unicorn) && ENV['RACK_ENV'] == "production"
-  require 'unicorn/oob_gc'
-  use Unicorn::OobGC, 5
-
-  require 'unicorn/worker_killer'
-  use Unicorn::WorkerKiller::MaxRequests
-  use Unicorn::WorkerKiller::Oom
+if defined?(Unicorn)
+  require 'gctools/oobgc'
+  use GC::OOB::UnicornMiddleware
 end
 
 require ::File.expand_path('../config/environment',  __FILE__)

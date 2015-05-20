@@ -13,7 +13,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'unicorn'
-gem 'unicorn-worker-killer'
+gem 'gctools'
 gem 'coderay'
 gem "paperclip"
 gem 'aws-sdk', '< 2.0'
