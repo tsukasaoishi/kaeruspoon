@@ -8,8 +8,10 @@ stdout_path 'log/unicorn.log'
 
 
 before_fork do |server, worker|
-  defined?(ActiveRecord::Base) and
-  ActiveRecord::Base.connection.disconnect!
+  if defined?(ActiveRecord::Base)
+    ActiveRecord::Base.connection.disconnect!
+    ActiveRecord::Base.clear_all_slave_connections!
+  end
 
   old_pid = "#{server.config[:pid]}.oldbin"
   if File.exists?(old_pid) && server.pid != old_pid
@@ -25,12 +27,12 @@ before_fork do |server, worker|
 end
 
 after_fork do |server, worker|
-  GC.disable if Rails.env.production?
-
-  defined?(ActiveRecord::Base) and
-  ActiveRecord::Base.establish_connection
+  if defined?(ActiveRecord::Base)
+    ActiveRecord::Base.establish_connection
+    ActiveRecord::Base.establish_fresh_connection
+  end
 
   Keyword.clear!
   Rails.cache.instance_variable_get(:@data).reset if Rails.cache.instance_variable_get(:@data).respond_to?(:reset)
-  ObjectSpace.each_object(ActiveSupport::Cache::DalliStore){|obj| obj.reset}
+  ObjectSpace.each_object(ActionDispatch::Session::DalliStore){|obj| obj.reset}
 end
