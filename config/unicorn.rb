@@ -34,5 +34,5 @@ after_fork do |server, worker|
 
   Keyword.clear!
   Rails.cache.instance_variable_get(:@data).reset if Rails.cache.instance_variable_get(:@data).respond_to?(:reset)
-  ObjectSpace.each_object(ActionDispatch::Session::DalliStore){|obj| obj.reset}
+  ObjectSpace.each_object(ActionDispatch::Session::MemCacheStore){|obj| obj.reset}
 end
