@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
 
   def index
     @entrance = true
-    @articles = current_user.recent_articles(30)
+    @articles = current_user.recent_articles(7)
   end
 
   def popular
