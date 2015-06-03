@@ -8,9 +8,9 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  line-height: 1.7;
+  line-height: 1.6;
   font-size: 14px;
-  font-family: "HalisR-Regular",'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', Meiryo, Osaka, 'ＭＳ Ｐゴシック', sans-serif;
   background-color: #FFFFFF;
 }
 
@@ -25,20 +25,12 @@ h1 {
 
 body > header {
   margin: 0 auto;
-  font-weight: bold;
   color: #fff;
-  background: linear-gradient(-135deg, #E4A972, #9941D8);
-}
-
-body > header.entrance {
-  padding: 200px 0;
-}
-
-body > header.common {
-  padding: 25px 0 25px;
+  background: linear-gradient(-135deg, #2A2C39, #4A4C59);
 }
 
 body > header span.name {
+  font-weight: 300;
   font-size: 28px;
 }
 
@@ -170,7 +162,6 @@ article {
 }
 
 article header {
-  border-left: 7px solid;
   color: #eee;
   margin: 40px -30px 30px -30px;
   padding: 10px 10px 10px 23px;
@@ -178,12 +169,17 @@ article header {
 
 article h1 {
   font-size: 30px;
-  color: #444;
+  font-weight: 300;
+  color: #222;
   margin: 0;
 }
 
 article h1 a {
-  color: #444;
+  color: #222;
+
+  &:hover {
+    color: #465CA2;
+  }
 }
 
 article h2 {
@@ -200,9 +196,34 @@ article h3 {
   padding: 15px 30px;
 }
 
-article time {
-  font-size: 80%;
-  color: #888;
+article header {
+  img {
+    display: inline;
+    border-radius: 3px;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+  }
+
+  span {
+    font-size: 13px;
+    margin-right: 5px;
+
+    a {
+      color: #222;
+
+      &:hover {
+        color: #465CA2;
+      }
+    }
+  }
+
+  time {
+    font-size: 13px;
+    color: #989898;
+    display: inline;
+  }
 }
 
 span.operate {
@@ -212,18 +233,6 @@ span.operate {
 
 span.operate a {
   margin-left: 5px;
-}
-
-span.accessCount {
-  font-size: 80%;
-  vertical-align: top;
-  color: #555555;
-  padding: 0 1px;
-  border-left: 2px solid #00bfff;
-  border-right: 2px solid #00bfff;
-  background-color: #87ceeb;
-  margin-left: 5px;
-  margin-right: 5px;
 }
 
 article p {

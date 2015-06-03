@@ -2,14 +2,18 @@
   header
     h1 [ itemprop="name" ]
       = link_to(article.title, article_path(article), rel: :bookmark)
-    time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ]
-      = I18n.l(article.publish_at, format: :article)
-    - if logged_in?
-      span [ class="operate" ]
-        = link_to I18n.t(:edit), edit_article_path(article)
-      span [ class="operate" ]
-        = link_to I18n.t(:delete), article, method: :delete, data: {confirm: I18n.t(:confirm_to_article_delete)}
+    meta
+      img [ src="http://www.gravatar.com/avatar/76de73a1dae79a86bb99a813bd8e8e0a?s=20&d=http%3A%2F%2Fkaeruspoon%.net2F2014%2Fimages%2Fno-image.png" ]
+      span
+        = link_to "Tsukasa OISHI", about_path
+      time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ]
+        = I18n.l(article.publish_at, format: :article)
+      - if logged_in?
+        span [ class="operate" ]
+          = link_to I18n.t(:edit), edit_article_path(article)
+        span [ class="operate" ]
+          = link_to I18n.t(:delete), article, method: :delete, data: {confirm: I18n.t(:confirm_to_article_delete)}
   div [ itemprop="description" ]
     == TextDecorator.replace(article.body)
-    aside [ class="socialButton" data-article-id=article.id data-article-count=article.access_count ]
+    aside [ class="socialButton" data-article-id=article.id ]
 </article>
