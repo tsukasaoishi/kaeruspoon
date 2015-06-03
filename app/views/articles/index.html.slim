@@ -1,19 +1,27 @@
 div [ class="row" ]
   - if @title
     h1 = @title
-  ul [ class="articles" ]
-    - @articles.each do |article|
-      li
-        = link_to(article.title, article_path(article), rel: :bookmark)
-        time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ]
-          = I18n.l(article.publish_at, format: :article)
-  - if @prev_article
-    div [ class="previous_paging_box" id="previous_page" data-url=date_articles_path(@prev_article.to_date_hash) ]
-      span [ class="entypo-left-bold" ]
-      = link_to("<< " + I18n.l(@prev_article.publish_at, format: :month), date_articles_path(@prev_article.to_date_hash), rel: "prev bookmark")
-  - if @next_article
-    div [ class="next_paging_box" id="next_page" data-url=date_articles_path(@next_article.to_date_hash) ]
-      = link_to(I18n.l(@next_article.publish_at, format: :month) + " >>", date_articles_path(@next_article.to_date_hash), rel: "next bookmark")
-      span [ class="entypo-right-bold" ]
+  - @articles.each do |article|
+    <article itempscope itemtype="http://schema.org/Article">
+      header
+        h1 [ itemprop="name" ]
+          = link_to(article.title, article_path(article), rel: :bookmark)
+        meta
+          img [ src="http://www.gravatar.com/avatar/76de73a1dae79a86bb99a813bd8e8e0a?s=20&d=http%3A%2F%2Fkaeruspoon%.net2F2014%2Fimages%2Fno-image.png" ]
+          span
+            = link_to "Tsukasa OISHI", about_path
+          time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ]
+            = I18n.l(article.publish_at, format: :article)
+      = TextDecorator.replace(article.digest_body)
+      </article>
+
+- if @prev_article
+  div [ class="previous_paging_box" id="previous_page" data-url=date_articles_path(@prev_article.to_date_hash) ]
+    span [ class="entypo-left-bold" ]
+    = link_to("<< " + I18n.l(@prev_article.publish_at, format: :month), date_articles_path(@prev_article.to_date_hash), rel: "prev bookmark")
+- if @next_article
+  div [ class="next_paging_box" id="next_page" data-url=date_articles_path(@next_article.to_date_hash) ]
+    = link_to(I18n.l(@next_article.publish_at, format: :month) + " >>", date_articles_path(@next_article.to_date_hash), rel: "next bookmark")
+    span [ class="entypo-right-bold" ]
 
 

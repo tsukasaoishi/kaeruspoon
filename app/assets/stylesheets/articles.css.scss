@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body {
-  color: #222222;
+  color: #555555;
   width: 100%;
   height: 100%;
   margin: 0;
@@ -159,12 +159,13 @@ article {
   padding-left: 0.8%;
   padding-right: 0.8%;
   line-height: 1.7;
+  margin-bottom: 40px;
 }
 
 article header {
   color: #eee;
-  margin: 40px -30px 30px -30px;
-  padding: 10px 10px 10px 23px;
+  //margin: 40px -30px 30px -30px;
+  //padding: 10px 10px 10px 23px;
 }
 
 article h1 {

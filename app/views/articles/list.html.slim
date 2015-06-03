@@ -1,0 +1,19 @@
+div [ class="row" ]
+  - if @title
+    h1 = @title
+  ul [ class="articles" ]
+    - @articles.each do |article|
+      li
+        = link_to(article.title, article_path(article), rel: :bookmark)
+        time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ]
+          = I18n.l(article.publish_at, format: :article)
+  - if @prev_article
+    div [ class="previous_paging_box" id="previous_page" data-url=date_articles_path(@prev_article.to_date_hash) ]
+      span [ class="entypo-left-bold" ]
+      = link_to("<< " + I18n.l(@prev_article.publish_at, format: :month), date_articles_path(@prev_article.to_date_hash), rel: "prev bookmark")
+  - if @next_article
+    div [ class="next_paging_box" id="next_page" data-url=date_articles_path(@next_article.to_date_hash) ]
+      = link_to(I18n.l(@next_article.publish_at, format: :month) + " >>", date_articles_path(@next_article.to_date_hash), rel: "next bookmark")
+      span [ class="entypo-right-bold" ]
+
+

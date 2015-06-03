@@ -72,11 +72,11 @@ class Article < ActiveRecord::Base
   end
 
   def digest_body(length = 180)
-    @_digest_body ||= plain_body.gsub(/(\[.+?\]|\<.+?\>)/, "").truncate(length)
+    @_digest_body ||= body.split(/\r|\n|\r\n/).delete_if{|text| text.blank? || text =~ /^!/}.first
   end
 
   def choose_pickup_photo!
-    photo_id = plain_body.scan(%r!\(http://s3.+?amazonaws.com/.+?/images/(\d+)/.+?\.jpg.+?\)!i).flatten.first
+    photo_id = body.scan(%r!\(http://s3.+?amazonaws.com/.+?/images/(\d+)/.+?\.jpg.+?\)!i).flatten.first
     photo = Photo.find_by_id(photo_id) if photo_id
     self.pickup_photo = photo
   end
@@ -100,10 +100,6 @@ class Article < ActiveRecord::Base
 
   def set_publish_at
     self.publish_at ||= Time.now
-  end
-
-  def plain_body
-    @_plain_body ||= body.gsub(/[\r\n]/, "").gsub(/>\|.*?\|.+?\|\|</, "")
   end
 
   def neighbor_article_scope(user)
