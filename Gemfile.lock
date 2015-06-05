@@ -77,6 +77,8 @@ GEM
       fresh_connection (~> 0.4.0)
     erubis (2.7.0)
     execjs (2.5.2)
+    font-awesome-rails (4.3.0.0)
+      railties (>= 3.2, < 5.0)
     fresh_connection (0.4.2)
       activerecord (>= 3.2.0, < 4.3)
       activesupport (>= 3.2.0, < 4.3)
@@ -228,6 +230,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   dalli
   ebisu_connection
+  font-awesome-rails
   gctools
   jbuilder (~> 2.0)
   jquery-rails

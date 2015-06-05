@@ -31,6 +31,7 @@ gem 'redcarpet'
 gem "pygments.rb"
 gem "nokogiri"
 gem "active_decorator"
+gem "font-awesome-rails"
 
 group :development, :test do
   gem 'byebug'
