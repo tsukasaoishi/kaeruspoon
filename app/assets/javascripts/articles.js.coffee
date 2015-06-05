@@ -44,8 +44,5 @@ ready = ->
   if ($('#my_ad').length)
     window.MyAdSense.newAd(document.getElementById('my_ad'))
 
-  $('#toggle_humburger').click ->
-    $('#toggle_menu_list').toggle()
-
 
 $(document).ready(ready)

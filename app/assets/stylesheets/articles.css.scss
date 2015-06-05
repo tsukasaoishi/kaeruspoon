@@ -54,37 +54,6 @@ body > header nav li {
   display: inline;
 }
 
-body > header nav button {
-  display: none;
-  background-color: transparent;
-  background-image: none;
-  border: 1px solid #ddd;
-  padding: 9px 10px;
-  margin-top: 8px;
-  margin-right: 15px;
-  margin-bottom: 8px;
-  border-radius: 4px;
-  width: 44px;
-  height: 34px;
-}
-
-body > header nav button:hover, button:focus {
-  background-color: #ddd;
-  outline: none;
-}
-
-body > header nav button span.line {
-  background-color: #888;
-  display: block;
-  width: 22px;
-  height: 2px;
-  border-radius: 1px;
-}
-
-body > header nav button span.line+ span.line {
-  margin-top: 4px;
-}
-
 body > header:after { clear: both; }
 
 div#contents {
@@ -319,26 +288,6 @@ code {
     margin-right: 0%;
     padding-left: 4%;
     padding-right: 4%;
-  }
-
-  body > header {
-    margin: 10px auto;
-  }
-
-  body > header nav ul {
-    border: 1px solid #eee;
-    max-height: 340px;
-    display: none;
-  }
-
-  body > header nav ul li {
-    display: block;
-    margin-right: 30px;
-  }
-
-  body > header nav button {
-    float: right;
-    display: inline-block;
   }
 
   ul.articles li time {
