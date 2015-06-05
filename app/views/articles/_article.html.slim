@@ -7,7 +7,7 @@
       span
         = link_to "Tsukasa OISHI", about_path
       time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ]
-        = I18n.l(article.publish_at, format: :article)
+        = article.linked_publish_at
       - if logged_in?
         span [ class="operate" ]
           = link_to I18n.t(:edit), edit_article_path(article)

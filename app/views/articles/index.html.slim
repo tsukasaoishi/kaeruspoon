@@ -11,7 +11,7 @@ div [ class="col_center" ]
           span
             = link_to "Tsukasa OISHI", about_path
           time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ]
-            = I18n.l(article.publish_at, format: :article)
+            = article.linked_publish_at
       div [ class="article_context" itemprop="description" ]
         = TextDecorator.replace(article.digest_body)
       </article>

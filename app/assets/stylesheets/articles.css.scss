@@ -133,8 +133,6 @@ article {
 
 article header {
   color: #eee;
-  //margin: 40px -30px 30px -30px;
-  //padding: 10px 10px 10px 23px;
 }
 
 article h1 {
@@ -194,6 +192,14 @@ article header {
     font-size: 13px;
     color: #989898;
     display: inline;
+
+    a {
+      color: #989898;
+
+      &:hover {
+        color: #465CA2;
+      }
+    }
   }
 }
 

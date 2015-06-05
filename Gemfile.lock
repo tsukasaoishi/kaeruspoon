@@ -22,6 +22,7 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.1)
+    active_decorator (0.5.2)
     activejob (4.2.1)
       activesupport (= 4.2.1)
       globalid (>= 0.3.0)
@@ -218,6 +219,7 @@ PLATFORMS
 
 DEPENDENCIES
   actionpack-action_caching
+  active_decorator
   amazon-ecs
   aws-sdk (< 2.0)
   bcrypt (~> 3.1.7)

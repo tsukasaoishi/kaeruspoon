@@ -30,6 +30,7 @@ gem 'reverse_markdown'
 gem 'redcarpet'
 gem "pygments.rb"
 gem "nokogiri"
+gem "active_decorator"
 
 group :development, :test do
   gem 'byebug'
