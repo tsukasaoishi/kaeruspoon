@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
     @articles = current_user.popular_articles(20)
 
     @title = I18n.t(:popular_articles)
-    render "list"
+    render "index"
   end
 
   def date
@@ -28,7 +28,7 @@ class ArticlesController < ApplicationController
     end
 
     @title = I18n.l(start, format: date_range)
-    render "list"
+    render "index"
   end
 
   def archive
