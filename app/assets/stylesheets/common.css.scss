@@ -39,10 +39,6 @@ a {
   text-decoration: none;
 }
 
-h1 {
-  margin-left: 10px;
-}
-
 body > header {
   margin: 0 auto;
   color: #fff;
@@ -58,7 +54,6 @@ body > header {
   }
 
   a {
-    padding-left: 10px;
     color: #fff;
     text-decoration: none;
   }
@@ -73,6 +68,7 @@ body > header {
 
     li {
       margin-left: 10px;
+      padding-left: 10px;
       display: inline;
     }
   }
@@ -109,24 +105,9 @@ body > header {
   padding: 10px 20px;
 }
 
-.video-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  padding-top: 30px;
-  height: 0;
-  overflow: hidden;
-}
-
-.video-container iframe,
-.video-container object,
-.video-container embed {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 98%;
-  height: 100%;
-  max-width: 640px;
-  max-height: 480px;
+div#contents {
+  clear: both;
+  margin: 20px auto 0;
 }
 
 @media handheld, only screen and (max-width: 640px) {
@@ -147,5 +128,3 @@ body > header {
     }
   }
 }
-
-
