@@ -2,6 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+h1 {
+  font-size: 30px;
+  font-weight: 300;
+  color: #ffffff;
+  margin: 0;
+}
+
+.major-line {
+  margin: -20px 0 0;
+  color: #ffffff;
+  background: linear-gradient(-135deg, #E4A972, #9941D8);
+}
 
 .related_articles {
   background-color: #FFFFFF;
