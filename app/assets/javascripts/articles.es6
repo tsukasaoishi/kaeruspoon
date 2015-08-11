@@ -15,8 +15,8 @@ $(document).ready(() => {
   });
 
   $("aside.socialButton").each((i, ele) => {
-    let articleId = $(ele).data("articleId");
-    let url = "http://www.kaeruspoon.net" + Routes.article_path(articleId)
+    const articleId = $(ele).data("articleId");
+    const url = "http://www.kaeruspoon.net" + Routes.article_path(articleId)
 
     $(ele).append('<a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="en" data-pocket-align="right" data-save-url="' + url + '"></a><script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>')
     $(ele).append('<iframe src="http://www.facebook.com/plugins/like.php?href=' + url + '&amp;layout=button_count&amp;show_faces=false&amp;width=450&amp;action=like&amp;font&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; width:115px; height:21px; padding-left:5px;" allowTransparency="true"></iframe>')
