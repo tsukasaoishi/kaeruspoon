@@ -72,7 +72,7 @@ class Article < ActiveRecord::Base
   end
 
   def digest_body(length = 180)
-    @_digest_body ||= body.split(/\r|\n|\r\n/).delete_if{|text| text.blank? || text =~ /^!/}.first
+    @_digest_body ||= body.split(/\r|\n|\r\n/).delete_if{|text| text.blank? || text =~ /^!/}.first || ""
   end
 
   def choose_pickup_photo!

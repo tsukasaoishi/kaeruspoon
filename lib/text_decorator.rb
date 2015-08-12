@@ -9,6 +9,7 @@ class TextDecorator
 
   class << self
     def replace(text)
+      return text if text.blank?
       html = Keyword.convert(Markdown.new(text, *OPTIONS).to_html)
       syntax_highlighter(html).html_safe
     end
