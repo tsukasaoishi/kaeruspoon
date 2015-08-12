@@ -17,9 +17,10 @@ class TextDecorator
     def syntax_highlighter(html)
       doc = Nokogiri::HTML(html)
       doc.search("pre").each do |pre|
+        klass = pre.children.attribute("class")
         pre.replace(Pygments.highlight(
           pre.text.rstrip,
-          lexer: pre.children.attribute("class").value
+          lexer: klass ? klass.value : "text"
         ))
       end
       doc.to_s
