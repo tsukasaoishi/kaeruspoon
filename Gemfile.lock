@@ -87,7 +87,6 @@ GEM
       activerecord (>= 3.2.0, < 4.3)
       activesupport (>= 3.2.0, < 4.3)
       mysql2 (~> 0.3)
-    gctools (0.2.3)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -240,7 +239,6 @@ DEPENDENCIES
   dalli
   ebisu_connection
   font-awesome-rails
-  gctools
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
