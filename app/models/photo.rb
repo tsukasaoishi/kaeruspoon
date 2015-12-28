@@ -9,7 +9,8 @@ class Photo < ActiveRecord::Base
     },
     storage: :s3,
     s3_credentials: "#{Rails.root}/config/s3.yml",
-    path: ":attachment/:id/:style.:extension"
+    path: ":attachment/:id/:style.:extension",
+    s3_protocol: :https
 
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
 
