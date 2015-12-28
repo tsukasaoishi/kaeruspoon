@@ -204,7 +204,17 @@ code {
 }
 
 div.pocket-btn {
-  display:inline
+  display:inline;
+  margin-right: 5px;
+}
+
+.fb_iframe_widget > span {
+  vertical-align: baseline !important;
+  margin-right: 5px;
+}
+
+#twitter-widget-0 {
+  margin-right: 5px;
 }
 
 @media handheld, only screen and (max-width: 640px) {

@@ -16,10 +16,10 @@ $(document).ready(() => {
 
   $("aside.socialButton").each((i, ele) => {
     const articleId = $(ele).data("articleId");
-    const url = "http://www.kaeruspoon.net" + Routes.article_path(articleId)
+    const url = "https://www.kaeruspoon.net" + Routes.article_path(articleId)
 
     $(ele).append('<a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="en" data-pocket-align="right" data-save-url="' + url + '"></a><script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>')
-    $(ele).append('<iframe src="http://www.facebook.com/plugins/like.php?href=' + url + '&amp;layout=button_count&amp;show_faces=false&amp;width=450&amp;action=like&amp;font&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; width:115px; height:21px; padding-left:5px;" allowTransparency="true"></iframe>')
+    $(ele).append('<div class="fb-like" data-href="' + url + '" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>')
     $(ele).append('<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="tsukasa_oishi" data-url="' + url + '"></a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>')
     $(ele).append('<a href="http://b.hatena.ne.jp/entry/' + url + '" class="hatena-bookmark-button" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>')
   });
