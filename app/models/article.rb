@@ -76,7 +76,7 @@ class Article < ActiveRecord::Base
   end
 
   def choose_pickup_photo!
-    photo_id = body.scan(%r!\(http://s3.+?amazonaws.com/.+?/images/(\d+)/.+?\.jpg.+?\)!i).flatten.first
+    photo_id = body.scan(%r!\(https://s3.+?amazonaws.com/.+?/images/(\d+)/.+?\.jpg.+?\)!i).flatten.first
     photo = Photo.find_by_id(photo_id) if photo_id
     self.pickup_photo = photo
   end

@@ -1,5 +1,5 @@
 div [ class="row" ]
-  <article class="col_center" itempscope itemtype="http://schema.org/Article">
+  <article class="col_center" itempscope itemtype="https://schema.org/Article">
     header
       h1
         = @keyword.name
@@ -14,7 +14,7 @@ div [ class="row" ]
     - if @wiki_content
       aside
         p [ style="margin:10px;backgroud-color:#EEE" ]
-          = link_to("#{@keyword.name} - wikipedia より抜粋", "http://ja.wikipedia.org/wiki/#{@keyword.name}", target: "_blank")
+          = link_to("#{@keyword.name} - wikipedia より抜粋", "https://ja.wikipedia.org/wiki/#{@keyword.name}", target: "_blank")
           br
           = @wiki_content
   </article>
