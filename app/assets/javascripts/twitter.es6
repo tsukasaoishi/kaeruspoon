@@ -1,4 +1,4 @@
-(d, s, id) => {
+const loadTwitterSdk = (d, s, id) => {
   let js,fjs=d.getElementsByTagName(s)[0], p=/^http:/.test(d.location)?'http':'https';
 
   if(!d.getElementById(id)){
@@ -7,4 +7,4 @@
     js.src = p+'://platform.twitter.com/widgets.js';
     fjs.parentNode.insertBefore(js,fjs);
   }
-}(document, 'script', 'twitter-wjs');
+};
