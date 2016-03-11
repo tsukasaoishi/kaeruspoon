@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.5'
+gem 'rails', '4.2.6'
 gem 'mysql2'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -32,12 +32,14 @@ gem "pygments.rb"
 gem "nokogiri"
 gem "active_decorator"
 gem "font-awesome-rails"
+gem "bitzer_store"
 
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem "rails_best_practices"
+  gem 'capistrano'
 end
 
 gem 'whenever', :require => false
