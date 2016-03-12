@@ -5,6 +5,8 @@ pid 'tmp/pids/unicorn.pid'
 preload_app true
 stderr_path 'log/unicorn.log'
 stdout_path 'log/unicorn.log'
+user 'ec2-user'
+working_directory '/srv/kaeruspoon/current'
 
 
 before_fork do |server, worker|
