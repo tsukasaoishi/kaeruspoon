@@ -39,7 +39,10 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem "rails_best_practices"
-  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
+  gem 'capistrano3-unicorn'
 end
 
 gem 'whenever', :require => false
