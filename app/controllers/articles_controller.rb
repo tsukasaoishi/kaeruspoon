@@ -38,6 +38,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = current_user.articles.find(params[:id])
+    @digest_body = TextDecorator.replace_without_tags(@article.digest_body)
     @title = @article.title
   end
 

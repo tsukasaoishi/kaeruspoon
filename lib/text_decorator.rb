@@ -14,6 +14,11 @@ class TextDecorator
       syntax_highlighter(html).html_safe
     end
 
+    def replace_without_tags(text)
+      return text if text.blank?
+      replace(text).gsub(/<.+?>|\r\n|\r|\n/, "").strip
+    end
+
     def syntax_highlighter(html)
       doc = Nokogiri::HTML(html)
       doc.search("pre").each do |pre|

@@ -1,7 +1,11 @@
 - content_for :meta do
-  meta [ property="og:description" content="#{@article.digest_body.strip}" ]
+  meta [ property="og:description" content="#{@digest_body}" ]
   - if @article.pickup_photo
     meta [ property="og:image" content="#{@article.pickup_photo.image.url(:large)}" ]
+    meta [ name="twitter:card" content="summary_large_image" ]
+  - else
+    meta [ name="twitter:card" content="summary" ]
+  meta [ name="twitter:site" content="@tsukasa_oishi" ]
 = render @article
 nav [ class="row" ]
   - if @article.similar_articles.present?
