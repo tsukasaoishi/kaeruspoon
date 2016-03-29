@@ -7,7 +7,11 @@ class ArticlesController < ApplicationController
 
   def index
     @entrance = true
-    @articles = current_user.recent_articles(7)
+
+    respond_to do |format|
+      format.html { @articles = current_user.recent_articles(7) }
+      format.atom { @articles = User.guest.recent_articles(7, only_share: true).to_a }
+    end
   end
 
   def popular

@@ -6,19 +6,23 @@ class Article < ActiveRecord::Base
   has_one :pickup_photo, :through => :article_photo, :source => :photo
   has_many :related_articles, :dependent => :destroy
   has_many :similar_articles, :through => :related_articles, :source => :related_article
+  has_one :property, class_name: "ArticleProperty", dependent: :destroy
 
   before_create :set_publish_at
   after_save :keyword_check!, :choose_pickup_photo!, :choose_similar_articles!
 
   accepts_nested_attributes_for :content, :allow_destroy => true
+  accepts_nested_attributes_for :property, allow_destroy: true
 
-  scope :published, -> { where("publish_at <= ?", Time.now) }
-  scope :newest, -> { order("publish_at DESC, id DESC") }
-  scope :oldest, -> { order("publish_at, id") }
+  scope :published, -> { where("articles.publish_at <= ?", Time.now) }
+  scope :newest, -> { order("articles.publish_at DESC, articles.id DESC") }
+  scope :oldest, -> { order("articles.publish_at, articles.id") }
+  scope :only_share, -> { joins("LEFT OUTER JOIN article_properties ON article_properties.article_id = articles.id").where(article_properties: { not_to_share: [nil, false] }) }
 
   class << self
-    def recent_articles(limit = 10)
-      includes(:content, :pickup_photo).newest.limit(limit)
+    def recent_articles(limit = 10, only_share: false)
+      query = includes(:content, :pickup_photo).newest.limit(limit)
+      only_share ? query.only_share : query
     end
 
     def popular_articles(limit = 100)
@@ -73,6 +77,18 @@ class Article < ActiveRecord::Base
 
   def digest_body(length = 180)
     @_digest_body ||= body.split(/\r|\n|\r\n/).delete_if{|text| text.blank? || text =~ /^!/}.first || ""
+  end
+
+  def not_to_share
+    property&.not_to_share
+  end
+
+  def not_to_share=(bool)
+    if property
+      property.not_to_share = bool
+    else
+      build_property(not_to_share: bool)
+    end
   end
 
   def choose_pickup_photo!

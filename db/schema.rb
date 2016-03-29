@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150315065931) do
+ActiveRecord::Schema.define(version: 20160329145441) do
 
   create_table "amazons", force: :cascade do |t|
     t.string   "asin",             limit: 255
@@ -56,6 +56,15 @@ ActiveRecord::Schema.define(version: 20150315065931) do
   end
 
   add_index "article_photos", ["article_id", "photo_id"], name: "index_article_photos_on_article_id_and_photo_id", using: :btree
+
+  create_table "article_properties", force: :cascade do |t|
+    t.integer  "article_id",   limit: 4
+    t.boolean  "not_to_share",           default: false, null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "article_properties", ["article_id"], name: "index_article_properties_on_article_id", using: :btree
 
   create_table "articles", force: :cascade do |t|
     t.string   "title",        limit: 255,             null: false
