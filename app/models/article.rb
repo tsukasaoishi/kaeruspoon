@@ -79,18 +79,6 @@ class Article < ActiveRecord::Base
     @_digest_body ||= body.split(/\r|\n|\r\n/).delete_if{|text| text.blank? || text =~ /^!/}.first || ""
   end
 
-  def not_to_share
-    property&.not_to_share
-  end
-
-  def not_to_share=(bool)
-    if property
-      property.not_to_share = bool
-    else
-      build_property(not_to_share: bool)
-    end
-  end
-
   def choose_pickup_photo!
     photo_id = body.scan(%r!\(https://s3.+?amazonaws.com/.+?/images/(\d+)/.+?\.jpg.+?\)!i).flatten.first
     photo = Photo.find_by_id(photo_id) if photo_id

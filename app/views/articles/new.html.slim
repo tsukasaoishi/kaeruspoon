@@ -9,6 +9,10 @@ div [ class="row" ]
           = c.text_area :body
       div
         = f.datetime_select :publish_at
+      div
+        = f.fields_for :property do |pr|
+          | SNSでシェアしない
+          = pr.check_box :not_to_share
       div [ class="actions" ]
         = submit_tag "create or edit"
     = form_for Photo.new, :html => { :multipart => true } do |f|

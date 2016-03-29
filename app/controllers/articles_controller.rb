@@ -50,6 +50,7 @@ class ArticlesController < ApplicationController
     title, body = repair_article
     @article = Article.new(title: title, publish_at: Time.now)
     @article.build_content(body: body)
+    @article.build_property
   end
 
   def create
@@ -61,6 +62,7 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
+    @article.build_property unless @article.property
 
     title, body = repair_article
     if title
@@ -90,7 +92,12 @@ class ArticlesController < ApplicationController
   private
 
   def require_params
-    params.require(:article).permit(:title, :publish_at, content_attributes: [:body])
+    params.require(:article).permit(
+      :title,
+      :publish_at,
+      content_attributes: [:body],
+      property_attributes: [:not_to_share]
+    )
   end
 
   def repair_article
