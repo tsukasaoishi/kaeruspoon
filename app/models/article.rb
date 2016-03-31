@@ -51,14 +51,14 @@ class Article < ActiveRecord::Base
     {year: publish_at.year, month: publish_at.month}
   end
 
-  def prev_article(user = nil)
+  def prev_article
     @prev_article ||=
-      neighbor_article_scope(user).where("publish_at <= ? AND id <> ?", publish_at, id).newest.first
+      self.class.where("publish_at <= ? AND id <> ?", publish_at, id).newest.first
   end
 
-  def next_article(user = nil)
+  def next_article
     @next_article ||=
-      neighbor_article_scope(user).where("publish_at >= ? AND id <> ?", publish_at, id).oldest.first
+      self.class.where("publish_at >= ? AND id <> ?", publish_at, id).oldest.first
   end
 
   def body
@@ -102,9 +102,5 @@ class Article < ActiveRecord::Base
 
   def set_publish_at
     self.publish_at ||= Time.now
-  end
-
-  def neighbor_article_scope(user)
-    user ? user.articles : self.class.default_scoped
   end
 end

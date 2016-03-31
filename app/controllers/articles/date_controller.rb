@@ -7,8 +7,8 @@ class Articles::DateController < ApplicationController
     start = Time.local(y, m, d || 1)
     @articles = Article.period_articles(start, date_range)
     if @articles.present?
-      @prev_article = @articles.first.prev_article(current_user)
-      @next_article = @articles.last.next_article(current_user)
+      @prev_article = @articles.first.prev_article
+      @next_article = @articles.last.next_article
     end
 
     @title = I18n.l(start, format: date_range)

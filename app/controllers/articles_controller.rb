@@ -2,20 +2,20 @@ class ArticlesController < ApplicationController
   before_filter :required_login, only: [:new, :create, :edit, :update, :destroy]
   after_filter :expire_cache, only: %i(create update destroy)
 
-  caches_action :index, expires_in: 1.month, if: lambda{ !logged_in? }
-  caches_action :show, expires_in: 1.month, if: -> { !logged_in? }
+  caches_action :index, expires_in: 1.month
+  caches_action :show, expires_in: 1.month
 
   def index
     @entrance = true
 
     respond_to do |format|
-      format.html { @articles = current_user.recent_articles(7) }
-      format.atom { @articles = User.guest.recent_articles(7, only_share: true).to_a }
+      format.html { @articles = Article.recent_articles(7) }
+      format.atom { @articles = Article.recent_articles(7, only_share: true).to_a }
     end
   end
 
   def show
-    @article = current_user.articles.find(params[:id])
+    @article = Article.find(params[:id])
     @digest_body = TextDecorator.replace_without_tags(@article.digest_body)
     @title = @article.title
   end
