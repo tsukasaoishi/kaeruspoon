@@ -210,7 +210,7 @@
   return Utils.build_path([], ["format"], [2,[2,[7,"/",false],[6,"articles",false]],[1,[2,[8,".",false],[3,"format",false]],false]], arguments);
   },
 // date_articles => /articles/date/:year/:month(/:day)(.:format)
-  date_articles_path: function(_year, _month, options) {
+  articles_date_path: function(_year, _month, options) {
   return Utils.build_path(["year","month"], ["day","format"], [2,[2,[2,[2,[2,[2,[2,[2,[2,[7,"/",false],[6,"articles",false]],[7,"/",false]],[6,"date",false]],[7,"/",false]],[3,"year",false]],[7,"/",false]],[3,"month",false]],[1,[2,[7,"/",false],[3,"day",false]],false]],[1,[2,[8,".",false],[3,"format",false]],false]], arguments);
   },
 // edit_article => /articles/:id/edit(.:format)

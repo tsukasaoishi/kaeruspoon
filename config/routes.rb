@@ -3,13 +3,13 @@ Rails.application.routes.draw do
 
   namespace :articles do
     resources :popular, only: %i(index)
+    get 'date/:year/:month/(:day)' => 'date#index', as: :date,
+      year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/
   end
 
   resources :articles do
     collection do
       get 'archive' => 'articles#archive', as: :archive
-      get 'date/:year/:month/(:day)' => 'articles#date', as: :date,
-        year: /\d{4}/, month: /\d{1,2}/, day: /\d{1,2}/
     end
   end
 

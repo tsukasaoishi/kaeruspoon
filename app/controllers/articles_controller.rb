@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_filter :required_login, only: [:new, :create, :edit, :update, :destroy]
+  after_filter :expire_cache, only: %i(create update destroy)
 
   caches_action :index, expires_in: 1.month, if: lambda{ !logged_in? }
   caches_action :show, expires_in: 1.month, if: -> { !logged_in? }
@@ -11,20 +12,6 @@ class ArticlesController < ApplicationController
       format.html { @articles = current_user.recent_articles(7) }
       format.atom { @articles = User.guest.recent_articles(7, only_share: true).to_a }
     end
-  end
-
-  def date
-    y, m, d = params.values_at(:year, :month, :day)
-    date_range = d ? :day : :month
-    start = Time.local(y, m, d || 1)
-    @articles = current_user.period_articles(start, date_range)
-    if @articles.present?
-      @prev_article = @articles.first.prev_article(current_user)
-      @next_article = @articles.last.next_article(current_user)
-    end
-
-    @title = I18n.l(start, format: date_range)
-    render "index"
   end
 
   def archive
@@ -46,8 +33,6 @@ class ArticlesController < ApplicationController
 
   def create
     article = Article.create!(require_params)
-    expire_actions(article)
-
     redirect_to article
   end
 
@@ -66,7 +51,6 @@ class ArticlesController < ApplicationController
   def update
     article = Article.find(params[:id])
     article.update_attributes!(require_params)
-    expire_actions(article)
 
     redirect_to article
   end
@@ -74,7 +58,6 @@ class ArticlesController < ApplicationController
   def destroy
     article = Article.find(params[:id])
     article.destroy
-    expire_actions(article)
 
     redirect_to root_path
   end
@@ -98,11 +81,7 @@ class ArticlesController < ApplicationController
     [title, body]
   end
 
-  def expire_actions(article)
-    expire_action(article)
-    expire_action(article.prev_article) if article.prev_article
-    expire_action(article.next_article) if article.next_article
-    expire_action(controller: :articles, action: :index)
-    expire_action(controller: :articles, action: :index, format: :atom)
+  def expire_cache
+    Rails.cache.clear
   end
 end
