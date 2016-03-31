@@ -3,7 +3,6 @@ class ArticlesController < ApplicationController
 
   caches_action :index, expires_in: 1.month, if: lambda{ !logged_in? }
   caches_action :show, expires_in: 1.month, if: -> { !logged_in? }
-  caches_action :popular, expires_in: 1.week, if: -> { !logged_in? }
 
   def index
     @entrance = true
@@ -12,13 +11,6 @@ class ArticlesController < ApplicationController
       format.html { @articles = current_user.recent_articles(7) }
       format.atom { @articles = User.guest.recent_articles(7, only_share: true).to_a }
     end
-  end
-
-  def popular
-    @articles = current_user.popular_articles(20)
-
-    @title = I18n.t(:popular_articles)
-    render "index"
   end
 
   def date
