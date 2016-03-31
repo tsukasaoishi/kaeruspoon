@@ -14,11 +14,6 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def archive
-    @calendar = Article.archive_articles
-    @title = I18n.t(:archive_articles)
-  end
-
   def show
     @article = current_user.articles.find(params[:id])
     @digest_body = TextDecorator.replace_without_tags(@article.digest_body)
