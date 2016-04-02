@@ -1,13 +1,11 @@
 class ArticlesController < ApplicationController
-  before_filter :required_login, only: [:new, :create, :edit, :update, :destroy]
+  before_filter :required_login, only: %i(new create edit update destroy)
   after_filter :expire_cache, only: %i(create update destroy)
 
   caches_action :index, expires_in: 1.month
   caches_action :show, expires_in: 1.month
 
   def index
-    @entrance = true
-
     respond_to do |format|
       format.html { @articles = Article.recent_articles(7) }
       format.atom { @articles = Article.recent_articles(7, only_share: true).to_a }

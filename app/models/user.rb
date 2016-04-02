@@ -9,10 +9,10 @@ class User < ActiveRecord::Base
     def build_master(name, password)
       raise ArgumentError if name.blank? || password.blank?
       user = nil
-      old_users = self.all.to_a
+      old_users = all.to_a
       transaction do
-        user = self.create!(name: name, password: password, password_confirmation: password)
-        old_users.each{|u| u.destroy}
+        user = create!(name: name, password: password, password_confirmation: password)
+        old_users.each(&:destroy)
       end
       user
     end
@@ -21,19 +21,5 @@ class User < ActiveRecord::Base
       return false unless user = find_by(name: name)
       user.authenticate(password) && user
     end
-
-    def guest
-      inst = self.new
-      inst.guest!
-      inst
-    end
-  end
-
-  def guest!
-    @guest = true
-  end
-
-  def guest?
-    @guest
   end
 end
