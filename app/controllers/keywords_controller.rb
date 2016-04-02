@@ -1,10 +1,10 @@
 class KeywordsController < ApplicationController
   before_filter :required_login, except: :show
 
-  caches_action :show, expires_in: 1.day, if: lambda{ !logged_in? }
+  caches_action :show, expires_in: 1.day, if: -> { !logged_in? }
 
   def show
-    @keyword = Keyword.where(:name => params[:id]).first_or_initialize
+    @keyword = Keyword.where(name: params[:id]).first_or_initialize
     @title = @keyword.name
     @articles = @keyword.paginate_articles(params[:page])
 
@@ -17,7 +17,7 @@ class KeywordsController < ApplicationController
 
   def create
     keyword = Keyword.create!(require_params)
-    redirect_to keyword_path(:id => keyword.name)
+    redirect_to keyword_path(id: keyword.name)
   end
 
   def edit
@@ -29,7 +29,7 @@ class KeywordsController < ApplicationController
     keyword = Keyword.find(params[:id])
     keyword.update_attributes!(require_params)
     expire_action(action: :show, id: keyword.name)
-    redirect_to keyword_path(:id => keyword.name)
+    redirect_to keyword_path(id: keyword.name)
   end
 
   def destroy

@@ -26,7 +26,7 @@ class Keyword < ActiveRecord::Base
     private
 
     def init_tree
-      ret = WordScoop.new(self.pluck("name"))
+      ret = WordScoop.new(pluck("name"))
       ret.link_url = %Q|<a href="/keywords/%s/">%s</a>|
       ret
     end
@@ -39,6 +39,6 @@ class Keyword < ActiveRecord::Base
   private
 
   def tree_add
-    self.class.tree.add(self.name)
+    self.class.tree.add(name)
   end
 end

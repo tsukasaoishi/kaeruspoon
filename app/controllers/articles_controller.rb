@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   after_filter :expire_cache, only: %i(create update destroy)
 
   caches_action :index, expires_in: 1.month
-  caches_action :show, expires_in: 1.month
+  caches_action :show, expires_in: 1.month, if: -> { !logged_in? }
 
   def index
     respond_to do |format|
@@ -67,8 +67,8 @@ class ArticlesController < ApplicationController
   end
 
   def repair_article
-    title = session[:article_title]
-    body = session[:article_body]
+    title = session[:article_title].dup
+    body = session[:article_body].dup
     session[:article_title] = nil
     session[:article_body] = nil
     [title, body]

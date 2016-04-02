@@ -2,7 +2,7 @@ class PhotosController < ApplicationController
   before_filter :required_login
 
   def create
-    article = Article.find_by_id(params[:article_id])
+    article = Article.find_by(id: params[:article_id])
     photo = Photo.create!(params[:photo].permit!)
     session[:article_title] = params[:title_for_photo]
     session[:article_body] = params[:body_for_photo] + %Q|![Large](#{photo.image.url(:large)})\n|

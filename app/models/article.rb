@@ -1,16 +1,19 @@
 class Article < ActiveRecord::Base
-  has_one :content, :class_name => "ArticleContent", :dependent => :destroy
-  has_many :article_keywords, :dependent => :destroy
-  has_many :keywords, :through => :article_keywords
-  has_one :article_photo, :dependent => :destroy
-  has_one :pickup_photo, :through => :article_photo, :source => :photo
-  has_many :related_articles, :dependent => :destroy
-  has_many :similar_articles, :through => :related_articles, :source => :related_article
+  has_one :content, class_name: "ArticleContent", dependent: :destroy
+
+  has_many :article_keywords, dependent: :destroy
+  has_many :keywords, through: :article_keywords
+
+  has_one :article_photo, dependent: :destroy
+  has_one :pickup_photo, through: :article_photo, source: :photo
+
+  has_many :related_articles, dependent: :destroy
+  has_many :similar_articles, through: :related_articles, source: :related_article
 
   before_create :set_publish_at
   after_save :keyword_check!, :choose_pickup_photo!, :choose_similar_articles!
 
-  accepts_nested_attributes_for :content, :allow_destroy => true
+  accepts_nested_attributes_for :content, allow_destroy: true
 
   scope :published, -> { where("articles.publish_at <= ?", Time.now) }
   scope :newest, -> { order("articles.publish_at DESC, articles.id DESC") }
@@ -95,7 +98,7 @@ class Article < ActiveRecord::Base
 
   def keyword_check!
     keyword_list = Keyword.search(body)
-    self.keywords = Keyword.where(:name => keyword_list).to_a
+    self.keywords = Keyword.where(name: keyword_list).to_a
   end
 
   private

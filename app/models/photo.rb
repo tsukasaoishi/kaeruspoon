@@ -17,6 +17,6 @@ class Photo < ActiveRecord::Base
   private
 
   def destroy_image
-    self.image.destroy
+    image.destroy
   end
 end

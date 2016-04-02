@@ -5,6 +5,10 @@ class AmazonController < ApplicationController
       AmazonStock.add_content(params[:asin], params[:amazon_type])
 
     article = Article.find_by_id(params[:article_id])
-    redirect_to(article ? edit_article_path(article) : new_article_path)
+    if article
+      redirect_to edit_article_path(article)
+    else
+      redirect_to new_article_path
+    end
   end
 end
