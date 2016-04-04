@@ -7,8 +7,8 @@ class ArticlesController < ApplicationController
 
   def index
     respond_to do |format|
-      format.html { @articles = Article.recent_articles(7) }
-      format.atom { @articles = Article.recent_articles(7, only_share: true).to_a }
+      format.html { @articles = Article.recent_articles(30) }
+      format.atom { @articles = Article.recent_articles(30, only_share: true).to_a }
     end
   end
 

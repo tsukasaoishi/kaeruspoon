@@ -22,12 +22,12 @@ class Article < ActiveRecord::Base
 
   class << self
     def recent_articles(limit = 10, only_share: false)
-      query = includes(:content, :pickup_photo).newest.limit(limit)
+      query = newest.limit(limit)
       only_share ? query.only_share : query
     end
 
     def popular_articles(limit = 100)
-      includes(:content, :pickup_photo).order("access_count DESC").limit(limit)
+      order("access_count DESC").limit(limit)
     end
 
     def period_articles(start, range, reverse = false)
@@ -35,7 +35,7 @@ class Article < ActiveRecord::Base
       finish = start.__send__(period_end_method)
       period = (start..finish)
 
-      list = includes(:content, :pickup_photo).where(publish_at: period)
+      list = where(publish_at: period)
       reverse ? list.newest : list.oldest
     end
 

@@ -12,17 +12,4 @@
           = link_to "Tsukasa OISHI", about_path
         time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ]
           = article.linked_publish_at
-    div [ class="article_context" itemprop="description" ]
-      = TextDecorator.replace(article.digest_body)
     </article>
-
-- if @prev_article
-  div [ class="previous_paging_box" id="previous_page" data-url=articles_date_path(@prev_article.to_date_hash) ]
-    span [ class="entypo-left-bold" ]
-    = link_to("<< " + I18n.l(@prev_article.publish_at, format: :month), articles_date_path(@prev_article.to_date_hash), rel: "prev bookmark")
-- if @next_article
-  div [ class="next_paging_box" id="next_page" data-url=articles_date_path(@next_article.to_date_hash) ]
-    = link_to(I18n.l(@next_article.publish_at, format: :month) + " >>", articles_date_path(@next_article.to_date_hash), rel: "next bookmark")
-    span [ class="entypo-right-bold" ]
-
-
