@@ -1,29 +1,43 @@
-const loadFacebookSdk = (d, s, id) => {
-  let js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.5&appId=166633613447284";
-  fjs.parentNode.insertBefore(js, fjs);
-};
+const FacebookSdk = {
+  fbRoot: null,
+  eventsBound: false,
 
-const bindFacebookEvents = () => {
-  $(document)
-    .on('page:fetch', saveFacebookRoot)
-    .on('page:change', restoreFacebookRoot)
-    .on('page:load', () => {
-      FB.XFBML.parse()
-    })
-  window.fbEventsBound = true
-}
+  scriptLoad(d, s, id) {
+    let js, fjs = d.getElementsByTagName(s)[0]
+    if (d.getElementById(id)) return
+    js = d.createElement(s); js.id = id
+    js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.5&appId=166633613447284"
+    fjs.parentNode.insertBefore(js, fjs)
+  },
 
-const saveFacebookRoot = () => {
-  window.fbRoot = $('#fb-root').detach()
-}
+  bindEvents() {
+    $(document)
+      .on('page:fetch', this.saveRoot)
+      .on('page:change', this.restoreRoot)
+      .on('page:load', () => FB.XFBML.parse())
+    this.fbEventsBound = true
+  },
 
-const restoreFacebookRoot = () => {
-  if ($('#fb-root').length > 0) {
-    $('#fb-root').replaceWith(window.fbRoot)
-  } else {
-    $('body').append(window.fbRoot)
+  saveRoot() {
+    this.fbRoot = $('#fb-root').detach()
+  },
+
+  restoreRoot() {
+    if($('#fb-root').length > 0) {
+      $('#fb-root').replaceWith(this.fbRoot)
+    } else {
+      $('body').append(this.fbRoot)
+    }
+  },
+
+  load(d, s, id) {
+    this.scriptLoad(d, s, id)
+    if(!this.eventBound) {
+      this.bindEvents()
+    }
+  },
+
+  buttonTag(url) {
+    return '<div class="fb-like" data-href="' + url + '" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>'
   }
 }
