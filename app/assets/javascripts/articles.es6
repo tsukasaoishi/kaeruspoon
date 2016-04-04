@@ -9,7 +9,7 @@ $(document).ready(() => {
         return false;
       }
       $("#title_for_photo").val($("#article_title").val());
-      $("#body_for_body").val($("#article_content_attributes_body").val());
+      $("#body_for_photo").val($("#article_content_attributes_body").val());
     });
   }
 

@@ -67,8 +67,8 @@ class ArticlesController < ApplicationController
   end
 
   def repair_article
-    title = session[:article_title].dup
-    body = session[:article_body].dup
+    title = session[:article_title] && session[:article_title].dup
+    body = session[:article_body] && session[:article_body].dup
     session[:article_title] = nil
     session[:article_body] = nil
     [title, body]
