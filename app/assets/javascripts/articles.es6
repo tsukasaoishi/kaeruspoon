@@ -1,18 +1,5 @@
 $(document).ready(() => {
-  $('html').keyup(e => {
-    switch(e.keyCode) {
-      case 39:
-        if($("#next_page").length) {
-          window.location.href = $("#next_page").data("url");
-        }
-        break;
-      case 37:
-        if($("#previous_page").length) {
-          window.location.href = $("#previous_page").data("url");
-        }
-        break;
-    };
-  });
+  KeyEvents.ready('html','#next_page', '#previous_page')
 
   $("aside.socialButton").each((i, ele) => {
     const articleId = $(ele).data("articleId");
