@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    !current_user.guest?
+    !current_user.nil?
   end
 
   def current_user
