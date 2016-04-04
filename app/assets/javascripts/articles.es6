@@ -19,6 +19,10 @@ $(document).ready(() => {
     const url = "https://www.kaeruspoon.net" + Routes.article_path(articleId)
 
     loadFacebookSdk(document, 'script', 'facebook-jssdk');
+    if (!window.fbEventsBound) {
+      bindFacebookEvents()
+    }
+
     loadTwitterSdk(document, 'script', 'twitter-wjs');
 
     $(ele).append('<a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="en" data-pocket-align="right" data-save-url="' + url + '"></a><script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>')
