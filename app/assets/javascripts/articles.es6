@@ -23,9 +23,5 @@ $(document).ready(() => {
       $("#body_for_amazon").val($("#article_content_attributes_body").val());
     });
   }
-
-  if ($('#my_ad').length) {
-    window.MyAdSense.newAd(document.getElementById('my_ad'));
-  }
 });
 
