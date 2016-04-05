@@ -2,6 +2,9 @@ header
   div [ class="row" ]
     span [ class="name" ]
       = link_to("kaeruspoon", root_path, data: { no_turbolink: true })
+    - if @sub_title
+      span [ class="sub_title"]
+        = @sub_title
     nav
       ul
         li = link_to(fa_icon("calendar"), articles_archive_index_path)
