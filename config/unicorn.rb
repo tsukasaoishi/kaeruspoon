@@ -10,6 +10,8 @@ working_directory '/srv/kaeruspoon/current'
 
 
 before_fork do |server, worker|
+  ENV['BUNDLE_GEMFILE'] = "/srv/kaeruspoon/current/Gemfile"
+
   if defined?(ActiveRecord::Base)
     ActiveRecord::Base.connection.disconnect!
     ActiveRecord::Base.clear_all_slave_connections!
@@ -23,9 +25,9 @@ before_fork do |server, worker|
       Process.kill(sig, File.read(old_pid).to_i)
     rescue Errno::ENOENT, Errno::ESRCH
     end
-  end
 
-  sleep 1
+    sleep 1
+  end
 end
 
 after_fork do |server, worker|
