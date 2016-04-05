@@ -9,6 +9,8 @@ class KeywordsController < ApplicationController
     @articles = @keyword.paginate_articles(params[:page])
 
     @wiki_content = Wikipedia.find(@keyword.name).sample_content rescue nil
+
+    @sub_title = "キーワード"
   end
 
   def new
