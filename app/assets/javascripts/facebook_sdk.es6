@@ -2,12 +2,28 @@ const FacebookSdk = {
   fbRoot: null,
   eventsBound: false,
 
-  scriptLoad(d, s, id) {
-    let js, fjs = d.getElementsByTagName(s)[0]
-    if (d.getElementById(id)) return
-    js = d.createElement(s); js.id = id
-    js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.5&appId=166633613447284"
-    fjs.parentNode.insertBefore(js, fjs)
+  myAppId() {
+    if(window.ENV.isDevelopment) {
+      return '852046904905948'
+    } else {
+      return '166633613447284'
+    }
+  },
+
+  initializeFacebookSDK() {
+    const myAppId = FacebookSdk.myAppId();
+    return FB.init({
+      appId: myAppId,
+      status : true,
+      cookie : true,
+      xfbml: true,
+      version: 'v2.5'
+    })
+  },
+
+  scriptLoad() {
+    window.fbAsyncInit = this.initializeFacebookSDK
+    $.getScript("//connect.facebook.net/ja_JP/sdk.js")
   },
 
   bindEvents() {
@@ -19,14 +35,18 @@ const FacebookSdk = {
   },
 
   saveRoot() {
-    this.fbRoot = $('#fb-root').detach()
+    if($('#fb-root').length > 0) {
+      this.fbRoot = $('#fb-root').detach()
+    }
   },
 
   restoreRoot() {
-    if($('#fb-root').length > 0) {
-      $('#fb-root').replaceWith(this.fbRoot)
-    } else {
-      $('body').append(this.fbRoot)
+    if(this.fbRoot) {
+      if (('#fb-root').length > 0) {
+        $('#fb-root').replaceWith(this.fbRoot)
+      } else {
+        $('body').append(this.fbRoot)
+      }
     }
   },
 

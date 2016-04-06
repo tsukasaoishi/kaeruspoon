@@ -6,7 +6,7 @@ const SocialButtons = {
 
       $(ele).append('<a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="en" data-pocket-align="right" data-save-url="' + url + '"></a><script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>')
 
-      FacebookSdk.load(document, 'script', 'facebook-jssdk')
+      FacebookSdk.load()
       $(ele).append(FacebookSdk.buttonTag(url))
 
       $(ele).append('<a href="https://twitter.com/share" class="twitter-share-button" data-via="tsukasa_oishi">Tweet</a><script src="//platform.twitter.com/widgets.js"></script>')
