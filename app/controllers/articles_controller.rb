@@ -20,7 +20,7 @@ class ArticlesController < ApplicationController
 
   def new
     title, body = repair_article
-    @article = Article.new(title: title, publish_at: Time.now)
+    @article = Article.new(title: title, publish_at: Time.current)
     @article.build_content(body: body)
   end
 

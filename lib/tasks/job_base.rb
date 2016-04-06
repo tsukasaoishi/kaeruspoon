@@ -35,7 +35,7 @@ module Tasks
     end
 
     def default_checked_time
-      Time.now.beginning_of_day
+      Time.current.beginning_of_day
     end
 
     def checked_time_file

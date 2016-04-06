@@ -15,7 +15,7 @@ class Article < ActiveRecord::Base
 
   accepts_nested_attributes_for :content, allow_destroy: true
 
-  scope :published, -> { where("articles.publish_at <= ?", Time.now) }
+  scope :published, -> { where("articles.publish_at <= ?", Time.current) }
   scope :newest, -> { order("articles.publish_at DESC, articles.id DESC") }
   scope :oldest, -> { order("articles.publish_at, articles.id") }
   scope :only_share, -> { where(not_to_share: false) }
@@ -104,6 +104,6 @@ class Article < ActiveRecord::Base
   private
 
   def set_publish_at
-    self.publish_at ||= Time.now
+    self.publish_at ||= Time.current
   end
 end
