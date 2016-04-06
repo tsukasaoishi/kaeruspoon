@@ -56,12 +56,12 @@ class Article < ActiveRecord::Base
 
   def prev_article
     @prev_article ||=
-      self.class.where("publish_at <= ? AND id <> ?", publish_at, id).newest.first
+      self.class.where("publish_at <= ? AND id < ?", publish_at, id).newest.first
   end
 
   def next_article
     @next_article ||=
-      self.class.where("publish_at >= ? AND id <> ?", publish_at, id).oldest.first
+      self.class.where("publish_at >= ? AND id > ?", publish_at, id).oldest.first
   end
 
   def body
