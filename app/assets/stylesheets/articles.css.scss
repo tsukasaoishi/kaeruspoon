@@ -2,15 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-h1 {
-  color: #ffffff;
-  margin: 0;
-  font: {
-    size: 30px;
-    weight: 300;
-  }
-}
-
 article {
   padding-left: 0.8%;
   padding-right: 0.8%;
@@ -61,8 +52,8 @@ article {
     color: #222;
     margin: 0;
     font: {
-      size: 30px;
-      weight: 300;
+      size: 25px;
+      weight: 200;
     }
 
     a {
@@ -88,7 +79,11 @@ article {
   }
 
   div.article_context {
-    margin-top: 18px;
+    margin-top: 40px;
+
+    a:hover {
+      color: #ff6307;
+    }
   }
 
   p {
@@ -121,7 +116,7 @@ span.operate {
 pre {
   font-family: Consolas,"Liberation Mono",Courier,monospace;
   color: black;
-  background: #f7f7ff;
+  background: #fafafa;
   overflow: auto;
   line-height: 1.4;
   margin: 1em 0.5em;
@@ -135,43 +130,47 @@ code {
 }
 
 @mixin pagingBox {
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
   margin: 10px auto;
   max-width: 720px;
-  padding: 10px 20px;
+  padding: 5px 10px;
+
+  a {
+    color: #333;
+  }
+
+  a:hover {
+    color: #ff6307;
+  }
 }
 
 .previous_paging_box {
-  background-color: #AFAFAF;
+  border-left: 3px solid #1663c7;
   @include pagingBox;
-
-  a {
-    color: #FFFFFF;
-  }
 }
 
 .next_paging_box {
-  background-color: #3F3F3F;
   text-align: right;
+  border-right: 3px solid #1663c7;
   @include pagingBox;
-
-  a {
-    color: #FFFFFF;
-  }
 }
 
 .related_articles {
-  background-color: #FFFFFF;
-  margin: 0 auto;
+  background-color: #eee;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  margin: 0 auto 30px;
   max-width: 720px;
-  padding: 10px 20px;
+  padding: 5px 20px 15px;
 
   li {
     font-size: 90%;
     list-style: none;
     margin-bottom: 1em;
+  }
+
+  a:hover {
+    color: #ff6307;
   }
 }
 
