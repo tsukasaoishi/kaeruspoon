@@ -41,15 +41,24 @@ a {
 
 body > header {
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 10px;
   color: #fff;
-  background: linear-gradient(-135deg, #2A2C39, #4A4C59);
+  background-color: #1663c7;
 
   span.name {
     font: {
-      weight: 300;
-      size: 28px;
+      weight: 200;
+      size: 20px;
     }
+
+    a:hover {
+      color: #ff6307;
+    }
+  }
+
+  span.sub_title {
+    margin-left: 5px;
+    font-size: 0.8em;
   }
 
   a {
@@ -57,22 +66,6 @@ body > header {
     text-decoration: none;
   }
 
-  nav {
-    float: right;
-
-    ul {
-      list-style: none;
-    }
-
-    li {
-      padding-left: 20px;
-      display: inline;
-    }
-  }
-
-  &:after {
-    clear: both;
-  }
 }
 
 .row {

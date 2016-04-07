@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root 'articles#index'
+  root 'dashboards#index'
+
+  resources :dashboards, only: %i(index)
 
   namespace :articles do
     resources :popular, only: %i(index)
@@ -13,7 +15,6 @@ Rails.application.routes.draw do
   resources :photos, only: [:create]
   resources :keywords, except: [:index]
 
-  get 'about' => 'about#index', as: :about
   get 'manage' => 'manages#top', as: :manage
   resource :session, only: [:new, :create, :destroy]
 

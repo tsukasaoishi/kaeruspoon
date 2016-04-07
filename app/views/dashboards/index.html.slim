@@ -1,0 +1,64 @@
+div [ class="kanban" ]
+  h1
+    = link_to "kaeruspoon", root_path
+  nav
+    ul
+      li = link_to "blog", articles_archive_index_path
+      li = link_to "popular", articles_popular_index_path
+
+a [ name="about-me" ]
+div [ class="about-me" ]
+  div [ class="image" ]
+    img [ src="https://www.gravatar.com/avatar/76de73a1dae79a86bb99a813bd8e8e0a?s=100&d=http%3A%2F%2Fkaeruspoon%.net2F2014%2Fimages%2Fno-image.png" ]
+    div [ class="introduction" ]
+      p [ class="name" ]
+        | Tsukasa OISHI
+      ul
+        li = link_to content_tag(:i, nil, class: "fa fa-github fa-2x"), "https://github.com/tsukasaoishi", target: "_blank"
+        li = link_to content_tag(:i, nil, class: "fa fa-twitter fa-2x"), "https://twitter.com/tsukasa_oishi", target: "_blank"
+        li = link_to content_tag(:i, nil, class: "fa fa-instagram fa-2x"), "http://instagram.com/tsukasa", target: "_blank"
+        li = link_to content_tag(:i, nil, class: "fa fa-slideshare fa-2x"), "http://www.slideshare.net/tsukasa.oishi", target: "_blank"
+        li = link_to "rubygems", "https://rubygems.org/profiles/tsukasaoishi", target: "_blank"
+      p
+        | I like trip, motorcycle, drive, photo and cooking.
+        br
+        | I'm ruby programmer.
+
+div [ class="blog" ]
+  - @articles.each do |article|
+    <article class="col_center" itempscope itemtype="https://schema.org/Article">
+      header
+        h1 [ itemprop="name" ]
+          = link_to(article.title, article_path(article), rel: :bookmark)
+        meta
+          time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ]
+          = "#{distance_of_time_in_words_to_now(article.publish_at)}前"
+      </article>
+
+div [ class="work" ]
+  div [ class="introduction" ]
+    p RubyKaigi
+    ul
+      li = link_to "2009 Lightning Talks", "http://rubykaigi.org/2009/ja/talks/17H14", target: "_blank"
+      li = link_to "2014 Rails Talks", "http://rubykaigi.org/2014/ohayo", target: "_blank"
+    p Writing
+    ul
+      li = link_to "Reactor pattern (gihyo,jp)", "http://gihyo.jp/dev/serial/01/ruby/0030", target: "_blank"
+    p Products
+    dl
+      dt = link_to "FreshConnection", "https://github.com/tsukasaoishi/fresh_connection", target: "_blank"
+      dd FreshConnection allows access to slave servers via a load balancer.
+      dd ロードバランサで管理しているスレーブDBをActiveRecordから使うことができるようにします。
+
+      dt = link_to "EbisuConnection", "https://github.com/tsukasaoishi/ebisu_connection", target: "_blank"
+      dd EbisuConnection allows access to slave servers.
+      dd スレーブDBをActiveRecordから使うことができるようにします。ロードバランサは不要です。
+      dt = link_to "WordScoop", "https://github.com/tsukasaoishi/word_scoop", target: "_blank"
+      dd WordScoop extracts keywords from among sentences.
+      dd 文章の中からキーワードを高速に抽出することができます。
+      dt = link_to "BitzerStore", "https://github.com/tsukasaoishi/bitzer_store", target: "_blank"
+      dd BitzerStore can treat multiple cache clusters in Rails.
+      dd Railsで複数のキャッシュ空間を使うことができるようになります。
+      dt = link_to "FigureSet", "https://github.com/tsukasaoishi/figure_set", target: "_blank"
+      dd FigureSet is the library which treats set operation.
+      dd 整数の集合演算を高速に実施することができます。

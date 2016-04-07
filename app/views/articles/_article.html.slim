@@ -5,7 +5,7 @@
     meta
       img [ src="https://www.gravatar.com/avatar/76de73a1dae79a86bb99a813bd8e8e0a?s=20&d=http%3A%2F%2Fkaeruspoon%.net2F2014%2Fimages%2Fno-image.png" ]
       span
-        = link_to "Tsukasa OISHI", about_path
+        = link_to "Tsukasa OISHI", root_path(anchor: "about-me")
       time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ]
         = article.linked_publish_at
       - if logged_in?
