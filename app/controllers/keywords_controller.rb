@@ -1,5 +1,5 @@
 class KeywordsController < ApplicationController
-  before_filter :required_login, except: :show
+  before_action :required_login, except: :show
 
   caches_action :show, expires_in: 1.day, if: -> { !logged_in? }
 
