@@ -1,18 +1,9 @@
-div [ class="kanban" ]
-  h1
-    = link_to "kaeruspoon", root_path
-  nav
-    ul
-      li = link_to "blog", articles_archive_index_path
-      li = link_to "popular", articles_popular_index_path
-
-a [ name="about-me" ]
 div [ class="about-me" ]
-  div [ class="image" ]
-    img [ src="https://www.gravatar.com/avatar/76de73a1dae79a86bb99a813bd8e8e0a?s=100&d=http%3A%2F%2Fkaeruspoon%.net2F2014%2Fimages%2Fno-image.png" ]
+  div [ class="content" ]
+    div [ class="image" ]
+      img [ src="https://www.gravatar.com/avatar/76de73a1dae79a86bb99a813bd8e8e0a?s=100&d=http%3A%2F%2Fkaeruspoon%.net2F2014%2Fimages%2Fno-image.png" ]
     div [ class="introduction" ]
-      p [ class="name" ]
-        | Tsukasa OISHI
+      h1 Tsukasa OISHI
       ul
         li = link_to content_tag(:i, nil, class: "fa fa-github fa-2x"), "https://github.com/tsukasaoishi", target: "_blank"
         li = link_to content_tag(:i, nil, class: "fa fa-twitter fa-2x"), "https://twitter.com/tsukasa_oishi", target: "_blank"
@@ -25,6 +16,12 @@ div [ class="about-me" ]
         | I'm ruby programmer.
 
 div [ class="blog" ]
+  h2 Articles
+  nav
+    ul
+      li = link_to I18n.t(:archive_articles), articles_archive_index_path
+      li = link_to I18n.t(:popular_articles), articles_popular_index_path
+
   - @articles.each do |article|
     <article class="col_center" itempscope itemtype="https://schema.org/Article">
       header

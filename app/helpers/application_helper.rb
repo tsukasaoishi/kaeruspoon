@@ -4,7 +4,7 @@ module ApplicationHelper
     next: " &#8594;".html_safe
   }
 
-  DEFAULT_TITLE = "kaeruspoon - Tsukasa OISHI"
+  DEFAULT_TITLE = "Tsukasa OISHI"
 
   def previous_link_to(name, url, options = {})
     name = MARKS[:previous] + h(name)
@@ -20,7 +20,7 @@ module ApplicationHelper
     if defined?(@title)
       @title
     else
-      "kaeruspoon - Tsukasa OISHI"
+      DEFAULT_TITLE
     end
   end
 end

@@ -2,68 +2,37 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.kanban {
-  margin: 200px auto;
-  max-width: 1200px;
-  width: 80%;
-
-  h1 a {
-    color: #333;
-    font-family: "Montserrat",sans-serif;
-    font-size: 1.7em;
-    font-weight: 400;
-    line-height: 1.45;
-  }
-
-  nav {
-    ul {
-      list-style: none;
-      margin: 0;
-      padding-left: 0;
-    }
-
-    li {
-      display: inline;
-      padding-right: 20px;
-
-      a {
-        color: #333;
-      }
-
-      a:hover {
-        color: #ff6307;
-      }
-    }
-  }
-}
-
 .about-me {
   color: #fff;
   margin: 0 auto;
   padding-top: 200px;
-  padding-bottom: 300px;
+  padding-bottom: 400px;
   width: 100%;
   background-color: #1663c7;
 
-  .image {
+  .content {
     margin: auto;
     max-width: 1200%;
     width: 80%;
 
-    img {
+    .image {
+      padding-top: 30px;
       float: left;
-      border: 5px solid #fff;
-      border-radius: 100%;
+
+      img {
+        border: 5px solid #fff;
+        border-radius: 100%;
+      }
     }
 
     .introduction {
       float: left;
       padding-left: 20px;
 
-      .name {
+      h1 {
         margin: 15px 0;
         font-family: "Montserrat",sans-serif;
-        font-size: 1.7em;
+        font-size: 2em;
         font-weight: 400;
         line-height: 1.45;
       }
@@ -93,10 +62,46 @@
 .blog {
   color: #333;
   margin: 0 auto;
-  padding-top: 200px;
-  padding-bottom: 200px;
+  padding-top: 100px;
+  padding-bottom: 100px;
   width: 100%;
   background-color: #fff;
+
+  h2 {
+    margin: auto;
+    max-width: 1200%;
+    width: 80%;
+    font-family: "Montserrat",sans-serif;
+    font-size: 2em;
+    font-weight: 400;
+    line-height: 1.45;
+  }
+
+  nav {
+    margin: 0 auto 30px;
+    max-width: 1200%;
+    width: 80%;
+    font-size: 0.8em;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding-left: 0;
+    }
+
+    li {
+      display: inline;
+      padding-right: 20px;
+
+      a {
+        color: #333;
+      }
+
+      a:hover {
+        color: #ff6307;
+      }
+    }
+  }
 
   article {
     margin: auto;
@@ -110,7 +115,7 @@
     a {
       font-family: "Montserrat",sans-serif;
       font-size: 0.7em;
-      font-weight: 400;
+      font-weight: 200;
       line-height: 1.45;
     }
 
@@ -124,7 +129,7 @@
   color: #333;
   margin: 0 auto;
   padding-top: 100px;
-  padding-bottom: 200px;
+  padding-bottom: 100px;
   width: 100%;
   background-color: #eee;
 
