@@ -6,6 +6,7 @@ ja:
   delete: 削除
   confirm_to_article_delete: 記事を削除しますか？
   confirm_to_keyword_delete: キーワードを削除しますか？
+  articles: の記事
   date:
     abbr_day_names:
     - 日

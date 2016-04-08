@@ -3,6 +3,7 @@ class Articles::PopularController < ApplicationController
 
   def index
     @articles = Article.popular_articles(30)
-    @sub_title = I18n.t(:popular_articles)
+    @title = I18n.t(:popular_articles)
+    @sub_title = @title
   end
 end

@@ -11,6 +11,7 @@ class Articles::DateController < ApplicationController
       @next_article = @articles.last.next_article
     end
 
-    @sub_title = I18n.l(start, format: date_range)
+    @title = I18n.l(start, format: date_range) + I18n.t(:articles)
+    @sub_title = @title
   end
 end

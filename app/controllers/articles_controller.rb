@@ -7,7 +7,10 @@ class ArticlesController < ApplicationController
 
   def index
     respond_to do |format|
-      format.html { @articles = Article.recent_articles(30) }
+      format.html {
+        @articles = Article.recent_articles(30)
+        @tite = "最新記事"
+      }
       format.atom { @articles = Article.recent_articles(30, only_share: true).to_a }
     end
   end

@@ -3,15 +3,14 @@ html [ lang="ja" ]
   head
     meta [ charset="UTF-8" ]
     meta [ name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" ]
-    meta [ name="author" content="おおいしつかさ 大石司" ]
+    meta [ name="author" content="Tsukasa OISHI おおいしつかさ 大石司" ]
     meta [ property="og:type" content="website" ]
     meta [ property="og:site_name" content="kaeruspoon" ]
-    - if @title.present?
-      meta [ property="og:title" content="#{@title}" ]
+    meta [ property="og:title" content="#{title_name}" ]
     meta [ property="og:url" content=request.url ]
     = yield(:meta)
     meta [property="fb:admins" content="671652438" ]
-    title = @title.presence || "kaeruspoon"
+    title = title_name
     = stylesheet_link_tag("application", media: "all", "data-turbolinks-track" => true)
     = favicon_link_tag("favicon.png")
     = auto_discovery_link_tag(:atom, articles_url(format: "atom"))

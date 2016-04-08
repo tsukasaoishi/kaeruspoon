@@ -46,7 +46,7 @@ class Article < ActiveRecord::Base
     def archive_articles
       select(
         "YEAR(publish_at + INTERVAL 9 HOUR) as year, MONTH(publish_at + INTERVAL 9 HOUR) as month, count(*) as count"
-      ).group("year, month").order("publish_at")
+      ).group("year, month").order("publish_at desc")
     end
   end
 
