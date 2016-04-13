@@ -20,10 +20,11 @@ Rails.application.routes.draw do
 
   post 'amazon' => 'amazon#markdown', as: :amazon
 
-  get '/diary/archive', to: redirect('articles/archive')
-  get '/diary/:year/:month/:day', to: redirect("articles/date/%{year}/%{month}/%{day}")
-  get '/diary/:year/:month', to: redirect("articles/date/%{year}/%{month}")
-  get 'diaries.atom', to: redirect('articles.atom')
-  get '/date/:year/:month/:day', to: redirect("articles/date/%{year}/%{month}/%{day}")
-  get '/date/:year/:month', to: redirect("articles/date/%{year}/%{month}")
+  get '/about', to: redirect('', status: 301)
+  get '/diary/archive', to: redirect('articles/archive', status: 301)
+  get '/diary/:year/:month/:day', to: redirect("articles/date/%{year}/%{month}/%{day}", status: 301)
+  get '/diary/:year/:month', to: redirect("articles/date/%{year}/%{month}", status: 301)
+  get 'diaries.atom', to: redirect('articles.atom', status: 301)
+  get '/date/:year/:month/:day', to: redirect("articles/date/%{year}/%{month}/%{day}", status: 301)
+  get '/date/:year/:month', to: redirect("articles/date/%{year}/%{month}", status: 301)
 end
