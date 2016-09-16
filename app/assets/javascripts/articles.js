@@ -1,9 +1,9 @@
-$(document).ready(() => {
-  KeyEvents.ready('html','#next_page', '#previous_page')
-  SocialButtons.ready('aside.socialButton')
+$(document).ready(function(){
+  KeyEvents.ready('html','#next_page', '#previous_page');
+  SocialButtons.ready('aside.socialButton');
 
   if ($("#new_photo").length) {
-    $("#new_photo").submit(() => {
+    $("#new_photo").submit(function(){
       if (!$("#photo_image").val()) {
         alert("choich photo to upload");
         return false;
@@ -14,7 +14,7 @@ $(document).ready(() => {
   }
 
   if ($("#add_amazon").length) {
-    $("#add_amazon").submit(() => {
+    $("#add_amazon").submit(function(){
       if (!$("#asin").val()) {
         alert("input asin code");
         return false;
