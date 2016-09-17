@@ -30,7 +30,7 @@ var FacebookSdk = {
     $(document)
       .on('page:fetch', this.saveRoot)
       .on('page:change', this.restoreRoot)
-      .on('page:load', () => FB.XFBML.parse());
+      .on('page:load', function(){ FB.XFBML.parse() });
     this.fbEventsBound = true
   },
 
