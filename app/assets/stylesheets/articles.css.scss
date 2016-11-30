@@ -148,13 +148,11 @@ code {
 }
 
 .previous_paging_box {
-  border-left: 3px solid #1663c7;
   @include pagingBox;
 }
 
 .next_paging_box {
   text-align: right;
-  border-right: 3px solid #1663c7;
   @include pagingBox;
 }
 
