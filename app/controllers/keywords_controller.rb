@@ -1,14 +1,16 @@
+require Rails.root.join("lib/text_decorator")
+
 class KeywordsController < ApplicationController
   before_action :required_login, except: :show
-
-  caches_action :show, expires_in: 1.day, if: -> { !logged_in? }
 
   def show
     @keyword = Keyword.where(name: params[:id]).first_or_initialize
     @title = @keyword.name
     @articles = @keyword.paginate_articles(params[:page])
 
-    @wiki_content = Wikipedia.find(@keyword.name).sample_content rescue nil
+    @wiki_content = Rails.cache.fetch("wikipedia:#{@keyword.name}", expires_in: 1.day) do
+      Wikipedia.find(@keyword.name).sample_content rescue nil
+    end
 
     @sub_title = "キーワード"
   end

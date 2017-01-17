@@ -1,5 +1,5 @@
-div [ class="row" ]
-  div [class="col_center field edit_article" ]
+.row
+  .col_center.field.edit_article
     h3 create or edit article
     = form_for @article do |f|
       div
@@ -12,7 +12,7 @@ div [ class="row" ]
       div
         | SNSでシェアしない
         = f.check_box :not_to_share
-      div [ class="actions" ]
+      .actions
         = submit_tag "create or edit"
     = form_for Photo.new, :html => { :multipart => true } do |f|
       h4 photo
@@ -21,7 +21,7 @@ div [ class="row" ]
       = hidden_field_tag :body_for_photo
       div
         = f.file_field :image
-      div [ class="action" ]
+      .action
         = submit_tag "upload image"
 
     = form_tag amazon_path, {id: :add_amazon} do
@@ -38,6 +38,6 @@ div [ class="row" ]
       div
         | asin:
         = text_field_tag :asin
-      div [ class="action" ]
+      .action
         = submit_tag "get markdown"
 

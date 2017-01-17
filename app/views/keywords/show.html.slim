@@ -1,24 +1,24 @@
-div [ class="row" ]
+.row
   <article class="col_center" itempscope itemtype="https://schema.org/Article">
     header
       h1
         = @keyword.name
         - if !@keyword.new_record? && logged_in?
           aside
-            span [ class="operate" ]
+            span.operate
               = link_to I18n.t(:edit), edit_keyword_path(@keyword)
-            span [ class="operate" ]
+            span.operate
               = link_to I18n.t(:delete), @keyword, method: :delete, data: {confirm: I18n.t(:confirm_to_keyword_delete)}
     div [ itemprop="description" ]
       == TextDecorator.replace(@keyword.body)
     - if @wiki_content
       aside
-        p [ style="margin:10px;backgroud-color:#EEE" ]
-          = link_to("#{@keyword.name} - wikipedia より抜粋", "https://ja.wikipedia.org/wiki/#{@keyword.name}", target: "_blank")
-          br
+        blockquote [ cite="https://ja.wikipedia.org/wiki/#{@keyword.name}" ]
           = @wiki_content
+          br
+          = link_to("#{@keyword.name} - wikipedia より抜粋", "https://ja.wikipedia.org/wiki/#{@keyword.name}", target: "_blank")
   </article>
-  aside [ class="col_center keyword_articles" ]
+  aside.col_center.keyword_articles
     h4
       = "「#{@keyword.name}」を含む最近の記事"
     = will_paginate @articles

@@ -3,18 +3,18 @@
     h1 [ itemprop="name" ]
       = link_to(article.title, article_path(article), rel: :bookmark)
     meta
-      = link_to image_tag("https://www.gravatar.com/avatar/76de73a1dae79a86bb99a813bd8e8e0a?s=20&d=http%3A%2F%2Fkaeruspoon%.net2F2014%2Fimages%2Fno-image.png"), root_path
+      = link_to avatar_icon_tag(20), root_path
       span
         = link_to "Tsukasa OISHI", root_path
       time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ]
         = article.linked_publish_at
       - if logged_in?
-        span [ class="operate" ]
+        span.operate
           = link_to I18n.t(:edit), edit_article_path(article)
-        span [ class="operate" ]
+        span.operate
           = link_to I18n.t(:delete), article, method: :delete, data: {confirm: I18n.t(:confirm_to_article_delete)}
-  div [ class="article_context" itemprop="description" ]
+  .article_context [ itemprop="description" ]
     == TextDecorator.replace(article.body)
-    aside [ class="socialButton" data-article-id=article.id ]
-      div [ id="fb-root" ]
+    asid.socialButton [ data-article-id=article.id ]
+      #fb-root
 </article>

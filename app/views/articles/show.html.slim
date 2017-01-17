@@ -7,7 +7,7 @@
     meta [ name="twitter:card" content="summary" ]
   meta [ name="twitter:site" content="@tsukasa_oishi" ]
 = render @article
-div.row
+.row
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   ins.adsbygoogle [ style="display:block" data-ad-client="ca-pub-2649260317960621" data-ad-slot="5248619115" data-ad-format="auto" ]
   javascript:
@@ -15,7 +15,7 @@ div.row
 
 nav.row
   - if @article.similar_articles.present?
-    div [ class="related_articles" ]
+    .related_articles
       h4 関連する記事
       ul
         - @article.similar_articles.each do |article|
@@ -23,12 +23,12 @@ nav.row
             = "[#{l(article.publish_at, format: :day)}] "
             = link_to(article.title, article_path(article), rel: "related")
   - if @article.prev_article
-    div [ class="previous_paging_box" id="previous_page" data-url=article_path(@article.prev_article) ]
+    .previous_paging_box#previous_page [ data-url=article_path(@article.prev_article) ]
       span [ class="entypo-left-bold" ]
       = previous_link_to(@article.prev_article.title, article_path(@article.prev_article), rel: "prev bookmark")
   - if @article.next_article
-    div [ class="next_paging_box" id="next_page" data-url=article_path(@article.next_article) ]
+    .next_paging_box#next_page [ data-url=article_path(@article.next_article) ]
       = next_link_to(@article.next_article.title, article_path(@article.next_article), rel: "next bookmark")
-      span [ class="entypo-right-bold" ]
+      span.entypo-right-bold
 
 

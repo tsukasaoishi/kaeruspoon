@@ -1,7 +1,7 @@
 header
-  div [ class="row" ]
-    span [ class="name" ]
-      = link_to("kaeruspoon", root_path, data: { no_turbolink: true })
+  .row
+    span.name
+      = link_to "kaeruspoon", root_path
     - if @sub_title
-      span [ class="sub_title"]
+      span.sub_title
         = @sub_title

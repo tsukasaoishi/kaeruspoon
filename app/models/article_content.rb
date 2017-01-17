@@ -1,3 +1,3 @@
-class ArticleContent < ActiveRecord::Base
+class ArticleContent < ApplicationRecord
   validates :body, presence: true
 end

@@ -1,4 +1,4 @@
-class Article < ActiveRecord::Base
+class Article < ApplicationRecord
   has_one :content, class_name: "ArticleContent", dependent: :destroy
 
   has_many :article_keywords, dependent: :destroy
@@ -46,7 +46,7 @@ class Article < ActiveRecord::Base
     def archive_articles
       select(
         "YEAR(publish_at + INTERVAL 9 HOUR) as year, MONTH(publish_at + INTERVAL 9 HOUR) as month, count(*) as count"
-      ).group("year, month").order("publish_at desc")
+      ).group("year, month").order("year, month")
     end
   end
 
@@ -93,7 +93,16 @@ class Article < ActiveRecord::Base
       list << k_scope.where("articles.publish_at < ?", self.publish_at).newest.first
       list << k_scope.where("articles.publish_at > ?", self.publish_at).oldest.first
     end
-    self.similar_articles = list.compact.uniq
+
+    article_ids = list.compact.uniq.map(&:id)
+    old_ids = related_articles.map(&:related_article_id)
+    delete_ids = old_ids - article_ids
+    create_ids = article_ids - old_ids
+
+    related_articles.where(related_article_id: delete_ids).each(&:destroy)
+    create_ids.each do |id|
+      related_articles.create!(related_article_id: id)
+    end
   end
 
   def keyword_check!

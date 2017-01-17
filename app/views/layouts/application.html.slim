@@ -9,18 +9,18 @@ html [ lang="ja" ]
     meta [ property="og:title" content="#{title_name}" ]
     meta [ property="og:url" content=request.url ]
     = yield(:meta)
-    meta [property="fb:admins" content="671652438" ]
+    meta [ property="fb:admins" content="671652438" ]
     title = title_name
-    = stylesheet_link_tag("application", media: "all", "data-turbolinks-track" => true)
-    = favicon_link_tag("favicon.png")
-    = auto_discovery_link_tag(:atom, articles_url(format: "atom"))
     = csrf_meta_tags
+    = stylesheet_link_tag 'application', media: 'all'
+    = favicon_link_tag 'favicon.png'
+    = auto_discovery_link_tag :atom, articles_url(format: 'atom')
   body
     - unless defined?(@no_header)
       = render("header_navi")
-    div [ id="contents" ]
+    #contents
       = yield
-    = javascript_include_tag("application", "data-turbolinks-track" => true)
+    = javascript_include_tag "application"
     /[if lt IE 9]
       script [ src="https://html5shiv.googlecode.com/svn/trunk/html5.js" ]
       script [ src="https://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js" ]

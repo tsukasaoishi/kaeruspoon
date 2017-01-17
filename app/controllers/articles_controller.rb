@@ -1,3 +1,5 @@
+require Rails.root.join("lib/text_decorator")
+
 class ArticlesController < ApplicationController
   before_action :required_login, only: %i(new create edit update destroy)
   after_action :expire_cache, only: %i(create update destroy)

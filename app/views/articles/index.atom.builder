@@ -1,4 +1,4 @@
-atom_feed(:language => :ja) do |feed|
+atom_feed(language: :ja) do |feed|
   feed.title "kaeruspoon"
   feed.updated @articles.first.created_at
 

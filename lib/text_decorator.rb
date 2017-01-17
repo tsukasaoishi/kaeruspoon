@@ -20,7 +20,7 @@ class TextDecorator
     end
 
     def syntax_highlighter(html)
-      doc = Nokogiri::HTML.fragment(html)
+      doc = Nokogiri::HTML.fragment(html.encode("UTF-8"))
       doc.search("pre").each do |pre|
         klass = pre.children.attribute("class")
         pre.replace(Pygments.highlight(

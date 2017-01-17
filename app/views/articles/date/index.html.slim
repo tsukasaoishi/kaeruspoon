@@ -9,12 +9,12 @@
     </article>
 
 - if @prev_article
-  div [ class="previous_paging_box" id="previous_page" data-url=articles_date_path(@prev_article.to_date_hash) ]
-    span [ class="entypo-left-bold" ]
+  .previous_paging_box#previous_page [ data-url=articles_date_path(@prev_article.to_date_hash) ]
+    span.entypo-left-bold
     = previous_link_to(I18n.l(@prev_article.publish_at, format: :month), articles_date_path(@prev_article.to_date_hash), rel: "prev bookmark")
 - if @next_article
-  div [ class="next_paging_box" id="next_page" data-url=articles_date_path(@next_article.to_date_hash) ]
+  .next_paging_box#next_page [ data-url=articles_date_path(@next_article.to_date_hash) ]
     = next_link_to(I18n.l(@next_article.publish_at, format: :month), articles_date_path(@next_article.to_date_hash), rel: "next bookmark")
-    span [ class="entypo-right-bold" ]
+    span.entypo-right-bold
 
 

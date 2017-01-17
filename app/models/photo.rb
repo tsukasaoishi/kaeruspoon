@@ -1,4 +1,4 @@
-class Photo < ActiveRecord::Base
+class Photo < ApplicationRecord
   before_destroy :destroy_image
 
   has_attached_file :image,

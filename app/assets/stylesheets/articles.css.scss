@@ -49,7 +49,7 @@ article {
   }
 
   h1 {
-    color: #222;
+    color: #000;
     margin: 0;
     font: {
       size: 25px;
@@ -57,7 +57,7 @@ article {
     }
 
     a {
-      color: #222;
+      color: #000;
     }
   }
 
@@ -131,6 +131,12 @@ code {
   color: black;
   background: #f7f7ff;
   border: solid 1px #dddddd;
+}
+
+blockquote {
+  background-color: #EEE;
+  margin: 1em;
+  padding: 1em;
 }
 
 @mixin pagingBox {
