@@ -3,7 +3,7 @@
     h1 [ itemprop="name" ]
       = link_to(article.title, article_path(article), rel: :bookmark)
     meta
-      = link_to avatar_icon_tag(20), root_path
+      = link_to avatar_icon_tag(30), root_path
       span
         = link_to "Tsukasa OISHI", root_path
       time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ]
