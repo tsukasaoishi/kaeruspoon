@@ -18,12 +18,10 @@ class Article < ApplicationRecord
   scope :published, -> { where("articles.publish_at <= ?", Time.current) }
   scope :newest, -> { order("articles.publish_at DESC, articles.id DESC") }
   scope :oldest, -> { order("articles.publish_at, articles.id") }
-  scope :only_share, -> { where(not_to_share: false) }
 
   class << self
-    def recent_articles(limit = 10, only_share: false)
-      query = newest.limit(limit)
-      only_share ? query.only_share : query
+    def recent_articles(limit = 10)
+      newest.limit(limit)
     end
 
     def popular_articles(limit = 100)

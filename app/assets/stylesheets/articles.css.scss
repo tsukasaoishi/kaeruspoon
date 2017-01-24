@@ -5,7 +5,7 @@
 article {
   padding-left: 0.8%;
   padding-right: 0.8%;
-  line-height: 1.5;
+  line-height: 1.6;
   margin-bottom: 40px;
 
   header {
@@ -48,7 +48,7 @@ article {
   }
 
   h1 {
-    color: rgba(0,0,0,.8);
+    color: #000;
     margin: 0;
     line-height: 1.10;
     letter-spacing: -.028em;
@@ -82,10 +82,6 @@ article {
     }
   }
 
-  meta {
-    margin-top: 10px;
-  }
-
   div.article_context {
     margin-top: 40px;
 
@@ -96,7 +92,7 @@ article {
 
   p {
     margin-top: 10px;
-    font-size: 15px;
+    font-size: 16px;
   }
 
   img {

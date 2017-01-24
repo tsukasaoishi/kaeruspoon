@@ -13,7 +13,7 @@ class ArticlesController < ApplicationController
         @articles = Article.recent_articles(30)
         @tite = "最新記事"
       }
-      format.atom { @articles = Article.recent_articles(30, only_share: true).to_a }
+      format.atom { @articles = Article.recent_articles(30).to_a }
     end
   end
 
@@ -66,7 +66,6 @@ class ArticlesController < ApplicationController
     params.require(:article).permit(
       :title,
       :publish_at,
-      :not_to_share,
       content_attributes: [:body],
     )
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160329160410) do
+ActiveRecord::Schema.define(version: 20170124142931) do
 
   create_table "amazons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "asin"
@@ -53,10 +53,9 @@ ActiveRecord::Schema.define(version: 20160329160410) do
   end
 
   create_table "articles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "title",                        null: false
-    t.datetime "publish_at",                   null: false
-    t.integer  "access_count", default: 0,     null: false
-    t.boolean  "not_to_share", default: false, null: false
+    t.string   "title",                    null: false
+    t.datetime "publish_at",               null: false
+    t.integer  "access_count", default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["access_count"], name: "index_articles_on_access_count", using: :btree

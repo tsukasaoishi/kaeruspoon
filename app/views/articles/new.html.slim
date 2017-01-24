@@ -10,8 +10,8 @@
       div
         = f.datetime_select :publish_at
       div
-        | SNSでシェアしない
-        = f.check_box :not_to_share
+        | SNSでシェアする
+        = f.check_box :share_to_sns
       .actions
         = submit_tag "create or edit"
     = form_for Photo.new, :html => { :multipart => true } do |f|
