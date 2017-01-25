@@ -16,6 +16,6 @@
           = link_to I18n.t(:delete), article, method: :delete, data: {confirm: I18n.t(:confirm_to_article_delete)}
   .article_context [ itemprop="description" ]
     == TextDecorator.replace(article.body)
-    asid.socialButton [ data-article-id=article.id ]
+    aside.socialButton [ data-article-id=article.id ]
       #fb-root
 </article>
