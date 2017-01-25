@@ -1,6 +1,6 @@
 atom_feed(language: :ja) do |feed|
   feed.title "kaeruspoon"
-  feed.updated @articles.first.created_at
+  feed.updated @articles.first.created_at unless @articles.empty?
 
   @articles.each do |a|
     feed.entry(a) do |entry|
