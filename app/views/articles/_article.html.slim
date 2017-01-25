@@ -8,6 +8,7 @@
         = link_to "Tsukasa OISHI", root_path
       time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ]
         = article.linked_publish_at
+        = "(#{distance_of_time_in_words_to_now(article.publish_at)}前)"
       - if logged_in?
         span.operate
           = link_to I18n.t(:edit), edit_article_path(article)
