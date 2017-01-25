@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :dashboards, only: %i(index)
 
   namespace :articles do
+    resources :share, only: %i(index)
     resources :popular, only: %i(index)
     resources :archive, only: %i(index)
     get 'date/:year/:month/(:day)' => 'date#index', as: :date,

@@ -10,6 +10,8 @@ class Article < ApplicationRecord
   has_many :related_articles, dependent: :destroy
   has_many :similar_articles, through: :related_articles, source: :related_article
 
+  has_one :share_to_sns
+
   before_create :set_publish_at
   after_save :keyword_check!, :choose_pickup_photo!, :choose_similar_articles!
 
@@ -71,6 +73,20 @@ class Article < ApplicationRecord
       content.body = text
     else
       build_content(body: text)
+    end
+  end
+
+  def share_to
+    !!share_to_sns
+  end
+
+  def share_to=(flag)
+    if flag
+      return if share_to_sns
+      create_share_to_sns
+    else
+      return unless share_to_sns
+      share_to_sns.destroy
     end
   end
 

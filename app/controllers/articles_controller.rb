@@ -31,6 +31,7 @@ class ArticlesController < ApplicationController
 
   def create
     article = Article.create!(require_params)
+    article.share_to = (params[:share_to] == "1")
     redirect_to article
   end
 
@@ -49,6 +50,7 @@ class ArticlesController < ApplicationController
   def update
     article = Article.find(params[:id])
     article.update_attributes!(require_params)
+    article.share_to = (params[:share_to] == "1")
 
     redirect_to article
   end

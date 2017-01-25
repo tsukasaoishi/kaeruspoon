@@ -11,7 +11,7 @@
         = f.datetime_select :publish_at
       div
         | SNSでシェアする
-        = f.check_box :share_to_sns
+        = check_box_tag :share_to, 1, @article.share_to
       .actions
         = submit_tag "create or edit"
     = form_for Photo.new, :html => { :multipart => true } do |f|

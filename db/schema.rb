@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170124142931) do
+ActiveRecord::Schema.define(version: 20170124143633) do
 
   create_table "amazons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "asin"
@@ -129,6 +129,14 @@ ActiveRecord::Schema.define(version: 20170124142931) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["article_id", "related_article_id"], name: "index_related_articles_on_article_id_and_related_article_id", using: :btree
+  end
+
+  create_table "share_to_sns", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_share_to_sns_on_article_id", using: :btree
+    t.index ["created_at"], name: "index_share_to_sns_on_created_at", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
