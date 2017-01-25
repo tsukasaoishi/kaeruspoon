@@ -13,7 +13,7 @@ class ArticlesController < ApplicationController
         @articles = Article.recent_articles(30)
         @tite = "最新記事"
       }
-      format.atom { @articles = Article.recent_articles(30).to_a }
+      format.atom { @articles = Article.recent_articles(30).includes(:content) }
     end
   end
 
