@@ -13,7 +13,6 @@ module Tasks
         load_counts.each do |a_id, count|
           a = Article.find_by(id: a_id)
           next unless a
-          puts "#{a.id}\t#{count}"
           a.access_count = count
           a.save!
         end

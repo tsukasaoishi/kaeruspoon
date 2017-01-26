@@ -27,7 +27,7 @@ class Article < ApplicationRecord
     end
 
     def popular_articles(limit = 100)
-      order("access_count DESC").limit(limit)
+      where("access_count > ?", 0).order("access_count DESC").limit(limit)
     end
 
     def period_articles(start, range, reverse = false)
