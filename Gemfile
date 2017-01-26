@@ -36,6 +36,7 @@ gem "active_decorator"
 gem "font-awesome-rails"
 gem "bitzer_store"
 gem "rb-readline"
+gem 'google-api-client'
 
 group :development, :test do
   gem 'byebug'
