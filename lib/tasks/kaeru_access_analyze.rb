@@ -1,3 +1,5 @@
+require_relative "article_content_analyze"
+
 module Tasks
   class KaeruAccessAnalyze < ArticleCountAnalyzeBase
     private

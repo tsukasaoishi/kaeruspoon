@@ -1,3 +1,4 @@
+require_relative "job_base"
 module Tasks
   class ArticleContentAnalyze < JobBase
     def run
