@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 cd /srv/kaeruspoon/current
-bin/rails runner -e production 'require "lib/tasks/kaeru_access_analyze"; Tasks::KaeruAccessAnalyze.run("/var/log/nginx/kaeru.access.log")' >> log/cron.log 2>&1'
+bin/rails runner -e production 'require "lib/tasks/kaeru_access_analyze"; Tasks::KaeruAccessAnalyze.run("/var/log/nginx/kaeru.access.log")' >> log/cron.log 2>&1
