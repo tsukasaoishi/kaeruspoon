@@ -143,6 +143,10 @@ blockquote {
   padding: 1em;
 }
 
+iframe {
+  width: 100%;
+}
+
 @mixin pagingBox {
   margin: 10px auto;
   max-width: 720px;
