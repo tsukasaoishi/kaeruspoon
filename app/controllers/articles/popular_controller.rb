@@ -1,5 +1,5 @@
 class Articles::PopularController < ApplicationController
-  caches_action :index, expires_in: 1.week
+  caches_action :index, expires_in: 1.minute
 
   def index
     @articles = Article.popular_articles(30)
