@@ -1,6 +1,4 @@
 class Articles::DateController < ApplicationController
-  caches_action :index, expires_in: 1.minute
-
   def index
     y, m, d = params.values_at(:year, :month, :day)
     date_range = d ? :day : :month

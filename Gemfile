@@ -22,7 +22,6 @@ gem 'aws-sdk', '< 2.0'
 gem 'amazon-ecs'
 gem "js-routes"
 gem "dalli"
-gem "actionpack-action_caching", github: "rails/actionpack-action_caching"
 gem "word_scoop"
 gem 'will_paginate', '~> 3.0'
 gem 'slim'
