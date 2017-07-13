@@ -8,7 +8,7 @@ class Photo < ApplicationRecord
       medium: "320x320"
     },
     storage: :s3,
-    s3_credentials: "#{Rails.root}/config/s3.yml",
+    s3_credentials: Rails.application.secrets.s3,
     path: ":attachment/:id/:style.:extension",
     s3_protocol: :https
 

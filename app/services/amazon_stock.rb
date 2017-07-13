@@ -1,6 +1,4 @@
 class AmazonStock
-  CONFIG_FILE = File.join(Rails.root, "config/amazon.yml")
-
   attr_reader :image_url, :url, :product_name
 
   class << self
@@ -50,6 +48,6 @@ class AmazonStock
   end
 
   def config
-    @config ||= YAML.load_file(CONFIG_FILE)
+    Rails.application.secrets.amazon
   end
 end
