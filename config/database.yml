@@ -1,4 +1,3 @@
-<% db_account = YAML.load_file("/etc/kaeruspoon/db_account.yml") %>
 # MySQL.  Versions 4.1 and 5.0 are recommended.
 #
 # Install the MYSQL driver
@@ -14,8 +13,8 @@ development:
   encoding: utf8
   database: kaeruspoon_development
   pool: 5
-  username: <%= db_account[:account] %>
-  password: <%= db_account[:password] %>
+  username: <%= Rails.application.secrets.db_account[:account] %>
+  password: <%= Rails.application.secrets.db_account[:password] %>
   socket: /tmp/mysql.sock
 
   slave:
@@ -29,8 +28,8 @@ test:
   encoding: utf8
   database: kaeruspoon_test
   pool: 5
-  username: <%= db_account[:account] %>
-  password: <%= db_account[:password] %>
+  username: <%= Rails.application.secrets.db_account[:account] %>
+  password: <%= Rails.application.secrets.db_account[:password] %>
   socket: /tmp/mysql.sock
 
 production:
@@ -38,6 +37,6 @@ production:
   encoding: utf8
   database: kaeruspoon_production
   pool: 5
-  username: <%= db_account[:account] %>
-  password: <%= db_account[:password] %>
+  username: <%= Rails.application.secrets.db_account[:account] %>
+  password: <%= Rails.application.secrets.db_account[:password] %>
   socket: /var/lib/mysql/mysql.sock

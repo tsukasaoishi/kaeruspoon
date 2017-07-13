@@ -28,7 +28,6 @@ module Kaeruspoon
     config.time_zone = 'Tokyo'
     config.i18n.enforce_available_locales = false
     config.i18n.default_locale = :ja
-    config.cache_store = :dalli_store
-    config.active_record.raise_in_transactional_callbacks = true
+    config.cache_store = :mem_cache_store
   end
 end

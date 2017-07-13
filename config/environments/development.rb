@@ -15,6 +15,8 @@ Rails.application.configure do
   # Enable/disable caching. By default caching is disabled.
   config.action_controller.perform_caching = false
 
+  config.read_encrypted_secrets = true
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
