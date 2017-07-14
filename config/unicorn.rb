@@ -14,7 +14,7 @@ before_fork do |server, worker|
 
   if defined?(ActiveRecord::Base)
     ActiveRecord::Base.connection.disconnect!
-    ActiveRecord::Base.clear_all_slave_connections!
+    ActiveRecord::Base.clear_all_replica_connections!
   end
 
   old_pid = "#{server.config[:pid]}.oldbin"
