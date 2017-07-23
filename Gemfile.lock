@@ -228,6 +228,8 @@ GEM
       faraday (~> 0.9)
       jwt (~> 1.5)
       multi_json (~> 1.10)
+    sitemap_generator (5.3.1)
+      builder (~> 3.0)
     slim (3.0.8)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 1.3.3, < 2.1)
@@ -304,6 +306,7 @@ DEPENDENCIES
   redcarpet
   reverse_markdown
   sass-rails (~> 5.0)
+  sitemap_generator
   slim
   spring
   spring-watcher-listen (~> 2.0.0)

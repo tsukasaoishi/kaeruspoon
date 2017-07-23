@@ -36,6 +36,11 @@ class Keyword < ApplicationRecord
     articles.paginate_by_publish(page_num)
   end
 
+  def last_modified_at
+    return updated_at unless article_keywords.exists?
+    article_keywords.sort_by{|ak| ak.updated_at}.last.updated_at
+  end
+
   private
 
   def tree_add

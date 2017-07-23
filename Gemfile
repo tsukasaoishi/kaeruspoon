@@ -35,6 +35,7 @@ gem "font-awesome-rails"
 gem "bitzer_store"
 gem "rb-readline"
 gem 'google-api-client'
+gem 'sitemap_generator'
 
 group :development, :test do
   gem 'byebug'

@@ -6,10 +6,10 @@
 set :output, "log/cron.log"
 set :environment, :production
 
-every 10.minutes do
-  runner 'Tasks::KaeruAccessAnalyze.run("/var/log/httpd/access_log")'
-end
-
 every 1.hour do
   runner 'Tasks::ArticleContentAnalyze.run'
+end
+
+every 1.day, at: '5:00 am' do
+  rake "-s sitemap:refresh"
 end
