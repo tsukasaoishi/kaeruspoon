@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 
-gem 'rails', '~> 5.1.2'
+gem 'rails', '~> 5.1.4'
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -16,14 +16,14 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'unicorn'
 gem 'coderay'
-gem "paperclip", "~> 4.3.6"
-gem 'aws-sdk', '< 2.0'
+gem "paperclip"
+gem 'aws-sdk', '~> 2.3.0'
 gem 'amazon-ecs'
 gem "js-routes"
 gem "dalli"
 gem "word_scoop"
-gem 'will_paginate', '~> 3.0'
 gem 'slim'
+gem 'kaminari'
 gem 'wikipedia-client'
 gem 'ebisu_connection'
 gem 'reverse_markdown'
@@ -53,4 +53,4 @@ group :development do
   gem 'capistrano3-unicorn'
 end
 
-gem 'whenever', :require => false
+gem 'whenever', require: false

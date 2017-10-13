@@ -10,7 +10,8 @@ class Photo < ApplicationRecord
     storage: :s3,
     s3_credentials: Rails.application.secrets.s3,
     path: ":attachment/:id/:style.:extension",
-    s3_protocol: :https
+    s3_protocol: :https,
+    s3_region: "ap-northeast-1"
 
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
 

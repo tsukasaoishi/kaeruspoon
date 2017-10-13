@@ -21,10 +21,10 @@
   aside.col_center.keyword_articles
     h4
       = "「#{@keyword.name}」を含む最近の記事"
-    = will_paginate @articles
+    = paginate @articles
     ul
       - @articles.each do |a|
         li
           = link_to a.title, article_path(a)
           = " (#{l(a.publish_at, format: :day)})"
-    = will_paginate @articles
+    = paginate @articles

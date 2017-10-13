@@ -209,7 +209,10 @@ ja:
     errors:
       <<: *errors
 
-  will_paginate:
-    previous_label: "&#8592; 前"
-    next_label: "次 &#8594;"
-    page_gap: "&hellip;"
+  views:
+    pagination:
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      truncate: "&hellip;"
