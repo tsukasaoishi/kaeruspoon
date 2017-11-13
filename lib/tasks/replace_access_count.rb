@@ -1,4 +1,5 @@
 require_relative "job_base"
+require 'csv'
 
 module Tasks
   class ReplaceAccessCount < JobBase
@@ -24,12 +25,10 @@ module Tasks
     def load_counts
       counts = {}
 
-      File.open(@file, "r") do |f|
-        f.each do |line|
-          uri, count = line.split("\t")[0..1]
-          next unless uri =~ %r!\A/articles/(\d+)\z!
-          counts[$1.to_i] = count.to_i
-        end
+      CSV.read(@file, headers: true).each do |data|
+        uri, count = data["ページ"], data["ページビュー数"]
+        next unless uri =~ %r!\A/articles/(\d+)\z!
+        counts[$1.to_i] = count.to_i
       end
 
       counts
