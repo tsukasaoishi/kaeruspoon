@@ -1,7 +1,12 @@
 header
-  .row
+  nav
     span.name
       = link_to "kaeruspoon", root_path
-    - if @sub_title
-      span.sub_title
-        = @sub_title
+      ul
+        li = link_to "人気", articles_popular_index_path
+        li = link_to "月毎", articles_archive_index_path
+        li = link_to content_tag(:i, nil, class: "fa fa-github fa-2x"), "https://github.com/tsukasaoishi", target: "_blank"
+        li = link_to content_tag(:i, nil, class: "fa fa-twitter fa-2x"), "https://twitter.com/tsukasa_oishi", target: "_blank"
+        li = link_to content_tag(:i, nil, class: "fa fa-instagram fa-2x"), "http://instagram.com/tsukasa", target: "_blank"
+        li = link_to content_tag(:i, nil, class: "fa fa-slideshare fa-2x"), "http://www.slideshare.net/tsukasa.oishi", target: "_blank"
+        li = link_to "gems", "https://rubygems.org/profiles/tsukasaoishi", target: "_blank"

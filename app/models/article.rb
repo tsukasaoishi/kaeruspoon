@@ -90,7 +90,7 @@ class Article < ApplicationRecord
     end
   end
 
-  def digest_body(length = 180)
+  def digest_body
     @_digest_body ||= body.split(/\r|\n|\r\n/).delete_if{|text| text.blank? || text =~ /^!/}.first || ""
   end
 

@@ -2,67 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.about-me {
-  color: #fff;
-  margin: 0 auto;
-  padding-top: 10px;
-  padding-bottom: 180px;
-  width: 100%;
-  background-color: #1663c7;
-
-  .content {
-    margin: auto;
-    max-width: 1200%;
-    width: 80%;
-
-    .image {
-      padding-top: 30px;
-      float: left;
-
-      img {
-        border: 5px solid #fff;
-        border-radius: 100%;
-      }
-    }
-
-    .introduction {
-      float: left;
-      padding-left: 20px;
-
-      h1 {
-        margin: 15px 0;
-        font-family: "Montserrat",sans-serif;
-        font-size: 2em;
-        font-weight: 400;
-        line-height: 1.45;
-      }
-
-      ul {
-        list-style: none;
-        margin: 0;
-        padding-left: 0;
-      }
-
-      li {
-        display: inline;
-        padding-right: 10px;
-
-        a {
-          color: #fff;
-        }
-
-        a:hover {
-          color: #ff6307;
-        }
-      }
-    }
-  }
-}
-
 .blog {
   color: #333;
   margin: 0 auto;
-  padding-top: 20px;
+  padding-top: 80px;
   padding-bottom: 50px;
   width: 100%;
   background-color: #fff;
@@ -102,11 +45,14 @@
     }
   }
 
+  .tile {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #dadada;
+    box-shadow: 0px 0px 7px 1px rgba(95,95,99,0.18);
+  }
+
   article {
     margin: auto;
-    max-width: 1200%;
-    padding-left: 100px;
-    width: 80%;
 
     header {
       color: #aaa;
@@ -117,10 +63,9 @@
       font-size: 0.7em;
       font-weight: 200;
       line-height: 1.45;
-    }
-
-    a:hover {
-      color: #ff6307;
+      hover {
+        color: #ff6307;
+      }
     }
   }
 }
@@ -130,13 +75,10 @@
   margin: 0 auto;
   padding-top: 20px;
   padding-bottom: 50px;
-  width: 100%;
   background-color: #eee;
 
   .introduction {
-    margin: auto;
-    max-width: 1200%;
-    width: 80%;
+    margin: 0 auto;
     font-family: "Montserrat",sans-serif;
     font-size: 1.7em;
     font-weight: 400;
