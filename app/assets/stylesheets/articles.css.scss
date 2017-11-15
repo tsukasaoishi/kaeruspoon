@@ -9,7 +9,7 @@ article {
   margin-bottom: 40px;
 
   header {
-    color: #eee;
+    color: #777;
 
     img {
       border: 5px solid #fff;
@@ -33,12 +33,13 @@ article {
     }
 
     time {
+      margin-left: 10px;
       font-size: 13px;
-      color: #989898;
+      color: #666;
       display: inline;
 
       a {
-        color: #989898;
+        color: #666;
 
         &:hover {
           color: #ff6307;

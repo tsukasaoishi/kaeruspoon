@@ -1,10 +1,17 @@
-- @articles.each do |article|
-  <article class="col_center" itempscope itemtype="https://schema.org/Article">
-    header
-      h1 [ itemprop="name" ]
-        = link_to(article.title, article_path(article), rel: :bookmark)
-      meta
-        time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ]
-          = article.linked_publish_at
-          = "(#{distance_of_time_in_words_to_now(article.publish_at)}前)"
+.blog.col_center
+  h3
+    | 人気の記事
+  - @articles.each do |article|
+    <article class="tile" itempscope itemtype="https://schema.org/Article">
+      header
+        h1 [ itemprop="name" ]
+          = link_to(article.title, article_path(article), rel: :bookmark)
+        meta
+          = avatar_icon_tag(30)
+          span
+            | Tsukasa OISHI
+          time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ]
+            = article.linked_publish_at
+            = "(#{distance_of_time_in_words_to_now(article.publish_at)}前)"
+      = TextDecorator.replace(article.digest_body)
     </article>

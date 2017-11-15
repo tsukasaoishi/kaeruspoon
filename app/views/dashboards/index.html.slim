@@ -5,12 +5,12 @@
         h1 [ itemprop="name" ]
           = link_to(article.title, article_path(article), rel: :bookmark)
         meta
-          = link_to avatar_icon_tag(30), root_path
+          = avatar_icon_tag(30)
           span
-            = link_to "Tsukasa OISHI", root_path
+            | Tsukasa OISHI
           time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ]
-          = "#{distance_of_time_in_words_to_now(article.publish_at)}前"
-      = article.digest_body
+            = "#{distance_of_time_in_words_to_now(article.publish_at)}前"
+      = TextDecorator.replace(article.digest_body)
     </article>
 
 .work
