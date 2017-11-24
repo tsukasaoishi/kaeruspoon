@@ -7,9 +7,9 @@
         h1 [ itemprop="name" ]
           = link_to(article.title, article_path(article), rel: :bookmark)
         meta
-          = avatar_icon_tag(30)
+          = link_to(avatar_icon_tag(30), tsukasa_path)
           span
-            | Tsukasa OISHI
+            = link_to("Tsukasa OISHI", tsukasa_path)
           time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ]
             = article.linked_publish_at
             = "(#{distance_of_time_in_words_to_now(article.publish_at)}前)"

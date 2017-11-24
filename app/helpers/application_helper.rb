@@ -5,7 +5,7 @@ module ApplicationHelper
   }
   private_constant :MARKS
 
-  DEFAULT_TITLE = "Tsukasa OISHI"
+  DEFAULT_TITLE = "kaeruspoon"
   private_constant :DEFAULT_TITLE
 
   AVATAR_IMAGE = {

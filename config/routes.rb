@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  root 'dashboards#index'
-
-  resources :dashboards, only: %i(index)
+  root 'articles#index'
 
   namespace :articles do
     resources :share, only: %i(index)
@@ -12,6 +10,8 @@ Rails.application.routes.draw do
   end
 
   resources :articles
+
+  resource :tsukasa, only: %i(show)
 
   resources :photos, only: [:create]
   resources :keywords, except: [:index]

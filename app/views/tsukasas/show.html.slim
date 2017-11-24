@@ -1,17 +1,19 @@
-.blog.col_center
-  - @articles.each do |article|
-    <article class="tile" itempscope itemtype="https://schema.org/Article">
-      header
-        h1 [ itemprop="name" ]
-          = link_to(article.title, article_path(article), rel: :bookmark)
-        meta
-          = avatar_icon_tag(30)
-          span
-            | Tsukasa OISHI
-          time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ]
-            = "#{distance_of_time_in_words_to_now(article.publish_at)}前"
-      = TextDecorator.replace(article.digest_body)
-    </article>
+.about-me
+  .content
+    .image
+      = avatar_icon_tag(100)
+    .introduction
+      h1 Tsukasa OISHI
+      ul
+        li = link_to content_tag(:i, nil, class: "fa fa-github fa-2x"), "https://github.com/tsukasaoishi", target: "_blank"
+        li = link_to content_tag(:i, nil, class: "fa fa-twitter fa-2x"), "https://twitter.com/tsukasa_oishi", target: "_blank"
+        li = link_to content_tag(:i, nil, class: "fa fa-instagram fa-2x"), "http://instagram.com/tsukasa", target: "_blank"
+        li = link_to content_tag(:i, nil, class: "fa fa-slideshare fa-2x"), "http://www.slideshare.net/tsukasa.oishi", target: "_blank"
+        li = link_to "rubygems", "https://rubygems.org/profiles/tsukasaoishi", target: "_blank"
+      p
+        | I like trip, motorcycle, drive, photo and cooking.
+        br
+        | I'm ruby programmer.
 
 .work
   .introduction.col_center
