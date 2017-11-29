@@ -23,11 +23,11 @@ class Article < ApplicationRecord
 
   class << self
     def recent_articles(limit = 10)
-      newest.limit(limit)
+      newest.limit(limit).preload(:content)
     end
 
     def popular_articles(limit = 100)
-      where("access_count > ?", 0).order("access_count DESC").limit(limit)
+      where("access_count > ?", 0).order("access_count DESC").limit(limit).preload(:content)
     end
 
     def period_articles(start, range, reverse = false)
@@ -35,7 +35,7 @@ class Article < ApplicationRecord
       finish = start.__send__(period_end_method)
       period = (start..finish)
 
-      list = where(publish_at: period)
+      list = where(publish_at: period).preload(:content)
       reverse ? list.newest : list.oldest
     end
 

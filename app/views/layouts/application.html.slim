@@ -12,14 +12,14 @@ html [ lang="ja" ]
     meta [ property="fb:admins" content="671652438" ]
     title = title_name
     = csrf_meta_tags
-    = stylesheet_link_tag 'application', media: 'all'
-    = favicon_link_tag 'favicon.png'
+    = stylesheet_pack_tag 'application', media: 'all'
+    = favicon_link_tag asset_pack_path('images/favicon.png')
     = auto_discovery_link_tag :atom, articles_url(format: 'atom')
   body
     = render("header_navi")
     #contents
       = yield
-    = javascript_include_tag "application"
+    = javascript_pack_tag "application"
     /[if lt IE 9]
       script [ src="https://html5shiv.googlecode.com/svn/trunk/html5.js" ]
       script [ src="https://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js" ]

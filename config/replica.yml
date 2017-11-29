@@ -1,12 +1,12 @@
 development:
-  slave:
+  replica:
     - "localhost, 10"
 
 test:
-  slave:
+  replica:
     - "localhost, 10"
 
 production:
-  slave:
+  replica:
     - "localhost, 10"
 

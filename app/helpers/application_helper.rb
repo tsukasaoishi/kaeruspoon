@@ -36,4 +36,12 @@ module ApplicationHelper
     url = [AVATAR_IMAGE[:url], "?s=#{size}&", AVATAR_IMAGE[:params]].join
     image_tag url
   end
+
+  def linked_publish_at(obj)
+    [
+      obj.publish_at.strftime("%A,"),
+      link_to(obj.publish_at.strftime("%b"), articles_date_path(obj.to_date_hash)),
+      obj.publish_at.strftime("%d, %Y")
+    ].join(' ').html_safe
+  end
 end

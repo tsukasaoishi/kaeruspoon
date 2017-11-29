@@ -4,11 +4,11 @@ class ArticlesController < ApplicationController
   before_action :required_login, only: %i(new create edit update destroy)
 
   def index
+    @articles = Article.recent_articles(30)
+
     respond_to do |format|
-      format.html {
-        @articles = Article.recent_articles(30)
-      }
-      format.atom { @articles = Article.recent_articles(30).includes(:content) }
+      format.html
+      format.atom
     end
   end
 

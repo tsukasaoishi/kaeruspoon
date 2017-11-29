@@ -11,7 +11,7 @@
           span
             = link_to("Tsukasa OISHI", tsukasa_path)
           time [ itemprop="datePublished" datetime="#{I18n.l(article.publish_at, format: :publish)}" ]
-            = article.linked_publish_at
+            = linked_publish_at(article)
             = "(#{distance_of_time_in_words_to_now(article.publish_at)}前)"
       = TextDecorator.replace(article.digest_body)
     </article>

@@ -1,3 +1,5 @@
+require Rails.root.join("lib/text_decorator")
+
 class Articles::DateController < ApplicationController
   def index
     y, m, d = params.values_at(:year, :month, :day)

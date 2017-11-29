@@ -1,3 +1,5 @@
+require Rails.root.join("lib/text_decorator")
+
 class Articles::PopularController < ApplicationController
   def index
     @articles = Article.popular_articles(50)

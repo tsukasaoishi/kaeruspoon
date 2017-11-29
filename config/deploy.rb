@@ -26,7 +26,7 @@ set :deploy_to, '/srv/kaeruspoon'
 #set :linked_files, fetch(:linked_files, []).push('config/s3.yml', 'config/amazon.yml')
 
 # Default value for linked_dirs is []
-set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/assets')
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/pack')
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -34,8 +34,11 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-set :rbenv_ruby, '2.4.1'
+set :rbenv_ruby, '2.4.2'
 set :rbenv_path, '/usr/local/rbenv'
+
+set :ndenv_type, :user
+set :ndenv_node, 'v8.9.1'
 
 namespace :deploy do
   desc 'restart application'
@@ -53,5 +56,4 @@ namespace :deploy do
       end
     end
   end
-
 end
