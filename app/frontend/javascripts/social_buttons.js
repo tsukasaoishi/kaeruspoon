@@ -1,8 +1,10 @@
-var SocialButtons = {
-  ready: function(eleName) {
+import FacebookSdk from '../javascripts/facebook_sdk'
+
+export default {
+  ready(eleName) {
     $(eleName).each(function(i, ele){
       var articleId = $(ele).data("articleId");
-      var url = "https://www.kaeruspoon.net" + Routes.article_path(articleId);
+      var url = "https://www.kaeruspoon.net/articles/" + articleId;
 
       $(ele).append('<a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="en" data-pocket-align="right" data-save-url="' + url + '"></a><script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>');
 

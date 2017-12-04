@@ -1,3 +1,7 @@
+import KeyEvents from '../javascripts/key_events'
+import SocialButtons from '../javascripts/social_buttons'
+
+
 $(document).ready(function(){
   KeyEvents.ready('html','#next_page', '#previous_page');
   SocialButtons.ready('aside.socialButton');

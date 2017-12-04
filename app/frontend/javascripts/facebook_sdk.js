@@ -1,8 +1,5 @@
-var FacebookSdk = {
-  fbRoot: null,
-  eventsBound: false,
-
-  myAppId: function() {
+export default {
+  myAppId() {
     if(window.ENV.isDevelopment) {
       return '852046904905948';
     } else {
@@ -10,8 +7,10 @@ var FacebookSdk = {
     }
   },
 
-  initializeFacebookSDK: function() {
-    const myAppId = FacebookSdk.myAppId();
+  initializeFacebookSDK() {
+    this.fbRoot = null;
+    this.eventsBound = false;
+    const myAppId = this.myAppId;
     return FB.init({
       appId: myAppId,
       status : true,
@@ -21,12 +20,12 @@ var FacebookSdk = {
     })
   },
 
-  scriptLoad: function() {
+  scriptLoad() {
     window.fbAsyncInit = this.initializeFacebookSDK;
     $.getScript("//connect.facebook.net/ja_JP/sdk.js");
   },
 
-  bindEvents: function() {
+  bindEvents() {
     $(document)
       .on('page:fetch', this.saveRoot)
       .on('page:change', this.restoreRoot)
@@ -34,13 +33,13 @@ var FacebookSdk = {
     this.fbEventsBound = true
   },
 
-  saveRoot: function() {
+  saveRoot() {
     if($('#fb-root').length > 0) {
       this.fbRoot = $('#fb-root').detach();
     }
   },
 
-  restoreRoot: function() {
+  restoreRoot() {
     if(this.fbRoot) {
       if (('#fb-root').length > 0) {
         $('#fb-root').replaceWith(this.fbRoot);
@@ -50,14 +49,14 @@ var FacebookSdk = {
     }
   },
 
-  load: function(d, s, id) {
+  load(d, s, id) {
     this.scriptLoad(d, s, id);
     if(!this.eventBound) {
       this.bindEvents();
     }
   },
 
-  buttonTag: function(url) {
+  buttonTag(url) {
     return '<div class="fb-like" data-href="' + url + '" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>';
   }
 }

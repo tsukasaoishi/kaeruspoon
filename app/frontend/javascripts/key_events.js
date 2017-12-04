@@ -1,17 +1,13 @@
-var KeyEvents = {
-  right: 39,
-  left: 37,
-
-  ready: function(rootName, rightName, leftName) {
-    var self = this;
+export default {
+  ready(rootName, rightName, leftName) {
     $(rootName).keyup(function(e){
       switch(e.keyCode) {
-        case self.right:
+        case 39: //right
           if($(rightName).length) {
             window.location.href = $(rightName).data("url");
           }
           break;
-        case self.left:
+        case 37: //left
           if($(leftName).length) {
             window.location.href = $(leftName).data("url");
           }

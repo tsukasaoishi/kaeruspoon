@@ -7,13 +7,11 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-import $ from 'jquery'
-global.$ = $
-global.jQuery = $
-
 import Rails from 'rails-ujs'
 Rails.start()
 
+import GoogleAnalytics from 'javascripts/google_analytics'
+import Article from 'javascripts/articles'
+
 require.context('images', true, /\.(png|jpg|jpeg|svg)$/)
 require.context('stylesheets', true, /^\.\/[^_].*\.(css|scss|sass)$/i)
-require.context('javascripts', true, /^\.\/[^_].*\.js$/i)
