@@ -5,8 +5,8 @@
 .about-me {
   color: #fff;
   margin: 0 auto;
-  padding-top: 50px;
-  padding-bottom: 200px;
+  padding-top: 100px;
+  padding-bottom: 400px;
   width: 100%;
   background-color: #1663c7;
 
@@ -16,7 +16,7 @@
     width: 80%;
 
     .image {
-      padding-top: 30px;
+      padding-top: 50px;
       float: left;
 
       img {
@@ -27,6 +27,7 @@
 
     .introduction {
       float: left;
+      padding-top: 20px;
       padding-left: 20px;
 
       h1 {
