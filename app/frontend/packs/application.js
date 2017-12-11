@@ -10,7 +10,6 @@
 import Rails from 'rails-ujs'
 Rails.start()
 
-import GoogleAnalytics from 'javascripts/google_analytics'
 import Article from 'javascripts/articles'
 
 require.context('images', true, /\.(png|jpg|jpeg|svg)$/)
