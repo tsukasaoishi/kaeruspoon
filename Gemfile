@@ -28,6 +28,7 @@ gem "nokogiri"
 gem "bitzer_store"
 gem 'sitemap_generator'
 gem 'bcrypt'
+gem 'google-api-client'
 
 group :development, :test do
   gem 'byebug'

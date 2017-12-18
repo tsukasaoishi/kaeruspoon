@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 #cd /srv/kaeruspoon/current
-bin/rails runner -e production 'require Rails.root.join("lib/tasks/replace_access_count"); Tasks::ReplaceAccessCount.run("google_analytics.csv")' >> log/cron.log 2>&1
+bin/rails runner -e production 'require Rails.root.join("lib/tasks/replace_access_count"); Tasks::ReplaceAccessCount.run' >> log/cron.log 2>&1
 
