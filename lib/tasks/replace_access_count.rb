@@ -42,7 +42,9 @@ module Tasks
         json_key_io: json_key_io, scope: scope
       )
 
-      date_range = analytics::DateRange.new(start_date: '60DaysAgo', end_date: 'today')
+      end_date = Date.today.to_s
+      start_date = 60.days.ago.to_date.to_s
+      date_range = analytics::DateRange.new(start_date: start_date, end_date: end_date)
       metric = analytics::Metric.new(expression: 'ga:pageviews', alias: 'pv')
       dimension = analytics::Dimension.new(name: 'ga:pagePath')
       request = analytics::GetReportsRequest.new(
