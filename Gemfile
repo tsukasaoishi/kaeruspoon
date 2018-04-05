@@ -13,7 +13,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'unicorn'
 gem "paperclip"
-gem 'aws-sdk', '~> 2.3.0'
+gem 'aws-sdk-s3'
 gem 'amazon-ecs'
 gem "dalli"
 gem "word_scoop"
