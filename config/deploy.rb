@@ -34,7 +34,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-set :rbenv_ruby, '2.4.2'
+set :rbenv_ruby, '2.5.0'
 set :rbenv_path, '/usr/local/rbenv'
 
 set :ndenv_type, :user
