@@ -1,13 +1,10 @@
 source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-  "https://github.com/#{repo_name}.git"
-end
+ruby '2.5.1'
 
-
-gem 'rails', '~> 5.1.4'
-gem 'mysql2', '>= 0.3.18', '< 0.5'
+gem 'rails', '~> 5.2.0'
+gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 gem 'webpacker'
 gem 'jbuilder', '~> 2.5'
 
@@ -29,6 +26,7 @@ gem "bitzer_store"
 gem 'sitemap_generator'
 gem 'bcrypt'
 gem 'google-api-client'
+gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   gem 'byebug'
