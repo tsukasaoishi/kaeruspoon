@@ -41,13 +41,13 @@ class AmazonStock
 
   def load_config
     ::Amazon::Ecs.options = {
-      associate_tag: config["associate_tag"],
+      associate_tag: "kaeruspoon-22",
       AWS_access_key_id: config["access_key"],
       AWS_secret_key: config["secret_key"]
     }
   end
 
   def config
-    Rails.application.secrets.amazon
+    Rails.application.credentials.amazon
   end
 end

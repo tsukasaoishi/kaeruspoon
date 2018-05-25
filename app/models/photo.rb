@@ -8,7 +8,12 @@ class Photo < ApplicationRecord
       medium: "320x320"
     },
     storage: :s3,
-    s3_credentials: Rails.application.secrets.s3,
+    s3_credentials: {
+      access_key_id: Rails.application.credentials.s3[:access_key_id],
+      secret_access_key: Rails.application.credentials.s3[:secret_access_key],
+      s3_host_name: "s3-ap-northeast-1.amazonaws.com",
+      bucket: Rails.env.production? ? "kaeruspoon" : "kaeruspoondevelopment",
+    },
     path: ":attachment/:id/:style.:extension",
     s3_protocol: :https,
     s3_region: "ap-northeast-1"
