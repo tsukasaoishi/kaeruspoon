@@ -23,6 +23,14 @@ html [ lang="ja" ]
     = stylesheet_pack_tag 'application', media: 'all'
     = favicon_link_tag asset_pack_path('images/favicon.png')
     = auto_discovery_link_tag :atom, articles_url(format: 'atom')
+
+    script [ async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" ]
+    javascript:
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-2649260317960621",
+        enable_page_level_ads: true
+      });
+
   body
     = render("header_navi")
     #contents
