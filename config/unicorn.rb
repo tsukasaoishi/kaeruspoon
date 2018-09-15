@@ -1,4 +1,4 @@
-worker_processes 3
+worker_processes 2
 listen 9292, :tcp_nopush => true
 timeout 300
 pid 'tmp/pids/unicorn.pid'
