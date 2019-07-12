@@ -1,4 +1,4 @@
-class CreateAmazonStocks < ActiveRecord::Migration
+class CreateAmazonStocks < ActiveRecord::Migration[5.2]
   def change
     create_table :amazon_stocks do |t|
       t.string :asin, :null => false

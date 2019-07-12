@@ -1,4 +1,4 @@
-class CreateRelatedArticles < ActiveRecord::Migration
+class CreateRelatedArticles < ActiveRecord::Migration[5.2]
   def change
     create_table :related_articles do |t|
       t.integer :article_id

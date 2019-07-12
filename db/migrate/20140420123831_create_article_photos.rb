@@ -1,4 +1,4 @@
-class CreateArticlePhotos < ActiveRecord::Migration
+class CreateArticlePhotos < ActiveRecord::Migration[5.2]
   def change
     create_table :article_photos do |t|
       t.integer :article_id

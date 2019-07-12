@@ -1,4 +1,4 @@
-class CreateShareToSns < ActiveRecord::Migration[5.0]
+class CreateShareToSns < ActiveRecord::Migration[5.2]
   def change
     create_table :share_to_sns do |t|
       t.references :article

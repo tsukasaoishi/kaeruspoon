@@ -16,7 +16,6 @@ gem 'slim'
 gem 'sprockets'
 gem 'kaminari'
 gem 'wikipedia-client'
-gem 'ebisu_connection'
 gem 'redcarpet'
 gem "pygments.rb"
 gem "nokogiri"
@@ -44,3 +43,4 @@ group :development do
 end
 
 gem 'whenever', require: false
+gem 'fresh_connection'

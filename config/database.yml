@@ -15,10 +15,7 @@ development:
   pool: 5
   username: <%= Rails.application.credentials.db_account[:account] %>
   password: <%= Rails.application.credentials.db_account[:password] %>
-  socket: /tmp/mysql.sock
-
-  slave:
-    encoding: utf8
+  host: percona-db
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

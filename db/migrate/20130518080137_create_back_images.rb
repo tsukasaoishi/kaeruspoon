@@ -1,4 +1,4 @@
-class CreateBackImages < ActiveRecord::Migration
+class CreateBackImages < ActiveRecord::Migration[5.2]
   def change
     create_table :back_images do |t|
       t.string :image_file_name, :null => false
