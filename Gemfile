@@ -1,8 +1,10 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'rails', '~> 5.2.0'
-gem 'mysql2', '>= 0.4.4', '< 0.6.0'
+ruby '2.6.3'
+
+gem 'rails', '~> 5.2.3'
+gem 'sqlite3'
 gem 'webpacker'
 gem 'jbuilder', '~> 2.5'
 
@@ -43,4 +45,3 @@ group :development do
 end
 
 gem 'whenever', require: false
-gem 'fresh_connection'
