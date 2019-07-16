@@ -45,6 +45,7 @@ development:
     overlay: true
     disable_host_check: true
     use_local_ip: false
+    webpack_compile_output: true
 
 test:
   <<: *default
@@ -61,3 +62,4 @@ production:
 
   # Cache manifest.json for performance
   cache_manifest: true
+  webpack_compile_output: true

@@ -37,8 +37,8 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 set :rbenv_ruby, '2.6.3'
 set :rbenv_path, '/usr/local/rbenv'
 
-set :ndenv_type, :user
-set :ndenv_node, 'v8.9.1'
+set :nodenv_type, :user
+set :nodenv_node, '12.6.0'
 
 namespace :deploy do
   desc 'restart application'

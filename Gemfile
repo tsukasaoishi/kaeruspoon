@@ -39,7 +39,7 @@ group :development do
 
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
-  gem 'capistrano-ndenv'
+  gem 'capistrano-nodenv'
   gem 'capistrano-bundler'
   gem 'capistrano3-unicorn'
 end

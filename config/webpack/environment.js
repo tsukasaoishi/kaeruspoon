@@ -3,7 +3,7 @@ const webpack = require('webpack')
 
 environment.plugins.get('ExtractText')
 
-environment.plugins.set(
+environment.plugins.prepend(
   'Provide',
   new webpack.ProvidePlugin({
     $: 'jquery',

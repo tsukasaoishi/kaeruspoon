@@ -81,8 +81,8 @@ GEM
       sshkit (>= 1.9.0)
     capistrano-bundler (1.6.0)
       capistrano (~> 3.1)
-    capistrano-ndenv (1.2.0)
-      capistrano (>= 3.1.0, < 4)
+    capistrano-nodenv (1.1.0)
+      capistrano (~> 3.1)
       sshkit (~> 1.3)
     capistrano-rails (1.4.0)
       capistrano (~> 3.1)
@@ -285,7 +285,7 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   byebug
   capistrano-bundler
-  capistrano-ndenv
+  capistrano-nodenv
   capistrano-rails
   capistrano-rbenv
   capistrano3-unicorn
