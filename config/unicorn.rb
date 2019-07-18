@@ -14,7 +14,6 @@ before_fork do |server, worker|
 
   if defined?(ActiveRecord::Base)
     ActiveRecord::Base.connection.disconnect!
-    ActiveRecord::Base.clear_all_replica_connections!
   end
 
   old_pid = "#{server.config[:pid]}.oldbin"
@@ -33,7 +32,6 @@ end
 after_fork do |server, worker|
   if defined?(ActiveRecord::Base)
     ActiveRecord::Base.establish_connection
-    ActiveRecord::Base.establish_fresh_connection
   end
 
   Keyword.clear!
