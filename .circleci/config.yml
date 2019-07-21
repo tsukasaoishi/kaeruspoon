@@ -48,5 +48,14 @@ jobs:
             mkdir -p /tmp/deploy
             tar cvfz /tmp/deploy/${CIRCLE_SHA1}.tgz .
 
-      - store_artifacts:
-          path: /tmp/deploy
+      - run:
+          name: install aws cli
+          command: |
+            sudo apt-get install python3-pip
+            sudo pip3 install awscli
+
+      - run:
+          name: upload tar-ball to S3
+          command: |
+            aws s3 cp /tmp/deploy/${CIRCLE_SHA1}.tgz s3://tsuka-deploy/kaeruspoon/
+
