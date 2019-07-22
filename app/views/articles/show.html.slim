@@ -12,7 +12,7 @@
 nav.row
   - if @article.similar_articles.present?
     .related_articles
-      h4 関連する記事
+      h4 関連する記事一覧
       ul
         - @article.similar_articles.each do |article|
           li

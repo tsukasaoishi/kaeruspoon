@@ -19,7 +19,7 @@ namespace :mochimaki do
       within repo_path do
         execute :mkdir, "-p", release_path
         execute :curl, %Q|-s "#{fetch(:mochimaki_pull_url)}" -o /tmp/deploy.tgz|
-        execute "#{SSHKit.config.command_map[:tar]} xfvz /tmp/deploy.tgz -C #{release_path}"
+        execute "#{SSHKit.config.command_map[:tar]} xfz /tmp/deploy.tgz -C #{release_path}"
       end
     end
   end
