@@ -1,16 +1,17 @@
-def get_mochimaki_pull_url(current_revision)
-  system("git fetch")
-  commit_id = `git log -1 origin/master --format=%H`.strip
-  s3_url = "s3://tsuka-deploy/kaeruspoon/#{commit_id}.tgz"
-  puts "aws s3 ls #{s3_url}"
-  system("aws s3 ls #{s3_url}", exception: true)
-  `aws s3 presign #{s3_url} --expires-in 60`.strip
-end
-
 namespace :mochimaki do
-  task :get_pull_url do
+  task :set_current_version do
     run_locally do
-      set :mochimaki_pull_url, get_mochimaki_pull_url(fetch(:current_revision))
+      execute :git, "fetch"
+      set :current_revision, capture(:git, "log -1 origin/master --format=%H")
+    end
+  end
+
+  task get_pull_url: 'mochimaki:set_current_version' do
+    run_locally do
+      s3_url = "s3://tsuka-deploy/kaeruspoon/#{fetch(:current_revision)}.tgz"
+      success = execute(:aws, "s3 ls #{s3_url}")
+      raise "The tarball(#{s3_url}) is not found" unless success
+      set :mochimaki_pull_url, capture(:aws, "s3 presign #{s3_url} --expires-in 60")
     end
   end
 

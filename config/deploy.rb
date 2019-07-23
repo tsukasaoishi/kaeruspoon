@@ -11,7 +11,7 @@ set :repo_url, 'git@github.com:tsukasaoishi/kaeruspoon.git'
 set :deploy_to, '/srv/kaeruspoon'
 
 # Default value for :scm is :git
-set :scm, :mochimaki
+set :scm, nil
 
 # Default value for :format is :pretty
 # set :format, :pretty
