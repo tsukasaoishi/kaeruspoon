@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.6.3-node-browsers
+      - image: tsukasaoishi/circleci-ruby:2.6.3
         environment:
           BUNDLE_PATH: .bundle
           RAILS_ENV: production
@@ -47,12 +47,6 @@ jobs:
             rm -fr log/* tmp/* node_modules .bundle .git .circleci .rspec
             mkdir -p /tmp/deploy
             tar cvfz /tmp/deploy/${CIRCLE_SHA1}.tgz .
-
-      - run:
-          name: install aws cli
-          command: |
-            sudo apt-get install python3-pip
-            sudo pip3 install awscli
 
       - run:
           name: upload tar-ball to S3
