@@ -4,7 +4,7 @@
     "coffeescript": "^2.4.1",
     "font-awesome": "^4.7.0",
     "jquery": "^3.4.1",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "rails-ujs": "^5.2.3"
   },
   "devDependencies": {
